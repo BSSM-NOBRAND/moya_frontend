@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moya/config/typo_text_style.dart';
+import 'package:moya/presentation/common/custom_bottom_navigation_bar.dart';
 import 'package:moya/presentation/common/primary_button.dart';
 
 void main() {
@@ -36,9 +36,10 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: PrimaryButton(
           'test',
-          size: ButtonSize.s56,
+          size: ButtonSize.s64,
         ),
       ),
+      bottomNavigationBar: CustomBottomNavigationBar(),
     );
   }
 }

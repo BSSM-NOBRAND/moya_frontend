@@ -21,19 +21,16 @@ class PrimaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
       height: heightMap[size],
-      decoration: const BoxDecoration(
-        color: Colors.red,
-      ),
       child: TextButton(
         onPressed: () {},
         style: const ButtonStyle(
           backgroundColor: WidgetStatePropertyAll(Colors.red),
           shape: WidgetStatePropertyAll(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.zero),
+              borderRadius: BorderRadius.all(Radius.circular(16)),
             ),
           ),
         ),
