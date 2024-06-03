@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:moya/presentation/common/my_wishlist/my_wishlist.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class WishlistScreen extends StatefulWidget {
+  const WishlistScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<WishlistScreen> createState() => _WishlistScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _WishlistScreenState extends State<WishlistScreen> {
   @override
   Widget build(BuildContext context) {
     return const Padding(

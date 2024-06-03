@@ -7,8 +7,14 @@ enum ButtonSize { s56, s64 }
 class PrimaryButton extends StatelessWidget {
   final ButtonSize size;
   final String text;
+  final void Function()? onPressed;
 
-  const PrimaryButton(this.text, {super.key, this.size = ButtonSize.s64});
+  const PrimaryButton(
+    this.text, {
+    super.key,
+    this.size = ButtonSize.s64,
+    this.onPressed,
+  });
 
   static final Map<ButtonSize, double> _heightMap = {
     ButtonSize.s56: 56,
@@ -24,8 +30,8 @@ class PrimaryButton extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       height: _heightMap[size],
-      child: TextButton(
-        onPressed: () {},
+      child: ElevatedButton(
+        onPressed: onPressed,
         style: const ButtonStyle(
           backgroundColor: WidgetStatePropertyAll(Palette.brandPrimary),
           shape: WidgetStatePropertyAll(
@@ -33,6 +39,7 @@ class PrimaryButton extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(16)),
             ),
           ),
+          overlayColor: WidgetStatePropertyAll(Palette.brandPrimaryHover),
         ),
         child: Text(
           text,

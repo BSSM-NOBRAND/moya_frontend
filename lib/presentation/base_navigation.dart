@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:moya/config/palette.dart';
 import 'package:moya/presentation/common/custom_bottom_navigation_bar.dart';
 import 'package:moya/presentation/common/header.dart';
+import 'package:moya/presentation/friends/friends_screen.dart';
 import 'package:moya/presentation/home/home_screen.dart';
+import 'package:moya/presentation/profile/profile_screen.dart';
+import 'package:moya/presentation/wishlist/wishlist_screen.dart';
 
 class BaseNavigation extends StatefulWidget {
   const BaseNavigation({super.key});
@@ -14,7 +17,12 @@ class BaseNavigation extends StatefulWidget {
 class _BaseNavigationState extends State<BaseNavigation> {
   int _page_index = 0;
 
-  final List<Widget> _screens = [const HomeScreen()];
+  final List<Widget> _screens = [
+    const HomeScreen(),
+    const WishlistScreen(),
+    const FriendsScreen(),
+    const ProfileScreen(),
+  ];
 
   @override
   Widget build(BuildContext context) {
