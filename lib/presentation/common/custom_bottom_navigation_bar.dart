@@ -4,7 +4,9 @@ import 'package:moya/config/palette.dart';
 import 'package:moya/config/typo_text_style.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
-  const CustomBottomNavigationBar({super.key});
+  const CustomBottomNavigationBar({super.key, required this.onTabChange});
+
+  final Function(int) onTabChange;
 
   @override
   State<CustomBottomNavigationBar> createState() =>
@@ -62,6 +64,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                   onTap: () {
                     setState(() {
                       _selected = index;
+                      widget.onTabChange(index);
                     });
                   },
                 ),

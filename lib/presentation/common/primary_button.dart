@@ -10,11 +10,11 @@ class PrimaryButton extends StatelessWidget {
 
   const PrimaryButton(this.text, {super.key, this.size = ButtonSize.s64});
 
-  static Map<ButtonSize, double> heightMap = {
+  static final Map<ButtonSize, double> _heightMap = {
     ButtonSize.s56: 56,
     ButtonSize.s64: 64
   };
-  static Map<ButtonSize, TextStyle> textStyleMap = {
+  static final Map<ButtonSize, TextStyle> _textStyleMap = {
     ButtonSize.s56: TypoTextStyle.body1(color: Palette.white),
     ButtonSize.s64: TypoTextStyle.h4(color: Palette.white),
   };
@@ -23,11 +23,11 @@ class PrimaryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: heightMap[size],
+      height: _heightMap[size],
       child: TextButton(
         onPressed: () {},
         style: const ButtonStyle(
-          backgroundColor: WidgetStatePropertyAll(Colors.red),
+          backgroundColor: WidgetStatePropertyAll(Palette.brandPrimary),
           shape: WidgetStatePropertyAll(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -36,7 +36,7 @@ class PrimaryButton extends StatelessWidget {
         ),
         child: Text(
           text,
-          style: textStyleMap[size],
+          style: _textStyleMap[size],
         ),
       ),
     );
