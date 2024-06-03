@@ -26,28 +26,26 @@ class _BaseNavigationState extends State<BaseNavigation> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Scaffold(
-        body: Container(
-          decoration: const BoxDecoration(color: Palette.gray50),
-          child: SafeArea(
-            child: Column(
-              children: [
-                const Header(),
-                _screens[_page_index],
-              ],
-            ),
+    return Scaffold(
+      body: Container(
+        decoration: const BoxDecoration(color: Palette.gray50),
+        child: SafeArea(
+          child: Column(
+            children: [
+              const Header(),
+              _screens[_page_index],
+            ],
           ),
         ),
-        bottomNavigationBar: CustomBottomNavigationBar(
-          onTabChange: (index) {
-            setState(() {
-              if (_screens.length > index) {
-                _page_index = index;
-              }
-            });
-          },
-        ),
+      ),
+      bottomNavigationBar: CustomBottomNavigationBar(
+        onTabChange: (index) {
+          setState(() {
+            if (_screens.length > index) {
+              _page_index = index;
+            }
+          });
+        },
       ),
     );
   }

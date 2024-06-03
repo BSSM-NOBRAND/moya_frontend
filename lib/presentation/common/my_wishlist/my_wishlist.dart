@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:moya/config/palette.dart';
 import 'package:moya/config/typo_text_style.dart';
+import 'package:moya/presentation/add_wishlist/add_wishlist_screen.dart';
 import 'package:moya/presentation/common/my_wishlist/empty_wishlist.dart';
 
 class MyWishlist extends StatefulWidget {
@@ -35,8 +36,32 @@ class _MyWishlistState extends State<MyWishlist> {
                   style: TypoTextStyle.h4(color: Palette.black),
                 ),
                 const Spacer(),
-                InkWell(
-                  child: SvgPicture.asset('assets/images/add.svg'),
+                Stack(
+                  children: [
+                    SvgPicture.asset('assets/images/add.svg'),
+                    Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(14),
+                        splashColor: Palette.gray300.withOpacity(0.3),
+                        highlightColor: Colors.transparent,
+                        child: Container(
+                          width: 28,
+                          height: 28,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const AddWishlistScreen(),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 )
               ],
             ),

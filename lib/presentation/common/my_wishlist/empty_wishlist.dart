@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moya/config/palette.dart';
 import 'package:moya/config/typo_text_style.dart';
+import 'package:moya/presentation/add_wishlist/add_wishlist_screen.dart';
 import 'package:moya/presentation/common/primary_button.dart';
 
 class EmptyWishlist extends StatefulWidget {
@@ -45,6 +46,7 @@ class _EmptyWishlistState extends State<EmptyWishlist> {
                   Text(
                     '받고 싶은 선물을 고르고\n모야를 시작해보세요!',
                     style: TypoTextStyle.body2(color: Palette.gray500),
+                    textAlign: TextAlign.center,
                   )
                 ],
               )
@@ -55,7 +57,11 @@ class _EmptyWishlistState extends State<EmptyWishlist> {
             '받고 싶은 선물 고르기',
             size: ButtonSize.s56,
             onPressed: () {
-              print('홈 응디 응디');
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const AddWishlistScreen(),
+                ),
+              );
             },
           ),
         ],

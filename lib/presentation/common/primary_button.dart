@@ -40,6 +40,7 @@ class PrimaryButton extends StatelessWidget {
             ),
           ),
           overlayColor: WidgetStatePropertyAll(Palette.brandPrimaryHover),
+          elevation: WidgetStatePropertyAll(0),
         ),
         child: Text(
           text,
