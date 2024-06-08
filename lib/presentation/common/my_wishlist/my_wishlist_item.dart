@@ -19,36 +19,41 @@ class MyWishlistItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(8),
-          child: Skeleton.replace(
-            width: 72,
-            height: 72,
-            child: Image.network(imageUrl),
+    return IntrinsicHeight(
+      child: Row(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Skeleton.replace(
+              width: 72,
+              height: 72,
+              child: Image.network(imageUrl),
+            ),
           ),
-        ),
-        const SizedBox(width: 8),
-        Flexible(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text(
-                title,
-                style: TypoTextStyle.body2(color: Palette.black),
-              ),
-              const SizedBox(height: 9),
-              Text(
-                '₩${formattedNumber.format(price)}',
-                style: TypoTextStyle.body2(
-                  color: Palette.gray600,
+          const SizedBox(width: 8),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  title,
+                  style: TypoTextStyle.body2(color: Palette.black),
                 ),
-              )
-            ],
-          ),
-        )
-      ],
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    '₩${formattedNumber.format(price)}',
+                    style: TypoTextStyle.body2(
+                      color: Palette.gray600,
+                    ),
+                  ),
+                )
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 }
