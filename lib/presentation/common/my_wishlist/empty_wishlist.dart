@@ -20,20 +20,8 @@ class _EmptyWishlistState extends State<EmptyWishlist> {
         children: [
           Column(
             children: [
-              Stack(
-                children: [
-                  Positioned(
-                    left: 18,
-                    top: 24,
-                    child: Image.network(
-                      'https://thumb.mt.co.kr/06/2009/05/2009052713035136194_1.jpg',
-                      height: 40,
-                    ),
-                  ),
-                  Image.asset(
-                    'assets/images/empty-gift.png',
-                  ),
-                ],
+              Image.asset(
+                'assets/images/empty-gift.png',
               ),
               const SizedBox(height: 24),
               Column(

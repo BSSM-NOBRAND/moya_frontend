@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:moya/config/palette.dart';
-import 'package:moya/config/typo_text_style.dart';
-import 'package:moya/presentation/add_wishlist/add_wishlist_screen.dart';
-import 'package:moya/presentation/common/my_wishlist/empty_wishlist.dart';
+import 'package:moya/domain/entities/wishlist_item.dart';
+import 'package:moya/presentation/common/my_wishlist/my_wishlist_item.dart';
+import 'package:moya/presentation/common/primary_button.dart';
 
 class MyWishlist extends StatefulWidget {
   const MyWishlist({super.key});
@@ -15,59 +13,49 @@ class MyWishlist extends StatefulWidget {
 class _MyWishlistState extends State<MyWishlist> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: Palette.white,
-        border: Border.all(
-          width: 1,
-          color: Palette.gray200,
-        ),
-        borderRadius: BorderRadius.circular(24),
+    List<WishlistItem> wishlist = <WishlistItem>[
+      const WishlistItem(
+        imageUrl:
+            'https://thumbnail9.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/1c46/6070d09419b8197c5d4d0e7fd0bc2cafd18f47e54a80f2ca2592025512bc.jpg',
+        title: '[맨시티 공식 굿즈] 스너지 엘링 필 포든 미니미 돌 쿠션 굿즈 인형',
+        price: 50000,
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Text(
-                  '내 위시리스트',
-                  style: TypoTextStyle.h4(color: Palette.black),
-                ),
-                const Spacer(),
-                Stack(
-                  children: [
-                    SvgPicture.asset('assets/images/add.svg'),
-                    Material(
-                      color: Colors.transparent,
-                      child: InkWell(
-                        borderRadius: BorderRadius.circular(14),
-                        splashColor: Palette.gray300.withOpacity(0.3),
-                        highlightColor: Colors.transparent,
-                        child: Container(
-                          width: 28,
-                          height: 28,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                          ),
-                        ),
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const AddWishlistScreen(),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                )
-              ],
-            ),
-            const EmptyWishlist(),
-          ],
-        ),
+      const WishlistItem(
+        imageUrl:
+            'https://thumbnail9.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/1c46/6070d09419b8197c5d4d0e7fd0bc2cafd18f47e54a80f2ca2592025512bc.jpg',
+        title: '[맨시티 공식 굿즈] 스너지 엘링 필 포든 미니미 돌 쿠션 굿즈 인형',
+        price: 3900,
+      ),
+      const WishlistItem(
+        imageUrl:
+            'https://thumbnail9.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/1c46/6070d09419b8197c5d4d0e7fd0bc2cafd18f47e54a80f2ca2592025512bc.jpg',
+        title: '[맨시티 공식 굿즈] 스너지 엘링 필 포든 미니미 돌 쿠션 굿즈 인형',
+        price: 119000,
+      ),
+    ];
+
+    return Container(
+      margin: const EdgeInsets.only(top: 24),
+      child: Column(
+        children: [
+          ListView.separated(
+            shrinkWrap: true,
+            primary: false,
+            itemCount: wishlist.length,
+            itemBuilder: (context, index) {
+              WishlistItem wishlistItem = wishlist[index];
+
+              return MyWishlistItem(
+                imageUrl: wishlistItem.imageUrl,
+                title: wishlistItem.title,
+                price: wishlistItem.price,
+              );
+            },
+            separatorBuilder: (context, index) => const SizedBox(height: 20),
+          ),
+          const SizedBox(height: 32),
+          PrimaryButton('생일 펀드 올리기', size: ButtonSize.s56, onPressed: () {}),
+        ],
       ),
     );
   }

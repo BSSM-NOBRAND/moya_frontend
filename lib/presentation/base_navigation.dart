@@ -15,7 +15,7 @@ class BaseNavigation extends StatefulWidget {
 }
 
 class _BaseNavigationState extends State<BaseNavigation> {
-  int _page_index = 0;
+  int _pageIndex = 0;
 
   final List<Widget> _screens = [
     const HomeScreen(),
@@ -33,7 +33,11 @@ class _BaseNavigationState extends State<BaseNavigation> {
           child: Column(
             children: [
               const Header(),
-              _screens[_page_index],
+              Expanded(
+                child: SingleChildScrollView(
+                  child: _screens[_pageIndex],
+                ),
+              ),
             ],
           ),
         ),
@@ -42,7 +46,7 @@ class _BaseNavigationState extends State<BaseNavigation> {
         onTabChange: (index) {
           setState(() {
             if (_screens.length > index) {
-              _page_index = index;
+              _pageIndex = index;
             }
           });
         },

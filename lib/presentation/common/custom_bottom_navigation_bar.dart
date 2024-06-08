@@ -27,49 +27,52 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        height: 56,
-        decoration: const BoxDecoration(
-          color: Palette.white,
-        ),
-        child: Padding(
-          padding: const EdgeInsets.only(left: 8, right: 8),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(_icon_paths.length, (index) {
-              String iconPath = _icon_paths[index];
-              bool isSelected = _selected == index;
+    return Container(
+      decoration: const BoxDecoration(
+        color: Palette.white,
+      ),
+      child: SafeArea(
+        child: SizedBox(
+          height: 56,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 8, right: 8),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List.generate(_icon_paths.length, (index) {
+                String iconPath = _icon_paths[index];
+                bool isSelected = _selected == index;
 
-              return Expanded(
-                child: InkWell(
-                  child: Column(
-                    children: [
-                      SvgPicture.asset(
-                        iconPath,
-                        colorFilter: ColorFilter.mode(
-                          isSelected ? Palette.gray900 : Palette.gray400,
-                          BlendMode.srcIn,
+                return Expanded(
+                  child: InkWell(
+                    child: Column(
+                      children: [
+                        SvgPicture.asset(
+                          iconPath,
+                          colorFilter: ColorFilter.mode(
+                            isSelected ? Palette.gray900 : Palette.gray400,
+                            BlendMode.srcIn,
+                          ),
                         ),
-                      ),
-                      Text(
-                        _labels[index],
-                        style: TypoTextStyle.body3(
-                            color:
-                                isSelected ? Palette.gray900 : Palette.gray400),
-                      )
-                    ],
+                        Text(
+                          _labels[index],
+                          style: TypoTextStyle.body3(
+                              color: isSelected
+                                  ? Palette.gray900
+                                  : Palette.gray400),
+                        )
+                      ],
+                    ),
+                    onTap: () {
+                      setState(() {
+                        _selected = index;
+                        widget.onTabChange(index);
+                      });
+                    },
                   ),
-                  onTap: () {
-                    setState(() {
-                      _selected = index;
-                      widget.onTabChange(index);
-                    });
-                  },
-                ),
-              );
-            }),
+                );
+              }),
+            ),
           ),
         ),
       ),
