@@ -5,9 +5,9 @@ import 'package:moya/config/typo_text_style.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class WishlistItemPreview extends StatelessWidget {
-  const WishlistItemPreview({
-    super.key,
-  });
+  final void Function()? onCancelTap;
+
+  const WishlistItemPreview({super.key, this.onCancelTap});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,13 @@ class WishlistItemPreview extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 12),
-                    SvgPicture.asset('assets/images/close.svg')
+                    InkWell(
+                      borderRadius: BorderRadius.circular(14),
+                      splashColor: Palette.gray300.withOpacity(0.3),
+                      highlightColor: Colors.transparent,
+                      onTap: onCancelTap,
+                      child: SvgPicture.asset('assets/images/close.svg'),
+                    )
                   ],
                 ),
                 Align(

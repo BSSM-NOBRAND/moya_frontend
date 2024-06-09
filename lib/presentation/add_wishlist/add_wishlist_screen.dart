@@ -123,7 +123,20 @@ class _AddWishlistScreenState extends State<AddWishlistScreen> {
                     ],
                   ),
                   if (link.isNotEmpty) const SizedBox(height: 32),
-                  if (link.isNotEmpty) const WishlistItemPreview(),
+                  if (link.isNotEmpty)
+                    WishlistItemPreview(
+                      onCancelTap: () {
+                        setState(() {
+                          _controller.value = _controller.value.copyWith(
+                            text: '',
+                            selection: TextSelection.fromPosition(
+                              const TextPosition(offset: 0),
+                            ),
+                          );
+                        });
+                        link = '';
+                      },
+                    ),
                 ],
               ),
             )
