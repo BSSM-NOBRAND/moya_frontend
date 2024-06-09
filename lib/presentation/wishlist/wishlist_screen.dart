@@ -13,7 +13,9 @@ class _WishlistScreenState extends State<WishlistScreen> {
   Widget build(BuildContext context) {
     return const Padding(
       padding: EdgeInsets.only(top: 12, left: 16, right: 16),
-      child: MyWishlist(),
+      child: MyWishlist(
+        isHomeScreen: false,
+      ),
     );
   }
 }

@@ -7,7 +7,12 @@ import 'package:moya/presentation/common/my_wishlist/empty_wishlist.dart';
 import 'package:moya/presentation/common/my_wishlist/wishlist.dart';
 
 class MyWishlist extends StatefulWidget {
-  const MyWishlist({super.key});
+  final bool isHomeScreen;
+
+  const MyWishlist({
+    super.key,
+    this.isHomeScreen = true,
+  });
 
   @override
   State<MyWishlist> createState() => _MyWishlistState();
@@ -69,7 +74,10 @@ class _MyWishlistState extends State<MyWishlist> {
               ],
             ),
             if (isEmpty) const EmptyWishlist(),
-            if (!isEmpty) const Wishlist(),
+            if (!isEmpty)
+              Wishlist(
+                isHomeScreen: widget.isHomeScreen,
+              ),
           ],
         ),
       ),

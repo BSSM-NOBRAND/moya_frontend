@@ -21,30 +21,44 @@ class ImageCarouselSlider extends StatelessWidget {
         return SizedBox(
           width: 280,
           height: 280,
-          child: Stack(
-            alignment: Alignment.bottomCenter,
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(16),
-                child: Image.network(
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(16),
+            child: Stack(
+              alignment: Alignment.bottomCenter,
+              children: [
+                Image.network(
                   item.imageUrl,
                 ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(
-                  left: 16,
-                  right: 16,
-                  bottom: 16,
-                ),
-                child: Text(
-                  item.title,
-                  style: TypoTextStyle.body2(
-                    // TODO : 글자 색상 바꾸기
-                    color: Palette.white,
+                Container(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        const Color(0xff000000).withOpacity(0),
+                        const Color(0xff000000).withOpacity(0.5),
+                        const Color(0xff000000).withOpacity(0.75),
+                      ],
+                      stops: const [0, 0.75, 1],
+                    ),
                   ),
                 ),
-              ),
-            ],
+                Container(
+                  margin: const EdgeInsets.only(
+                    left: 16,
+                    right: 16,
+                    bottom: 16,
+                  ),
+                  child: Text(
+                    item.title,
+                    style: TypoTextStyle.body2(
+                      // TODO : 글자 색상 바꾸기
+                      color: Palette.white,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         );
       }).toList(),

@@ -5,7 +5,8 @@ import 'package:moya/presentation/common/primary_button.dart';
 import 'package:moya/presentation/common/raise_fund_modal/raise_fund_modal.dart';
 
 class Wishlist extends StatefulWidget {
-  const Wishlist({super.key});
+  final bool isHomeScreen;
+  const Wishlist({super.key, required this.isHomeScreen});
 
   @override
   State<Wishlist> createState() => _WishlistState();
@@ -54,23 +55,24 @@ class _WishlistState extends State<Wishlist> {
             },
             separatorBuilder: (context, index) => const SizedBox(height: 20),
           ),
-          const SizedBox(height: 32),
-          PrimaryButton(
-            '생일 펀드 올리기',
-            size: ButtonSize.s56,
-            onPressed: () {
-              showModalBottomSheet(
-                context: context,
-                backgroundColor: Colors.transparent,
-                isScrollControlled: true,
-                builder: (context) {
-                  return RaiseFundModal(
-                    wishlist: wishlist,
-                  );
-                },
-              );
-            },
-          ),
+          if (widget.isHomeScreen) const SizedBox(height: 32),
+          if (widget.isHomeScreen)
+            PrimaryButton(
+              '생일 펀드 올리기',
+              size: ButtonSize.s56,
+              onPressed: () {
+                showModalBottomSheet(
+                  context: context,
+                  backgroundColor: Colors.transparent,
+                  isScrollControlled: true,
+                  builder: (context) {
+                    return RaiseFundModal(
+                      wishlist: wishlist,
+                    );
+                  },
+                );
+              },
+            ),
         ],
       ),
     );
