@@ -7,6 +7,7 @@ enum ButtonSize { s56, s64 }
 class PrimaryButton extends StatelessWidget {
   final ButtonSize size;
   final String text;
+  final bool disabled;
   final void Function()? onPressed;
 
   const PrimaryButton(
@@ -14,11 +15,12 @@ class PrimaryButton extends StatelessWidget {
     super.key,
     this.size = ButtonSize.s64,
     this.onPressed,
+    this.disabled = false,
   });
 
   static final Map<ButtonSize, double> _heightMap = {
     ButtonSize.s56: 56,
-    ButtonSize.s64: 64
+    ButtonSize.s64: 64,
   };
   static final Map<ButtonSize, TextStyle> _textStyleMap = {
     ButtonSize.s56: TypoTextStyle.body1(color: Palette.white),
@@ -32,15 +34,19 @@ class PrimaryButton extends StatelessWidget {
       height: _heightMap[size],
       child: ElevatedButton(
         onPressed: onPressed,
-        style: const ButtonStyle(
-          backgroundColor: WidgetStatePropertyAll(Palette.brandPrimary),
-          shape: WidgetStatePropertyAll(
+        style: ButtonStyle(
+          backgroundColor: WidgetStatePropertyAll(
+            disabled ? Palette.gray500 : Palette.brandPrimary,
+          ),
+          shape: const WidgetStatePropertyAll(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(16)),
             ),
           ),
-          overlayColor: WidgetStatePropertyAll(Palette.brandPrimaryHover),
-          elevation: WidgetStatePropertyAll(0),
+          overlayColor: WidgetStatePropertyAll(
+            disabled ? Palette.gray500 : Palette.brandPrimaryHover,
+          ),
+          elevation: const WidgetStatePropertyAll(0),
         ),
         child: Text(
           text,

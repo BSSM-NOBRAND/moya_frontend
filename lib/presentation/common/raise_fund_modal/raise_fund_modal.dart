@@ -7,6 +7,8 @@ import 'package:moya/domain/entities/wishlist_item.dart';
 import 'package:moya/presentation/common/primary_button.dart';
 import 'package:moya/presentation/common/raise_fund_modal/image_carousel_slider.dart';
 import 'package:moya/presentation/common/raise_fund_modal/raise_fund_modal_header.dart';
+import 'package:moya/presentation/provider/fund_state_provider.dart';
+import 'package:provider/provider.dart';
 
 class RaiseFundModal extends StatefulWidget {
   final List<WishlistItem> wishlist;
@@ -146,7 +148,13 @@ class _RaiseFundModalState extends State<RaiseFundModal> {
                 ),
                 child: PrimaryButton(
                   '생일 펀드 올리기',
-                  onPressed: () {},
+                  onPressed: () {
+                    FundStateProvider fundStateProvider =
+                        Provider.of<FundStateProvider>(context, listen: false);
+                    WishlistItem wishlistItem = widget.wishlist[_selected];
+                    fundStateProvider.raiseBirthFund(wishlistItem);
+                    Navigator.of(context).popUntil(ModalRoute.withName('/'));
+                  },
                 ),
               ),
             ],

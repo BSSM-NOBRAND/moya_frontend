@@ -6,18 +6,18 @@ import 'package:moya/config/typo_text_style.dart';
 import 'package:moya/domain/entities/wishlist_item.dart';
 import 'package:moya/presentation/common/primary_button.dart';
 import 'package:moya/presentation/common/raise_fund_modal/raise_fund_modal.dart';
+import 'package:moya/presentation/provider/fund_state_provider.dart';
+import 'package:provider/provider.dart';
 
 class WishlistDetailScreen extends StatelessWidget {
-  final String imageUrl;
-  final String title;
-  final int price;
+  final WishlistItem wishlistItem;
+  final bool isWishlistItem;
   final NumberFormat formattedNumber = NumberFormat('#,###');
 
   WishlistDetailScreen({
     super.key,
-    required this.imageUrl,
-    required this.title,
-    required this.price,
+    required this.wishlistItem,
+    required this.isWishlistItem,
   });
 
   @override
@@ -37,7 +37,7 @@ class WishlistDetailScreen extends StatelessWidget {
                   children: [
                     Positioned.fill(
                       child: Image.network(
-                        imageUrl,
+                        wishlistItem.imageUrl,
                         fit: BoxFit.fitHeight,
                       ),
                     ),
@@ -93,14 +93,14 @@ class WishlistDetailScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              title,
+                              wishlistItem.title,
                               style: TypoTextStyle.h4(
                                 color: Palette.black,
                               ),
                             ),
                             const SizedBox(height: 16),
                             Text(
-                              '₩${formattedNumber.format(price)}',
+                              '₩${formattedNumber.format(wishlistItem.price)}',
                               style:
                                   TypoTextStyle.body1(color: Palette.gray600),
                             ),
@@ -122,8 +122,10 @@ class WishlistDetailScreen extends StatelessWidget {
                                 ),
                                 child: SvgPicture.asset(
                                   'assets/images/heart.svg',
-                                  colorFilter: const ColorFilter.mode(
-                                    Palette.gray400,
+                                  colorFilter: ColorFilter.mode(
+                                    isWishlistItem
+                                        ? Palette.brandPrimary
+                                        : Palette.gray400,
                                     BlendMode.srcIn,
                                   ),
                                 ),
@@ -131,25 +133,29 @@ class WishlistDetailScreen extends StatelessWidget {
                             ),
                             const SizedBox(width: 12),
                             Expanded(
-                              child: PrimaryButton(
-                                '생일 펀드 올리기',
-                                size: ButtonSize.s56,
-                                onPressed: () {
-                                  showModalBottomSheet(
-                                    context: context,
-                                    backgroundColor: Colors.transparent,
-                                    isScrollControlled: true,
-                                    builder: (context) {
-                                      return RaiseFundModal(
-                                        wishlist: [
-                                          WishlistItem(
-                                            imageUrl: imageUrl,
-                                            title: title,
-                                            price: price,
-                                          ),
-                                        ],
-                                      );
-                                    },
+                              child: Consumer<FundStateProvider>(
+                                builder: (context, provider, child) {
+                                  bool isFundRaised = provider.isFundRaised;
+
+                                  return PrimaryButton(
+                                    '생일 펀드 올리기',
+                                    size: ButtonSize.s56,
+                                    onPressed: isFundRaised
+                                        ? null
+                                        : () {
+                                            showModalBottomSheet(
+                                              context: context,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              isScrollControlled: true,
+                                              builder: (context) {
+                                                return RaiseFundModal(
+                                                  wishlist: [wishlistItem],
+                                                );
+                                              },
+                                            );
+                                          },
+                                    disabled: isFundRaised,
                                   );
                                 },
                               ),
