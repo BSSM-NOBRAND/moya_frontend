@@ -5,6 +5,8 @@ import 'package:moya/config/typo_text_style.dart';
 import 'package:moya/presentation/add_wishlist/add_wishlist_screen.dart';
 import 'package:moya/presentation/common/my_wishlist/empty_wishlist.dart';
 import 'package:moya/presentation/common/my_wishlist/wishlist.dart';
+import 'package:moya/presentation/provider/my_wishlist_provider.dart';
+import 'package:provider/provider.dart';
 
 class MyWishlist extends StatefulWidget {
   const MyWishlist({
@@ -16,10 +18,11 @@ class MyWishlist extends StatefulWidget {
 }
 
 class _MyWishlistState extends State<MyWishlist> {
-  bool isEmpty = false;
-
   @override
   Widget build(BuildContext context) {
+    MyWishlistProvider myWishlistProvider =
+        Provider.of<MyWishlistProvider>(context);
+
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -70,8 +73,8 @@ class _MyWishlistState extends State<MyWishlist> {
                 )
               ],
             ),
-            if (isEmpty) const EmptyWishlist(),
-            if (!isEmpty) const Wishlist(),
+            if (myWishlistProvider.wishlist.isEmpty) const EmptyWishlist(),
+            if (myWishlistProvider.wishlist.isNotEmpty) const Wishlist(),
           ],
         ),
       ),

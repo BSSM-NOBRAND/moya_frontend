@@ -7,17 +7,16 @@ import 'package:moya/domain/entities/wishlist_item.dart';
 import 'package:moya/presentation/common/primary_button.dart';
 import 'package:moya/presentation/common/raise_fund_modal/raise_fund_modal.dart';
 import 'package:moya/presentation/provider/fund_state_provider.dart';
+import 'package:moya/presentation/provider/my_wishlist_provider.dart';
 import 'package:provider/provider.dart';
 
-class WishlistDetailScreen extends StatelessWidget {
+class MyWishlistDetailScreen extends StatelessWidget {
   final WishlistItem wishlistItem;
-  final bool isWishlistItem;
   final NumberFormat formattedNumber = NumberFormat('#,###');
 
-  WishlistDetailScreen({
+  MyWishlistDetailScreen({
     super.key,
     required this.wishlistItem,
-    required this.isWishlistItem,
   });
 
   @override
@@ -108,28 +107,34 @@ class WishlistDetailScreen extends StatelessWidget {
                         ),
                         Row(
                           children: [
-                            InkWell(
-                              splashColor: Palette.gray300.withOpacity(0.3),
-                              highlightColor: Colors.transparent,
-                              onTap: () {},
-                              child: Container(
-                                width: 56,
-                                height: 56,
-                                padding: const EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                  color: Palette.gray100,
-                                  borderRadius: BorderRadius.circular(16),
-                                ),
-                                child: SvgPicture.asset(
-                                  'assets/images/heart.svg',
-                                  colorFilter: ColorFilter.mode(
-                                    isWishlistItem
-                                        ? Palette.brandPrimary
-                                        : Palette.gray400,
-                                    BlendMode.srcIn,
+                            Consumer<MyWishlistProvider>(
+                              builder: (context, provider, child) {
+                                return InkWell(
+                                  splashColor: Palette.gray300.withOpacity(0.3),
+                                  highlightColor: Colors.transparent,
+                                  onTap: () {
+                                    provider.toggleWishlistItem(wishlistItem);
+                                  },
+                                  child: Container(
+                                    width: 56,
+                                    height: 56,
+                                    padding: const EdgeInsets.all(8),
+                                    decoration: BoxDecoration(
+                                      color: Palette.gray100,
+                                      borderRadius: BorderRadius.circular(16),
+                                    ),
+                                    child: SvgPicture.asset(
+                                      'assets/images/heart.svg',
+                                      colorFilter: ColorFilter.mode(
+                                        provider.isExist(wishlistItem.id)
+                                            ? Palette.brandPrimary
+                                            : Palette.gray400,
+                                        BlendMode.srcIn,
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
+                                );
+                              },
                             ),
                             const SizedBox(width: 12),
                             Expanded(

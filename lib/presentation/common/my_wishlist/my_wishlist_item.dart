@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:moya/config/palette.dart';
 import 'package:moya/config/typo_text_style.dart';
 import 'package:moya/domain/entities/wishlist_item.dart';
-import 'package:moya/presentation/wishlist_detail/wishlist_detail_screen.dart';
+import 'package:moya/presentation/my_wishlist_detail/my_wishlist_detail_screen.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class MyWishlistItem extends StatelessWidget {
@@ -21,9 +21,8 @@ class MyWishlistItem extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => WishlistDetailScreen(
+            builder: (context) => MyWishlistDetailScreen(
               wishlistItem: wishlistItem,
-              isWishlistItem: true,
             ),
           ),
         );

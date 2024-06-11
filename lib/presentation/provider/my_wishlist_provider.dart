@@ -25,4 +25,15 @@ class MyWishlistProvider with ChangeNotifier {
       price: 102400,
     ),
   ];
+
+  void toggleWishlistItem(WishlistItem wishlistItem) {
+    if (wishlist.where((item) => item.id == wishlistItem.id).isEmpty) {
+      wishlist.add(wishlistItem);
+    } else {
+      wishlist.removeWhere((item) => item.id == wishlistItem.id);
+    }
+    notifyListeners();
+  }
+
+  bool isExist(int id) => wishlist.any((item) => item.id == id);
 }
