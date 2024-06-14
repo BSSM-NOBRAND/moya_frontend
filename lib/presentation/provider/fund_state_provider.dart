@@ -17,4 +17,11 @@ class FundStateProvider with ChangeNotifier {
     step = Step.start;
     notifyListeners();
   }
+
+  void withdrawFund() {
+    _isFundRaised = false;
+    _wishlistItem = null;
+    step = Step.start;
+    notifyListeners();
+  }
 }

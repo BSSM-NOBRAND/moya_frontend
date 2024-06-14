@@ -138,29 +138,34 @@ class MyWishlistDetailScreen extends StatelessWidget {
                             ),
                             const SizedBox(width: 12),
                             Expanded(
-                              child: Consumer<FundStateProvider>(
-                                builder: (context, provider, child) {
-                                  bool isFundRaised = provider.isFundRaised;
+                              child: Consumer<MyWishlistProvider>(
+                                builder: (context, myWishlistProvider, child) {
+                                  return Consumer<FundStateProvider>(
+                                    builder:
+                                        (context, fundStateProvider, child) {
+                                      bool isFundRaised =
+                                          fundStateProvider.isFundRaised;
+                                      bool isExist = myWishlistProvider
+                                          .isExist(wishlistItem.id);
 
-                                  return PrimaryButton(
-                                    '생일 펀드 올리기',
-                                    size: ButtonSize.s56,
-                                    onPressed: isFundRaised
-                                        ? null
-                                        : () {
-                                            showModalBottomSheet(
-                                              context: context,
-                                              backgroundColor:
-                                                  Colors.transparent,
-                                              isScrollControlled: true,
-                                              builder: (context) {
-                                                return RaiseFundModal(
-                                                  wishlist: [wishlistItem],
-                                                );
-                                              },
-                                            );
-                                          },
-                                    disabled: isFundRaised,
+                                      return PrimaryButton(
+                                        '생일 펀드 올리기',
+                                        size: ButtonSize.s56,
+                                        onPressed: () {
+                                          showModalBottomSheet(
+                                            context: context,
+                                            backgroundColor: Colors.transparent,
+                                            isScrollControlled: true,
+                                            builder: (context) {
+                                              return RaiseFundModal(
+                                                wishlist: [wishlistItem],
+                                              );
+                                            },
+                                          );
+                                        },
+                                        disabled: isFundRaised || !isExist,
+                                      );
+                                    },
                                   );
                                 },
                               ),

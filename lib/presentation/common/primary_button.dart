@@ -33,7 +33,7 @@ class PrimaryButton extends StatelessWidget {
       width: double.infinity,
       height: _heightMap[size],
       child: ElevatedButton(
-        onPressed: onPressed,
+        onPressed: disabled ? null : onPressed,
         style: ButtonStyle(
           backgroundColor: WidgetStatePropertyAll(
             disabled ? Palette.gray500 : Palette.brandPrimary,
