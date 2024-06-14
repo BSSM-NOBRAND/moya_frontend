@@ -1,3 +1,4 @@
+import 'package:app_links/app_links.dart';
 import 'package:flutter/material.dart';
 import 'package:moya/config/palette.dart';
 import 'package:moya/presentation/base_navigation.dart';
@@ -6,6 +7,15 @@ import 'package:moya/presentation/provider/my_wishlist_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  AppLinks appLinks = AppLinks();
+
+  appLinks.uriLinkStream.listen((Uri? uri) {
+    print("uri: $uri");
+  }, onError: (Object err) {
+    print("err: $err");
+  });
+
   runApp(
     MultiProvider(
       providers: [
