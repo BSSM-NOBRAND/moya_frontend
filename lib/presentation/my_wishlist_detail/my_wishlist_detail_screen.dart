@@ -12,7 +12,7 @@ import 'package:provider/provider.dart';
 
 class MyWishlistDetailScreen extends StatelessWidget {
   final WishlistItem wishlistItem;
-  final NumberFormat formattedNumber = NumberFormat('#,###');
+  final NumberFormat numberFormatter = NumberFormat('#,###');
 
   MyWishlistDetailScreen({
     super.key,
@@ -99,7 +99,7 @@ class MyWishlistDetailScreen extends StatelessWidget {
                             ),
                             const SizedBox(height: 16),
                             Text(
-                              '₩${formattedNumber.format(wishlistItem.price)}',
+                              '₩${numberFormatter.format(wishlistItem.price)}',
                               style:
                                   TypoTextStyle.body1(color: Palette.gray600),
                             ),

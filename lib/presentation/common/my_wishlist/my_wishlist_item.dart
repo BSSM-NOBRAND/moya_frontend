@@ -8,7 +8,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 
 class MyWishlistItem extends StatelessWidget {
   final WishlistItem wishlistItem;
-  final NumberFormat formattedNumber = NumberFormat('#,###');
+  final NumberFormat numberFormatter = NumberFormat('#,###');
 
   MyWishlistItem({
     super.key,
@@ -51,7 +51,7 @@ class MyWishlistItem extends StatelessWidget {
                   Align(
                     alignment: Alignment.centerRight,
                     child: Text(
-                      '₩${formattedNumber.format(wishlistItem.price)}',
+                      '₩${numberFormatter.format(wishlistItem.price)}',
                       style: TypoTextStyle.body2(
                         color: Palette.gray600,
                       ),

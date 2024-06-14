@@ -26,12 +26,30 @@ class MyWishlistProvider with ChangeNotifier {
     ),
   ];
 
+  int nextId = 4;
+
   void toggleWishlistItem(WishlistItem wishlistItem) {
     if (wishlist.where((item) => item.id == wishlistItem.id).isEmpty) {
       wishlist.add(wishlistItem);
     } else {
       wishlist.removeWhere((item) => item.id == wishlistItem.id);
     }
+    notifyListeners();
+  }
+
+  void addWishlistItem({
+    required String imageUrl,
+    required String title,
+    required int price,
+  }) {
+    wishlist.add(
+      WishlistItem(
+        id: nextId++,
+        imageUrl: imageUrl,
+        title: title,
+        price: price,
+      ),
+    );
     notifyListeners();
   }
 

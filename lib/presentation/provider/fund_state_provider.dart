@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:moya/domain/entities/wishlist_item.dart';
 
+enum Step { start, inProcess, ended, verify }
+
 class FundStateProvider with ChangeNotifier {
   bool _isFundRaised = false;
   WishlistItem? _wishlistItem;
+  Step step = Step.start;
 
   bool get isFundRaised => _isFundRaised;
   WishlistItem? get wishlistItem => _wishlistItem;
@@ -11,6 +14,7 @@ class FundStateProvider with ChangeNotifier {
   void raiseBirthFund(WishlistItem wishlistItem) {
     _isFundRaised = true;
     _wishlistItem = wishlistItem;
+    step = Step.start;
     notifyListeners();
   }
 }

@@ -5,6 +5,8 @@ import 'package:moya/config/typo_text_style.dart';
 import 'package:moya/presentation/add_wishlist/add_wishlist_header.dart';
 import 'package:moya/presentation/add_wishlist/wishlist_item_preview.dart';
 import 'package:moya/presentation/common/primary_button.dart';
+import 'package:moya/presentation/provider/my_wishlist_provider.dart';
+import 'package:provider/provider.dart';
 
 class AddWishlistScreen extends StatefulWidget {
   const AddWishlistScreen({super.key});
@@ -16,6 +18,17 @@ class AddWishlistScreen extends StatefulWidget {
 class _AddWishlistScreenState extends State<AddWishlistScreen> {
   final TextEditingController _controller = TextEditingController();
   String link = '';
+  String imageUrl = '';
+  String title = '';
+  int price = 0;
+
+  void findItem() {
+    imageUrl =
+        'https://thumbnail8.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/b6b2/a2351221ee02e1500d9d87df0958a04040c81af5c516b045cde6a4bb4365.jpg';
+    title =
+        '호스티스 트윙키 크리미 골든 스폰지 케이크 10개입 HOSTESS TWINKIES Creamy Golden Sponge Cake 10ct';
+    price = 8290;
+  }
 
   void pasteClipboardText() async {
     final clipboardData = await Clipboard.getData(Clipboard.kTextPlain);
@@ -29,11 +42,13 @@ class _AddWishlistScreenState extends State<AddWishlistScreen> {
         ),
       );
       link = clipboardData.text!;
+      findItem();
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    print(imageUrl);
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -82,6 +97,7 @@ class _AddWishlistScreenState extends State<AddWishlistScreen> {
                             onChanged: (value) {
                               setState(() {
                                 link = value;
+                                findItem();
                               });
                             },
                           ),
@@ -125,6 +141,9 @@ class _AddWishlistScreenState extends State<AddWishlistScreen> {
                   if (link.isNotEmpty) const SizedBox(height: 32),
                   if (link.isNotEmpty)
                     WishlistItemPreview(
+                      imageUrl: imageUrl,
+                      title: title,
+                      price: price,
                       onCancelTap: () {
                         setState(() {
                           _controller.value = _controller.value.copyWith(
@@ -133,8 +152,8 @@ class _AddWishlistScreenState extends State<AddWishlistScreen> {
                               const TextPosition(offset: 0),
                             ),
                           );
+                          link = '';
                         });
-                        link = '';
                       },
                     ),
                 ],
@@ -149,7 +168,20 @@ class _AddWishlistScreenState extends State<AddWishlistScreen> {
           left: 16,
           right: 16,
         ),
-        child: const PrimaryButton('추가하기'),
+        child: PrimaryButton(
+          '추가하기',
+          onPressed: () {
+            MyWishlistProvider myWishlistProvider =
+                Provider.of<MyWishlistProvider>(context, listen: false);
+
+            myWishlistProvider.addWishlistItem(
+              imageUrl: imageUrl,
+              title: title,
+              price: price,
+            );
+            Navigator.of(context).pop();
+          },
+        ),
       ),
     );
   }

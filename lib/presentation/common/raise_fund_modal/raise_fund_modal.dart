@@ -20,7 +20,7 @@ class RaiseFundModal extends StatefulWidget {
 }
 
 class _RaiseFundModalState extends State<RaiseFundModal> {
-  final NumberFormat formattedNumber = NumberFormat('#,###');
+  final NumberFormat numberFormatter = NumberFormat('#,###');
 
   int _selected = 0;
 
@@ -86,7 +86,7 @@ class _RaiseFundModalState extends State<RaiseFundModal> {
                           borderRadius: BorderRadius.circular(16),
                         ),
                         child: Text(
-                          '₩${formattedNumber.format(widget.wishlist[_selected].price)}',
+                          '₩${numberFormatter.format(widget.wishlist[_selected].price)}',
                           style: TypoTextStyle.body1(
                             color: Palette.black,
                           ),

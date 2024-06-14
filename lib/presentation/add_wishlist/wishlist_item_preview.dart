@@ -1,16 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:intl/intl.dart';
 import 'package:moya/config/palette.dart';
 import 'package:moya/config/typo_text_style.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class WishlistItemPreview extends StatelessWidget {
+  final String imageUrl;
+  final String title;
+  final int price;
   final void Function()? onCancelTap;
+  final NumberFormat numberFormatter = NumberFormat('#,###');
 
-  const WishlistItemPreview({super.key, this.onCancelTap});
+  WishlistItemPreview({
+    super.key,
+    this.onCancelTap,
+    required this.imageUrl,
+    required this.title,
+    required this.price,
+  });
 
   @override
   Widget build(BuildContext context) {
+    print(imageUrl);
+
     return IntrinsicHeight(
       child: Row(
         children: [
@@ -20,7 +33,11 @@ class WishlistItemPreview extends StatelessWidget {
               width: 72,
               height: 72,
               child: Image.network(
-                'https://thumbnail9.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/3bd6/012fa974b9fe0ccea7ca3db1ead1fdbab000c48883d232dc4c47fb319aaa.jpg',
+                imageUrl,
+                errorBuilder: (context, error, stackTrace) => const SizedBox(
+                  width: 72,
+                  height: 72,
+                ),
               ),
             ),
           ),
@@ -36,7 +53,7 @@ class WishlistItemPreview extends StatelessWidget {
                   children: [
                     Flexible(
                       child: Text(
-                        '[맨시티 공식 굿즈] 스너지 엘링 필 포든 미니미 돌 쿠션 굿즈 인형',
+                        title,
                         style: TypoTextStyle.body2(color: Palette.black),
                       ),
                     ),
@@ -53,7 +70,7 @@ class WishlistItemPreview extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerRight,
                   child: Text(
-                    '₩56,000',
+                    '₩${numberFormatter.format(price)}',
                     style: TypoTextStyle.body2(
                       color: Palette.black,
                     ),
