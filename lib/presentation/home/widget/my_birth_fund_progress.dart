@@ -5,12 +5,12 @@ import 'package:moya/config/typo_text_style.dart';
 
 class MyBirthFundProgress extends StatelessWidget {
   final int currentMoya;
-  final int totalMoya;
+  final int maxMoya;
 
   const MyBirthFundProgress({
     super.key,
     required this.currentMoya,
-    required this.totalMoya,
+    required this.maxMoya,
   });
 
   @override
@@ -27,14 +27,14 @@ class MyBirthFundProgress extends StatelessWidget {
             ),
             const Spacer(),
             Text(
-              "${(currentMoya / totalMoya * 100).floor()}%",
+              "${(currentMoya / maxMoya * 100).floor()}%",
               style: TypoTextStyle.h5(
                 color: Palette.gray500,
               ),
             ),
             const SizedBox(width: 16),
             Text(
-              "$currentMoya/$totalMoya",
+              "$currentMoya/$maxMoya",
               style: TypoTextStyle.h4(
                 color: Palette.black,
               ),
@@ -63,7 +63,7 @@ class MyBirthFundProgress extends StatelessWidget {
                 ),
               ),
               Expanded(
-                flex: totalMoya - currentMoya,
+                flex: maxMoya - currentMoya,
                 child: const SizedBox(),
               ),
             ],

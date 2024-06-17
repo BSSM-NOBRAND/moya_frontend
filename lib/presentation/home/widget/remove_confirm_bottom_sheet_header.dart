@@ -24,7 +24,7 @@ class RemoveConfirmBottomSheetHeader extends StatelessWidget {
               ),
             ),
             Text(
-              '펀드를 삭제하시겠습니다?',
+              '펀드를 삭제할거야?',
               style: TypoTextStyle.h5(color: Palette.black),
             ),
             InkWell(
