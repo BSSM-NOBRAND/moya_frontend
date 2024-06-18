@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moya/config/palette.dart';
 import 'package:moya/presentation/common/primary_button.dart';
-import 'package:moya/presentation/home/widget/remove_confirm_bottom_sheet_header.dart';
+import 'package:moya/presentation/home/widgets/remove_confirm_bottom_sheet_header.dart';
 import 'package:moya/presentation/provider/fund_state_provider.dart';
 import 'package:provider/provider.dart';
 

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:moya/config/palette.dart';
 import 'package:moya/config/typo_text_style.dart';
-import 'package:moya/presentation/home/widget/remove_confirm_bottom_sheet.dart';
+import 'package:moya/presentation/home/widgets/remove_confirm_bottom_sheet.dart';
 
 class MyBirthFundHeader extends StatelessWidget {
   const MyBirthFundHeader({super.key});
