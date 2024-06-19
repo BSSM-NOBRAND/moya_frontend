@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:moya/config/palette.dart';
 import 'package:moya/presentation/common/custom_bottom_navigation_bar.dart';
 import 'package:moya/presentation/common/header.dart';
-import 'package:moya/presentation/friends/friends_screen.dart';
+import 'package:moya/presentation/friend/friend_screen.dart';
 import 'package:moya/presentation/home/home_screen.dart';
 import 'package:moya/presentation/profile/profile_screen.dart';
 import 'package:moya/presentation/wishlist/wishlist_screen.dart';

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:moya/config/palette.dart';
 import 'package:moya/config/typo_text_style.dart';
-import 'package:moya/domain/entities/my_friend.dart';
+import 'package:moya/domain/entities/friend.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class MyFriendListItem extends StatelessWidget {
-  final MyFriend friend;
+  final Friend friend;
   const MyFriendListItem({
     super.key,
     required this.friend,

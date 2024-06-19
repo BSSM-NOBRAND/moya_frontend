@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:moya/presentation/friends/widgets/friends_birth_fund_list.dart';
-import 'package:moya/presentation/friends/widgets/my_friend_list.dart';
+import 'package:moya/presentation/friend/widgets/friend_birth_fund_list.dart';
+import 'package:moya/presentation/friend/widgets/my_friend_list.dart';
 
 class FriendsScreen extends StatelessWidget {
   const FriendsScreen({super.key});
@@ -11,9 +11,9 @@ class FriendsScreen extends StatelessWidget {
       padding: const EdgeInsets.all(10),
       child: Column(
         children: [
-          FriendsBirthFundList(),
+          FriendBirthFundList(),
           const SizedBox(height: 12),
-          MyFriendList(),
+          const MyFriendList(),
         ],
       ),
     );

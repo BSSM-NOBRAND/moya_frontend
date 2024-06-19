@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:moya/config/palette.dart';
 import 'package:moya/presentation/base_navigation.dart';
 import 'package:moya/presentation/provider/fund_state_provider.dart';
+import 'package:moya/presentation/provider/my_friend_list_provider.dart';
 import 'package:moya/presentation/provider/my_wishlist_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -24,6 +25,9 @@ void main() {
         ),
         ChangeNotifierProvider<MyWishlistProvider>(
           create: (_) => MyWishlistProvider(),
+        ),
+        ChangeNotifierProvider<MyFriendListProvider>(
+          create: (_) => MyFriendListProvider(),
         )
       ],
       child: const MyApp(),

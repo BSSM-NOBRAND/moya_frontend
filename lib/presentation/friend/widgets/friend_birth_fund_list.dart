@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:moya/config/palette.dart';
 import 'package:moya/config/typo_text_style.dart';
 import 'package:moya/domain/entities/friends_fund_item.dart';
-import 'package:moya/presentation/friends/widgets/friends_birth_fund_item.dart';
+import 'package:moya/presentation/friend/widgets/friend_birth_fund_item.dart';
 
-class FriendsBirthFundList extends StatelessWidget {
+class FriendBirthFundList extends StatelessWidget {
   final List<FriendsFundItem> friendsFundList = [
     const FriendsFundItem(
       id: 1,
@@ -38,7 +38,7 @@ class FriendsBirthFundList extends StatelessWidget {
     )
   ];
 
-  FriendsBirthFundList({super.key});
+  FriendBirthFundList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +72,7 @@ class FriendsBirthFundList extends StatelessWidget {
             primary: false,
             itemCount: friendsFundList.length,
             itemBuilder: (context, index) {
-              return FriendsBirthFundItem(
+              return FriendBirthFundItem(
                 friendsFundItem: friendsFundList[index],
               );
             },

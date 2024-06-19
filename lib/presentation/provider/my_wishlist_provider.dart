@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:moya/domain/entities/wishlist_item.dart';
 
 class MyWishlistProvider with ChangeNotifier {
-  List<WishlistItem> wishlist = <WishlistItem>[
+  final List<WishlistItem> _wishlist = <WishlistItem>[
     const WishlistItem(
       id: 1,
       imageUrl:
@@ -26,13 +26,15 @@ class MyWishlistProvider with ChangeNotifier {
     ),
   ];
 
-  int nextId = 4;
+  get wishlist => _wishlist;
+
+  int _nextId = 4;
 
   void toggleWishlistItem(WishlistItem wishlistItem) {
-    if (wishlist.where((item) => item.id == wishlistItem.id).isEmpty) {
-      wishlist.add(wishlistItem);
+    if (_wishlist.where((item) => item.id == wishlistItem.id).isEmpty) {
+      _wishlist.add(wishlistItem);
     } else {
-      wishlist.removeWhere((item) => item.id == wishlistItem.id);
+      _wishlist.removeWhere((item) => item.id == wishlistItem.id);
     }
     notifyListeners();
   }
@@ -42,9 +44,9 @@ class MyWishlistProvider with ChangeNotifier {
     required String title,
     required int price,
   }) {
-    wishlist.add(
+    _wishlist.add(
       WishlistItem(
-        id: nextId++,
+        id: _nextId++,
         imageUrl: imageUrl,
         title: title,
         price: price,
@@ -53,5 +55,5 @@ class MyWishlistProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  bool isExist(int id) => wishlist.any((item) => item.id == id);
+  bool isExist(int id) => _wishlist.any((item) => item.id == id);
 }

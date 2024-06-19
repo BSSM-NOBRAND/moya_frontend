@@ -5,10 +5,10 @@ import 'package:moya/config/typo_text_style.dart';
 import 'package:moya/domain/entities/friends_fund_item.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-class FriendsBirthFundItem extends StatelessWidget {
+class FriendBirthFundItem extends StatelessWidget {
   final FriendsFundItem friendsFundItem;
 
-  const FriendsBirthFundItem({super.key, required this.friendsFundItem});
+  const FriendBirthFundItem({super.key, required this.friendsFundItem});
 
   @override
   Widget build(BuildContext context) {
