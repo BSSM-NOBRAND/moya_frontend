@@ -43,7 +43,12 @@ class FriendsBirthFundList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.only(
+        top: 16,
+        left: 16,
+        right: 16,
+        bottom: 20,
+      ),
       decoration: BoxDecoration(
         color: Palette.white,
         borderRadius: BorderRadius.circular(24),

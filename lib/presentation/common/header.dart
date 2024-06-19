@@ -3,15 +3,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:moya/config/palette.dart';
 import 'package:moya/config/typo_text_style.dart';
 
-class Header extends StatefulWidget {
+class Header extends StatelessWidget {
   const Header({super.key});
 
-  @override
-  State<Header> createState() => _HeaderState();
-}
-
-class _HeaderState extends State<Header> {
-  int moya = 12;
+  final int moya = 12;
 
   @override
   Widget build(BuildContext context) {

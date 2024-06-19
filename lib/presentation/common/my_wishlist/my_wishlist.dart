@@ -8,16 +8,11 @@ import 'package:moya/presentation/common/my_wishlist/wishlist.dart';
 import 'package:moya/presentation/provider/my_wishlist_provider.dart';
 import 'package:provider/provider.dart';
 
-class MyWishlist extends StatefulWidget {
+class MyWishlist extends StatelessWidget {
   const MyWishlist({
     super.key,
   });
 
-  @override
-  State<MyWishlist> createState() => _MyWishlistState();
-}
-
-class _MyWishlistState extends State<MyWishlist> {
   @override
   Widget build(BuildContext context) {
     MyWishlistProvider myWishlistProvider =

@@ -3,14 +3,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:moya/config/palette.dart';
 import 'package:moya/config/typo_text_style.dart';
 
-class AddWishlistHeader extends StatefulWidget {
+class AddWishlistHeader extends StatelessWidget {
   const AddWishlistHeader({super.key});
 
-  @override
-  State<AddWishlistHeader> createState() => _AddWishlistHeaderState();
-}
-
-class _AddWishlistHeaderState extends State<AddWishlistHeader> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(

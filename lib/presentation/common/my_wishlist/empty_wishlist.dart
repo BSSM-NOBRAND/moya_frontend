@@ -4,14 +4,9 @@ import 'package:moya/config/typo_text_style.dart';
 import 'package:moya/presentation/add_wishlist/add_wishlist_screen.dart';
 import 'package:moya/presentation/common/primary_button.dart';
 
-class EmptyWishlist extends StatefulWidget {
+class EmptyWishlist extends StatelessWidget {
   const EmptyWishlist({super.key});
 
-  @override
-  State<EmptyWishlist> createState() => _EmptyWishlistState();
-}
-
-class _EmptyWishlistState extends State<EmptyWishlist> {
   @override
   Widget build(BuildContext context) {
     return Container(

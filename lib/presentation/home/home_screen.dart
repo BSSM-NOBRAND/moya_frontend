@@ -5,14 +5,9 @@ import 'package:moya/presentation/home/widgets/my_birth_fund.dart';
 import 'package:moya/presentation/provider/fund_state_provider.dart';
 import 'package:provider/provider.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Padding(
