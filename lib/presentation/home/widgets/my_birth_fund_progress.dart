@@ -18,6 +18,7 @@ class MyBirthFundProgress extends StatelessWidget {
     return Column(
       children: [
         Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
               "달성률",

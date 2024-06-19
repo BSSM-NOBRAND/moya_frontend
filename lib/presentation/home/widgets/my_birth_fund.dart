@@ -63,7 +63,7 @@ class MyBirthFund extends StatelessWidget {
                   WishlistItem wishlistItem = provider.wishlistItem!;
 
                   return MyBirthFundImage(
-                    dDay: 7,
+                    dDay: provider.dDay!,
                     title: wishlistItem.title,
                     imageUrl: wishlistItem.imageUrl,
                   );

@@ -8,6 +8,7 @@ class FundStateProvider with ChangeNotifier {
   WishlistItem? _wishlistItem;
   int? _maxMoya;
   int? _moya;
+  int? dDay;
   FundStep step = FundStep.ended;
 
   bool get isFundRaised => _isFundRaised;
@@ -21,6 +22,8 @@ class FundStateProvider with ChangeNotifier {
     step = FundStep.inProcess;
     _maxMoya = (wishlistItem.price / 5000).ceil();
     _moya = 0;
+    // NOTE : 내 생일까지의 남은 일수
+    dDay = 10;
     notifyListeners();
   }
 
@@ -30,6 +33,7 @@ class FundStateProvider with ChangeNotifier {
     step = FundStep.inProcess;
     _maxMoya = null;
     _moya = null;
+    dDay = null;
     notifyListeners();
   }
 }

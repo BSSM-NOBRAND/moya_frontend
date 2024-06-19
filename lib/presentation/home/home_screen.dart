@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:moya/presentation/common/my_wishlist/my_wishlist.dart';
-import 'package:moya/presentation/home/widget/my_birth_fund.dart';
+import 'package:moya/presentation/home/widgets/my_birth_fund.dart';
 import 'package:moya/presentation/provider/fund_state_provider.dart';
 import 'package:provider/provider.dart';
 
