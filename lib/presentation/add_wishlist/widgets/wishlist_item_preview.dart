@@ -3,27 +3,22 @@ import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:moya/config/palette.dart';
 import 'package:moya/config/typo_text_style.dart';
+import 'package:moya/domain/entities/wishlist_item.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class WishlistItemPreview extends StatelessWidget {
-  final String imageUrl;
-  final String title;
-  final int price;
+  final WishlistItem wishListItem;
   final void Function()? onCancelTap;
   final NumberFormat numberFormatter = NumberFormat('#,###');
 
   WishlistItemPreview({
     super.key,
     this.onCancelTap,
-    required this.imageUrl,
-    required this.title,
-    required this.price,
+    required this.wishListItem,
   });
 
   @override
   Widget build(BuildContext context) {
-    print(imageUrl);
-
     return IntrinsicHeight(
       child: Row(
         children: [
@@ -33,7 +28,7 @@ class WishlistItemPreview extends StatelessWidget {
               width: 72,
               height: 72,
               child: Image.network(
-                imageUrl,
+                wishListItem.imageUrl,
                 errorBuilder: (context, error, stackTrace) => const SizedBox(
                   width: 72,
                   height: 72,
@@ -53,7 +48,7 @@ class WishlistItemPreview extends StatelessWidget {
                   children: [
                     Flexible(
                       child: Text(
-                        title,
+                        wishListItem.title,
                         style: TypoTextStyle.body2(color: Palette.black),
                       ),
                     ),
@@ -70,7 +65,7 @@ class WishlistItemPreview extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerRight,
                   child: Text(
-                    '₩${numberFormatter.format(price)}',
+                    '₩${numberFormatter.format(wishListItem.price)}',
                     style: TypoTextStyle.body2(
                       color: Palette.black,
                     ),

@@ -1,0 +1,145 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:moya/config/palette.dart';
+import 'package:moya/config/typo_text_style.dart';
+import 'package:moya/domain/entities/wishlist_item.dart';
+import 'package:moya/presentation/add_wishlist/widgets/wishlist_item_preview.dart';
+
+class AddWishlistForm extends StatefulWidget {
+  final void Function(String) findItem;
+  final WishlistItem? wishlistItem;
+
+  const AddWishlistForm({
+    super.key,
+    required this.findItem,
+    required this.wishlistItem,
+  });
+
+  @override
+  State<AddWishlistForm> createState() => _AddWishlistFormState();
+}
+
+class _AddWishlistFormState extends State<AddWishlistForm> {
+  final TextEditingController _controller = TextEditingController();
+  String link = '';
+
+  void pasteClipboardText() async {
+    final clipboardData = await Clipboard.getData(Clipboard.kTextPlain);
+    setState(() {
+      if (clipboardData == null) return;
+
+      _controller.value = _controller.value.copyWith(
+        text: clipboardData.text,
+        selection: TextSelection.fromPosition(
+          TextPosition(offset: clipboardData.text!.length),
+        ),
+      );
+      link = clipboardData.text!;
+      widget.findItem(link);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 64, left: 16, right: 16),
+      child: Column(
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                '받고 싶은 선물이 있어?',
+                style: TypoTextStyle.h4(color: Palette.black),
+              ),
+              const SizedBox(height: 20),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TextField(
+                    cursorColor: Palette.brandPrimary,
+                    style: TypoTextStyle.h3(
+                      color: Palette.black,
+                    ),
+                    controller: _controller,
+                    decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.only(bottom: 0),
+                      hintText: "선물 구매 링크를 써줘",
+                      hintStyle: TypoTextStyle.h3(
+                        color: Palette.gray400,
+                      ),
+                      border: const UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Palette.gray400,
+                          width: 2,
+                        ),
+                      ),
+                      focusedBorder: const UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Palette.gray400,
+                          width: 2,
+                        ),
+                      ),
+                    ),
+                    onChanged: (value) {
+                      setState(() {
+                        link = value;
+                        widget.findItem(link);
+                      });
+                    },
+                  ),
+                  const SizedBox(height: 12),
+                  SizedBox(
+                    height: 40,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        pasteClipboardText();
+                      },
+                      style: const ButtonStyle(
+                        padding: WidgetStatePropertyAll(
+                          EdgeInsets.only(
+                            left: 12,
+                            right: 12,
+                          ),
+                        ),
+                        backgroundColor:
+                            WidgetStatePropertyAll(Palette.gray100),
+                        shape: WidgetStatePropertyAll(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8)),
+                          ),
+                        ),
+                        overlayColor: WidgetStatePropertyAll(Palette.gray200),
+                        elevation: WidgetStatePropertyAll(0),
+                      ),
+                      child: Text(
+                        '링크 붙여넣기',
+                        style: TypoTextStyle.body2(color: Palette.gray750),
+                      ),
+                    ),
+                  )
+                ],
+              )
+            ],
+          ),
+          if (widget.wishlistItem != null) const SizedBox(height: 32),
+          if (widget.wishlistItem != null)
+            WishlistItemPreview(
+              wishListItem: widget.wishlistItem!,
+              onCancelTap: () {
+                setState(() {
+                  _controller.value = _controller.value.copyWith(
+                    text: '',
+                    selection: TextSelection.fromPosition(
+                      const TextPosition(offset: 0),
+                    ),
+                  );
+                  link = '';
+                });
+              },
+            ),
+        ],
+      ),
+    );
+  }
+}
