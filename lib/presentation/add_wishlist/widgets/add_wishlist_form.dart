@@ -4,6 +4,7 @@ import 'package:moya/config/palette.dart';
 import 'package:moya/config/typo_text_style.dart';
 import 'package:moya/domain/entities/wishlist_item.dart';
 import 'package:moya/presentation/add_wishlist/widgets/wishlist_item_preview.dart';
+import 'package:moya/presentation/common/custom_text_field.dart';
 
 class AddWishlistForm extends StatefulWidget {
   final void Function(String) findItem;
@@ -56,31 +57,9 @@ class _AddWishlistFormState extends State<AddWishlistForm> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TextField(
-                    cursorColor: Palette.brandPrimary,
-                    style: TypoTextStyle.h3(
-                      color: Palette.black,
-                    ),
+                  CustomTextField(
                     controller: _controller,
-                    decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.only(bottom: 0),
-                      hintText: "선물 구매 링크를 써줘",
-                      hintStyle: TypoTextStyle.h3(
-                        color: Palette.gray400,
-                      ),
-                      border: const UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Palette.gray400,
-                          width: 2,
-                        ),
-                      ),
-                      focusedBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Palette.gray400,
-                          width: 2,
-                        ),
-                      ),
-                    ),
+                    hintText: '선물 구매 링크를 써줘',
                     onChanged: (value) {
                       setState(() {
                         link = value;

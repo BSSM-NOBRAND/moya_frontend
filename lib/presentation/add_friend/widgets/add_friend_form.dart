@@ -3,6 +3,7 @@ import 'package:moya/config/palette.dart';
 import 'package:moya/config/typo_text_style.dart';
 import 'package:moya/domain/entities/friend.dart';
 import 'package:moya/presentation/add_friend/widgets/friend_preview.dart';
+import 'package:moya/presentation/common/custom_text_field.dart';
 
 class AddFriendForm extends StatefulWidget {
   final void Function(String) findFriend;
@@ -37,31 +38,9 @@ class _AddFriendFormState extends State<AddFriendForm> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TextField(
+              CustomTextField(
                 controller: _controller,
-                cursorColor: Palette.brandPrimary,
-                style: TypoTextStyle.h3(
-                  color: Palette.black,
-                ),
-                decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.only(bottom: 0),
-                  hintText: "친구 아이디를 써줘",
-                  hintStyle: TypoTextStyle.h3(
-                    color: Palette.gray400,
-                  ),
-                  border: const UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Palette.gray400,
-                      width: 2,
-                    ),
-                  ),
-                  focusedBorder: const UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Palette.gray400,
-                      width: 2,
-                    ),
-                  ),
-                ),
+                hintText: "친구 아이디를 써줘",
                 onChanged: (value) {
                   setState(() {
                     friendId = value;
