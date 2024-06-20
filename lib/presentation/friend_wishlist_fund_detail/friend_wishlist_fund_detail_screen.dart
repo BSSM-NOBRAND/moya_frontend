@@ -8,6 +8,7 @@ import 'package:moya/domain/entities/wishlist_item.dart';
 import 'package:moya/presentation/common/birth_fund_progress.dart';
 import 'package:moya/presentation/common/primary_button.dart';
 import 'package:moya/presentation/provider/my_info_provider.dart';
+import 'package:moya/presentation/sponsor_detail/sponsor_detail_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -171,7 +172,14 @@ class FriendWishlistFundDetailScreen extends StatelessWidget {
                               child: PrimaryButton(
                                 '후원하기',
                                 size: ButtonSize.s56,
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const SponsorDetailScreen(),
+                                    ),
+                                  );
+                                },
                               ),
                             ),
                             const SizedBox(width: 12),

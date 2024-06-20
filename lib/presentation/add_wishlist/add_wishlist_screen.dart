@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moya/domain/entities/wishlist_item.dart';
 import 'package:moya/presentation/add_wishlist/widgets/add_wishlist_form.dart';
-import 'package:moya/presentation/add_wishlist/widgets/add_wishlist_header.dart';
+import 'package:moya/presentation/common/detail_header.dart';
 import 'package:moya/presentation/common/primary_button.dart';
 import 'package:moya/presentation/provider/my_wishlist_provider.dart';
 import 'package:provider/provider.dart';
@@ -39,7 +39,7 @@ class _AddWishlistScreenState extends State<AddWishlistScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            const AddWishlistHeader(),
+            const DetailHeader(title: '위시리스트 추가'),
             AddWishlistForm(
               findItem: findItem,
               wishlistItem: wishlistItem,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moya/domain/entities/friend.dart';
 import 'package:moya/presentation/add_friend/widgets/add_friend_form.dart';
-import 'package:moya/presentation/add_friend/widgets/add_friend_header.dart';
+import 'package:moya/presentation/common/detail_header.dart';
 import 'package:moya/presentation/common/primary_button.dart';
 import 'package:moya/presentation/provider/my_friend_list_provider.dart';
 import 'package:provider/provider.dart';
@@ -37,7 +37,7 @@ class _AddFriendScreenState extends State<AddFriendScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            const AddFriendHeader(),
+            const DetailHeader(title: '친구 추가'),
             AddFriendForm(
               findFriend: findFriend,
               friend: friend,
