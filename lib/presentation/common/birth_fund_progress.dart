@@ -3,11 +3,11 @@ import 'package:flutter_svg/svg.dart';
 import 'package:moya/config/palette.dart';
 import 'package:moya/config/typo_text_style.dart';
 
-class MyBirthFundProgress extends StatelessWidget {
+class BirthFundProgress extends StatelessWidget {
   final int currentMoya;
   final int maxMoya;
 
-  const MyBirthFundProgress({
+  const BirthFundProgress({
     super.key,
     required this.currentMoya,
     required this.maxMoya,

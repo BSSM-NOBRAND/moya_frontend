@@ -2,11 +2,11 @@ import 'package:flutter/material.dart' hide Step;
 import 'package:flutter_svg/svg.dart';
 import 'package:moya/config/palette.dart';
 import 'package:moya/domain/entities/wishlist_item.dart';
+import 'package:moya/presentation/common/birth_fund_progress.dart';
 import 'package:moya/presentation/common/primary_button.dart';
 import 'package:moya/presentation/home/widgets/fund_progress_indicator.dart';
 import 'package:moya/presentation/home/widgets/my_birth_fund_header.dart';
 import 'package:moya/presentation/home/widgets/my_birth_fund_image.dart';
-import 'package:moya/presentation/home/widgets/my_birth_fund_progress.dart';
 import 'package:moya/presentation/provider/fund_state_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
@@ -72,7 +72,7 @@ class MyBirthFund extends StatelessWidget {
               const SizedBox(height: 16),
               Consumer<FundStateProvider>(
                 builder: (context, provider, child) {
-                  return MyBirthFundProgress(
+                  return BirthFundProgress(
                     currentMoya: provider.moya!,
                     maxMoya: provider.maxMoya!,
                   );

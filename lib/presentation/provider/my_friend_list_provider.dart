@@ -33,10 +33,11 @@ class MyFriendListProvider with ChangeNotifier {
 
   int _nextId = 4;
 
-  void addFriend(
-      {required String profileUrl,
-      required String username,
-      required bool isFunding}) {
+  void addFriend({
+    required String profileUrl,
+    required String username,
+    required bool isFunding,
+  }) {
     _friendList.add(
       Friend(
         id: _nextId++,

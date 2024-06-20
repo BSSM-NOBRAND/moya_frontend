@@ -65,6 +65,7 @@ class _AddFriendScreenState extends State<AddFriendScreen> {
               Navigator.of(context).pop();
             }
           },
+          disabled: friend == null,
         ),
       ),
     );

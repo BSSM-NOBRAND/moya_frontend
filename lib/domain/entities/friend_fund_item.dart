@@ -1,19 +1,19 @@
-class FriendsFundItem {
+import 'package:moya/domain/entities/wishlist_item.dart';
+
+class FriendFundItem {
   final int id;
   final String username;
-  final String imageUrl;
-  final String title;
   final int currentMoya;
   final int maxMoya;
   final int dDay;
+  final WishlistItem wishlistItem;
 
-  const FriendsFundItem({
+  const FriendFundItem({
     required this.id,
     required this.username,
-    required this.imageUrl,
-    required this.title,
     required this.currentMoya,
     required this.maxMoya,
     required this.dDay,
+    required this.wishlistItem,
   });
 }
