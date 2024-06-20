@@ -49,6 +49,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'WantedSans',
         scaffoldBackgroundColor: Palette.white,
+        bottomSheetTheme: const BottomSheetThemeData(
+          backgroundColor: Palette.white,
+        ),
       ),
       home: const BaseNavigation(),
       debugShowCheckedModeBanner: false,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:moya/config/palette.dart';
 import 'package:moya/config/typo_text_style.dart';
 
@@ -7,6 +8,7 @@ class CustomTextField extends StatelessWidget {
   final void Function(String)? onChanged;
   final TextEditingController? controller;
   final TextInputType? keyboardType;
+  final List<TextInputFormatter>? inputFormatters;
 
   const CustomTextField({
     super.key,
@@ -14,12 +16,14 @@ class CustomTextField extends StatelessWidget {
     this.onChanged,
     this.controller,
     this.keyboardType,
+    this.inputFormatters,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       keyboardType: keyboardType,
+      inputFormatters: inputFormatters,
       controller: controller,
       cursorColor: Palette.brandPrimary,
       style: TypoTextStyle.h3(

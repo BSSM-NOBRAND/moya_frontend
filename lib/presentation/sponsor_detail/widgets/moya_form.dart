@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:moya/config/palette.dart';
 import 'package:moya/config/typo_text_style.dart';
@@ -6,8 +7,13 @@ import 'package:moya/presentation/common/custom_text_field.dart';
 import 'package:moya/presentation/provider/my_info_provider.dart';
 import 'package:provider/provider.dart';
 
-class SponsorForm extends StatelessWidget {
-  const SponsorForm({super.key});
+class MoyaForm extends StatelessWidget {
+  final void Function(String)? onMoyaChanged;
+
+  const MoyaForm({
+    super.key,
+    required this.onMoyaChanged,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +32,11 @@ class SponsorForm extends StatelessWidget {
             children: [
               CustomTextField(
                 keyboardType: TextInputType.number,
+                inputFormatters: <TextInputFormatter>[
+                  FilteringTextInputFormatter.digitsOnly
+                ],
                 hintText: '후원할 모야를 적어줘',
-                onChanged: (value) {},
+                onChanged: onMoyaChanged,
               ),
               const SizedBox(height: 12),
               Row(
