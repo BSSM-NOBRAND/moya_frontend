@@ -7,7 +7,12 @@ class WishlistScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Padding(
-      padding: EdgeInsets.only(top: 12, left: 16, right: 16),
+      padding: EdgeInsets.only(
+        top: 12,
+        left: 16,
+        right: 16,
+        bottom: 12,
+      ),
       child: MyWishlist(),
     );
   }
