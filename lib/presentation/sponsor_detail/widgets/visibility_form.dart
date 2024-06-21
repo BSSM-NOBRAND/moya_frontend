@@ -3,11 +3,6 @@ import 'package:moya/config/palette.dart';
 import 'package:moya/config/typo_text_style.dart';
 import 'package:moya/presentation/sponsor_detail/widgets/visibility_option.dart';
 
-enum SponsorVisibility {
-  visible,
-  invisible,
-}
-
 class VisibilityForm extends StatefulWidget {
   final bool? isSponsorVisible;
   final void Function(bool) onChange;

@@ -95,7 +95,7 @@ class _RaiseFundModalState extends State<RaiseFundModal> {
                     ],
                   ),
                   const SizedBox(width: 20),
-                  SvgPicture.asset('assets/images/arrow-left.svg'),
+                  SvgPicture.asset('assets/images/arrow-right.svg'),
                   const SizedBox(width: 20),
                   Stack(
                     clipBehavior: Clip.none,

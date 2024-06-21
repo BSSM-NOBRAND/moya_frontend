@@ -24,7 +24,6 @@ class _SponsorDetailScreenState extends State<SponsorDetailScreen> {
   FormStep step = FormStep.moya;
   String moya = '';
   String letter = '';
-  // SponsorVisibility? sponsorVisibility;
   bool? isSponsorVisible;
 
   void handleButtonPressed() {

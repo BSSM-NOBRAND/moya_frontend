@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:moya/config/palette.dart';
 import 'package:moya/config/typo_text_style.dart';
+import 'package:moya/presentation/provider/my_info_provider.dart';
+import 'package:provider/provider.dart';
 
 class Header extends StatelessWidget {
   const Header({super.key});
-
-  final int moya = 12;
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +24,13 @@ class Header extends StatelessWidget {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
-                      moya.toString(),
-                      style: TypoTextStyle.h5(color: Palette.black),
+                    Consumer<MyInfoProvider>(
+                      builder: (context, provider, child) {
+                        return Text(
+                          provider.myMoya.toString(),
+                          style: TypoTextStyle.h5(color: Palette.black),
+                        );
+                      },
                     ),
                     const SizedBox(width: 6),
                     SvgPicture.asset('assets/images/moya.svg')
