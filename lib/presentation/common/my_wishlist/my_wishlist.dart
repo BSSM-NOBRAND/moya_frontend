@@ -17,8 +17,6 @@ class MyWishlist extends StatefulWidget {
   State<MyWishlist> createState() => _MyWishlistState();
 }
 
-// displayName: 이명재, email: 2022045@bssm.hs.kr, id: 104458262928809641080, photoUrl: https://lh3.googleusercontent.com/a/ACg8ocKkH_ivB-TTaNWsbqJjNLLUJbs3mtXHB_5hlQ5NCgqEJGPaNw=s1337, serverAuthCode: null
-
 class _MyWishlistState extends State<MyWishlist> {
   // void signIn() async {
   //   try {
@@ -50,10 +48,6 @@ class _MyWishlistState extends State<MyWishlist> {
 
   @override
   Widget build(BuildContext context) {
-    MyWishlistProvider myWishlistProvider =
-        Provider.of<MyWishlistProvider>(context, listen: false);
-    // myWishlistProvider.fetch();
-
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -66,51 +60,56 @@ class _MyWishlistState extends State<MyWishlist> {
       ),
       child: Padding(
         padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            Row(
+        child: Consumer<MyWishlistProvider>(
+          builder: (context, provider, child) {
+            return Column(
               children: [
-                Text(
-                  '내 위시리스트',
-                  style: TypoTextStyle.h4(color: Palette.black),
-                ),
-                const Spacer(),
-                Stack(
+                Row(
                   children: [
-                    SvgPicture.asset('assets/images/add.svg'),
-                    Material(
-                      color: Colors.transparent,
-                      child: InkWell(
-                        borderRadius: BorderRadius.circular(14),
-                        splashColor: Palette.gray300.withOpacity(0.3),
-                        highlightColor: Colors.transparent,
-                        child: Container(
-                          width: 28,
-                          height: 28,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
+                    Text(
+                      '내 위시리스트',
+                      style: TypoTextStyle.h4(color: Palette.black),
+                    ),
+                    const Spacer(),
+                    Stack(
+                      children: [
+                        SvgPicture.asset('assets/images/add.svg'),
+                        Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(14),
+                            splashColor: Palette.gray300.withOpacity(0.3),
+                            highlightColor: Colors.transparent,
+                            child: Container(
+                              width: 28,
+                              height: 28,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                              ),
+                            ),
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const AddWishlistScreen(),
+                                ),
+                              );
+                            },
                           ),
                         ),
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const AddWishlistScreen(),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
+                      ],
+                    )
                   ],
-                )
+                ),
+                if (provider.wishlist.isEmpty) const EmptyWishlist(),
+                if (provider.wishlist.isNotEmpty) const Wishlist(),
+                // PrimaryButton(
+                //   '로그인',
+                //   onPressed: signIn,
+                // ),
               ],
-            ),
-            if (myWishlistProvider.wishlist.isEmpty) const EmptyWishlist(),
-            if (myWishlistProvider.wishlist.isNotEmpty) const Wishlist(),
-            // PrimaryButton(
-            //   '로그인',
-            //   onPressed: signIn,
-            // ),
-          ],
+            );
+          },
         ),
       ),
     );

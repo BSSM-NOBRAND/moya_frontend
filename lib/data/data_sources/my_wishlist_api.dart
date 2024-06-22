@@ -10,8 +10,7 @@ class MyWishlistApi {
         options: authorization(),
       );
 
-      var jsonResponse = response.data;
-      Iterable wishlist = jsonResponse;
+      Iterable wishlist = response.data;
       return Result.success(wishlist);
     } catch (e) {
       return const Result.error('네트워크 에러');
