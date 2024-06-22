@@ -43,7 +43,7 @@ class FriendBirthFundItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  wishlistItem.title,
+                  wishlistItem.name,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
                   style: TypoTextStyle.body2(

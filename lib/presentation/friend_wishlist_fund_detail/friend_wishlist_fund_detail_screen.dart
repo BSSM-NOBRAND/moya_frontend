@@ -127,7 +127,7 @@ class FriendWishlistFundDetailScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              wishlistItem.title,
+                              wishlistItem.name,
                               style: TypoTextStyle.h4(
                                 color: Palette.black,
                               ),

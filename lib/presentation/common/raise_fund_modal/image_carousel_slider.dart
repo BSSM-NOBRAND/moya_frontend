@@ -50,7 +50,7 @@ class ImageCarouselSlider extends StatelessWidget {
                     bottom: 16,
                   ),
                   child: Text(
-                    item.title,
+                    item.name,
                     style: TypoTextStyle.body2(
                       color: Palette.white,
                     ),

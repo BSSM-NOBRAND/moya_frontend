@@ -45,7 +45,7 @@ class MyWishlistItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    wishlistItem.title,
+                    wishlistItem.name,
                     style: TypoTextStyle.body2(color: Palette.black),
                   ),
                   Align(

@@ -8,15 +8,51 @@ import 'package:moya/presentation/common/my_wishlist/wishlist.dart';
 import 'package:moya/presentation/provider/my_wishlist_provider.dart';
 import 'package:provider/provider.dart';
 
-class MyWishlist extends StatelessWidget {
+class MyWishlist extends StatefulWidget {
   const MyWishlist({
     super.key,
   });
 
   @override
+  State<MyWishlist> createState() => _MyWishlistState();
+}
+
+// displayName: 이명재, email: 2022045@bssm.hs.kr, id: 104458262928809641080, photoUrl: https://lh3.googleusercontent.com/a/ACg8ocKkH_ivB-TTaNWsbqJjNLLUJbs3mtXHB_5hlQ5NCgqEJGPaNw=s1337, serverAuthCode: null
+
+class _MyWishlistState extends State<MyWishlist> {
+  // void signIn() async {
+  //   try {
+  //     var res = await myDio.post<Map>(
+  //       '/auth',
+  //       data: {
+  //         "name": "이명재",
+  //         "email": "2022045@gmail.com",
+  //         "profileImage":
+  //             "https://lh3.googleusercontent.com/a/ACg8ocKkH_ivB-TTaNWsbqJjNLLUJbs3mtXHB_5hlQ5NCgqEJGPaNw=s1337",
+  //         "birth": "2006-05-08"
+  //       },
+  //     );
+  //     Map data = res.data ?? {};
+  //     PrefUtil.setString('accessToken', data['accessToken']);
+  //     PrefUtil.setString('refreshToken', data['refreshToken']);
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  // }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    MyWishlistProvider myWishlistProvider =
+        Provider.of<MyWishlistProvider>(context, listen: false);
+    myWishlistProvider.fetch();
+  }
+
+  @override
   Widget build(BuildContext context) {
     MyWishlistProvider myWishlistProvider =
-        Provider.of<MyWishlistProvider>(context);
+        Provider.of<MyWishlistProvider>(context, listen: false);
+    // myWishlistProvider.fetch();
 
     return Container(
       width: double.infinity,
@@ -70,6 +106,10 @@ class MyWishlist extends StatelessWidget {
             ),
             if (myWishlistProvider.wishlist.isEmpty) const EmptyWishlist(),
             if (myWishlistProvider.wishlist.isNotEmpty) const Wishlist(),
+            // PrimaryButton(
+            //   '로그인',
+            //   onPressed: signIn,
+            // ),
           ],
         ),
       ),

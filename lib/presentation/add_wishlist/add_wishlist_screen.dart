@@ -26,7 +26,7 @@ class _AddWishlistScreenState extends State<AddWishlistScreen> {
         id: 1,
         imageUrl:
             'https://thumbnail8.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/b6b2/a2351221ee02e1500d9d87df0958a04040c81af5c516b045cde6a4bb4365.jpg',
-        title:
+        name:
             '호스티스 트윙키 크리미 골든 스폰지 케이크 10개입 HOSTESS TWINKIES Creamy Golden Sponge Cake 10ct',
         price: 8290,
       );
@@ -61,7 +61,7 @@ class _AddWishlistScreenState extends State<AddWishlistScreen> {
                   Provider.of<MyWishlistProvider>(context, listen: false);
               myWishlistProvider.addWishlistItem(
                 imageUrl: wishlistItem!.imageUrl,
-                title: wishlistItem!.title,
+                title: wishlistItem!.name,
                 price: wishlistItem!.price,
               );
               Navigator.of(context).pop();

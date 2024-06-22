@@ -48,7 +48,7 @@ class WishlistItemPreview extends StatelessWidget {
                   children: [
                     Flexible(
                       child: Text(
-                        wishListItem.title,
+                        wishListItem.name,
                         style: TypoTextStyle.body2(color: Palette.black),
                       ),
                     ),
