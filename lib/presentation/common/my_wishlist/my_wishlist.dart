@@ -101,12 +101,10 @@ class _MyWishlistState extends State<MyWishlist> {
                     )
                   ],
                 ),
-                if (provider.wishlist.isEmpty) const EmptyWishlist(),
-                if (provider.wishlist.isNotEmpty) const Wishlist(),
-                // PrimaryButton(
-                //   '로그인',
-                //   onPressed: signIn,
-                // ),
+                if (!provider.state.isLoading && provider.wishlist.isEmpty)
+                  const EmptyWishlist(),
+                if (!provider.state.isLoading && provider.wishlist.isNotEmpty)
+                  const Wishlist(),
               ],
             );
           },

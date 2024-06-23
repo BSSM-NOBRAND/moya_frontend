@@ -25,4 +25,9 @@ class WishlistItemPreviewProvider with ChangeNotifier {
     );
     notifyListeners();
   }
+
+  void initWishlistItemPreview() {
+    _wishlistItem = null;
+    notifyListeners();
+  }
 }

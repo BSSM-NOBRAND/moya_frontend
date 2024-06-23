@@ -14,10 +14,20 @@ class AddWishlistScreen extends StatefulWidget {
 }
 
 class _AddWishlistScreenState extends State<AddWishlistScreen> {
+  String _link = '';
   void findItem(String link) {
     WishlistItemPreviewProvider provider =
         Provider.of<WishlistItemPreviewProvider>(context, listen: false);
+    _link = link;
     provider.fetch(link);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // WishlistItemPreviewProvider provider =
+    //     Provider.of<WishlistItemPreviewProvider>(context, listen: false);
+    // provider.initWishlistItemPreview();
   }
 
   @override
@@ -50,10 +60,15 @@ class _AddWishlistScreenState extends State<AddWishlistScreen> {
                       Provider.of<MyWishlistProvider>(context, listen: false);
                   myWishlistProvider.addWishlistItem(
                     imageUrl: provider.wishlistItem!.imageUrl,
+                    url: _link,
                     title: provider.wishlistItem!.name,
                     price: provider.wishlistItem!.price,
                   );
                   Navigator.of(context).pop();
+                  WishlistItemPreviewProvider wishlistItemPreviewProvider =
+                      Provider.of<WishlistItemPreviewProvider>(context,
+                          listen: false);
+                  wishlistItemPreviewProvider.initWishlistItemPreview();
                 }
               },
             ),
