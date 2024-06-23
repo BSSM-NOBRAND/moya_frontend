@@ -10,14 +10,21 @@ import 'package:moya/presentation/provider/fund_state_provider.dart';
 import 'package:moya/presentation/provider/my_wishlist_provider.dart';
 import 'package:provider/provider.dart';
 
-class MyWishlistDetailScreen extends StatelessWidget {
+class MyWishlistDetailScreen extends StatefulWidget {
   final WishlistItem wishlistItem;
-  final NumberFormat numberFormatter = NumberFormat('#,###');
 
-  MyWishlistDetailScreen({
+  const MyWishlistDetailScreen({
     super.key,
     required this.wishlistItem,
   });
+
+  @override
+  State<MyWishlistDetailScreen> createState() => _MyWishlistDetailScreenState();
+}
+
+class _MyWishlistDetailScreenState extends State<MyWishlistDetailScreen> {
+  bool isLiked = true;
+  final NumberFormat numberFormatter = NumberFormat('#,###');
 
   @override
   Widget build(BuildContext context) {
@@ -36,29 +43,37 @@ class MyWishlistDetailScreen extends StatelessWidget {
                   children: [
                     Positioned.fill(
                       child: Image.network(
-                        wishlistItem.imageUrl,
+                        widget.wishlistItem.imageUrl,
                         fit: BoxFit.fitHeight,
                       ),
                     ),
                     Positioned(
                       top: MediaQuery.of(context).padding.top + 8,
                       left: 16,
-                      child: InkWell(
-                        borderRadius: BorderRadius.circular(14),
-                        splashColor: Palette.gray300.withOpacity(0.3),
-                        highlightColor: Colors.transparent,
-                        onTap: () {
-                          Navigator.of(context).pop();
+                      child: Consumer<MyWishlistProvider>(
+                        builder: (context, provider, child) {
+                          return InkWell(
+                            borderRadius: BorderRadius.circular(14),
+                            splashColor: Palette.gray300.withOpacity(0.3),
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              if (!isLiked) {
+                                await provider
+                                    .deleteWishlistItem(widget.wishlistItem.id);
+                              }
+                              Navigator.of(context).pop();
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                color: Palette.white,
+                                borderRadius: BorderRadius.circular(100),
+                              ),
+                              child: SvgPicture.asset(
+                                  'assets/images/arrow-back.svg'),
+                            ),
+                          );
                         },
-                        child: Container(
-                          padding: const EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                            color: Palette.white,
-                            borderRadius: BorderRadius.circular(100),
-                          ),
-                          child:
-                              SvgPicture.asset('assets/images/arrow-back.svg'),
-                        ),
                       ),
                     ),
                   ],
@@ -92,14 +107,14 @@ class MyWishlistDetailScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              wishlistItem.name,
+                              widget.wishlistItem.name,
                               style: TypoTextStyle.h4(
                                 color: Palette.black,
                               ),
                             ),
                             const SizedBox(height: 16),
                             Text(
-                              '₩${numberFormatter.format(wishlistItem.price)}',
+                              '₩${numberFormatter.format(widget.wishlistItem.price)}',
                               style:
                                   TypoTextStyle.body1(color: Palette.gray600),
                             ),
@@ -113,7 +128,9 @@ class MyWishlistDetailScreen extends StatelessWidget {
                                   splashColor: Palette.gray300.withOpacity(0.3),
                                   highlightColor: Colors.transparent,
                                   onTap: () {
-                                    provider.toggleWishlistItem(wishlistItem);
+                                    setState(() {
+                                      isLiked = !isLiked;
+                                    });
                                   },
                                   child: Container(
                                     width: 56,
@@ -126,7 +143,7 @@ class MyWishlistDetailScreen extends StatelessWidget {
                                     child: SvgPicture.asset(
                                       'assets/images/heart.svg',
                                       colorFilter: ColorFilter.mode(
-                                        provider.isExist(wishlistItem.id)
+                                        isLiked
                                             ? Palette.brandPrimary
                                             : Palette.gray400,
                                         BlendMode.srcIn,
@@ -145,8 +162,6 @@ class MyWishlistDetailScreen extends StatelessWidget {
                                         (context, fundStateProvider, child) {
                                       bool isFundRaised =
                                           fundStateProvider.isFundRaised;
-                                      bool isExist = myWishlistProvider
-                                          .isExist(wishlistItem.id);
 
                                       return PrimaryButton(
                                         '생일 펀드 올리기',
@@ -158,12 +173,12 @@ class MyWishlistDetailScreen extends StatelessWidget {
                                             isScrollControlled: true,
                                             builder: (context) {
                                               return RaiseFundModal(
-                                                wishlist: [wishlistItem],
+                                                wishlist: [widget.wishlistItem],
                                               );
                                             },
                                           );
                                         },
-                                        disabled: isFundRaised || !isExist,
+                                        disabled: isFundRaised || !isLiked,
                                       );
                                     },
                                   );

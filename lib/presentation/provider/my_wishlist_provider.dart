@@ -16,30 +16,6 @@ class MyWishlistProvider with ChangeNotifier {
 
   List<WishlistItem> get wishlist => _wishlist;
 
-  void toggleWishlistItem(WishlistItem wishlistItem) async {
-    if (_wishlist.where((item) => item.id == wishlistItem.id).isEmpty) {
-      _wishlist.add(wishlistItem);
-      addWishlistItem(
-        imageUrl: wishlistItem.imageUrl,
-        url: wishlistItem.url,
-        name: wishlistItem.name,
-        price: wishlistItem.price,
-      );
-    } else {
-      _wishlist.removeWhere((item) => item.id == wishlistItem.id);
-      DeleteWishlistItemUseCase useCase =
-          serviceLocator<DeleteWishlistItemUseCase>();
-      final result = await useCase.call(id: wishlistItem.id);
-      result.when(
-        success: (s) {},
-        error: (e) {
-          fetch();
-        },
-      );
-      notifyListeners();
-    }
-  }
-
   Future<void> fetch() async {
     _state = state.copyWith(isLoading: true);
 
@@ -49,12 +25,10 @@ class MyWishlistProvider with ChangeNotifier {
 
     result.when(
       success: (List<WishlistItem> wishlist) {
-        print(wishlist);
         _wishlist = wishlist
             .map(
               (e) => WishlistItem(
                 id: e.id,
-                url: e.url,
                 imageUrl: e.imageUrl,
                 name: e.name,
                 price: e.price,
@@ -77,7 +51,6 @@ class MyWishlistProvider with ChangeNotifier {
     _wishlist.add(
       WishlistItem(
         id: -1,
-        url: url,
         imageUrl: imageUrl,
         name: name,
         price: price,
@@ -99,5 +72,17 @@ class MyWishlistProvider with ChangeNotifier {
     );
   }
 
-  bool isExist(int id) => _wishlist.any((item) => item.id == id);
+  Future<void> deleteWishlistItem(int id) async {
+    _wishlist.removeWhere((item) => item.id == id);
+    DeleteWishlistItemUseCase useCase =
+        serviceLocator<DeleteWishlistItemUseCase>();
+    final result = await useCase.call(id: id);
+    result.when(
+      success: (s) {},
+      error: (e) {
+        fetch();
+      },
+    );
+    notifyListeners();
+  }
 }

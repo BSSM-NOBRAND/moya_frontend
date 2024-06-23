@@ -17,7 +17,6 @@ class WishlistItemPreviewRepositoryImpl
       success: (item) => Result.success(
         WishlistItemModel(
           id: -1,
-          url: item['url'],
           imageUrl: item['imageUrl'],
           name: item['name'],
           price: item['price'],

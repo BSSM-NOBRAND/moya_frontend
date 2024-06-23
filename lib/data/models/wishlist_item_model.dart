@@ -9,7 +9,6 @@ class WishlistItemModel extends WishlistItem with _$WishlistItemModel {
   factory WishlistItemModel({
     required int id,
     required String imageUrl,
-    required String url,
     required String name,
     required int price,
   }) = _WishlistItemModel;

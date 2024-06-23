@@ -22,7 +22,6 @@ WishlistItemModel _$WishlistItemModelFromJson(Map<String, dynamic> json) {
 mixin _$WishlistItemModel {
   int get id => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
-  String get url => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   int get price => throw _privateConstructorUsedError;
 
@@ -38,7 +37,7 @@ abstract class $WishlistItemModelCopyWith<$Res> {
           WishlistItemModel value, $Res Function(WishlistItemModel) then) =
       _$WishlistItemModelCopyWithImpl<$Res, WishlistItemModel>;
   @useResult
-  $Res call({int id, String imageUrl, String url, String name, int price});
+  $Res call({int id, String imageUrl, String name, int price});
 }
 
 /// @nodoc
@@ -56,7 +55,6 @@ class _$WishlistItemModelCopyWithImpl<$Res, $Val extends WishlistItemModel>
   $Res call({
     Object? id = null,
     Object? imageUrl = null,
-    Object? url = null,
     Object? name = null,
     Object? price = null,
   }) {
@@ -68,10 +66,6 @@ class _$WishlistItemModelCopyWithImpl<$Res, $Val extends WishlistItemModel>
       imageUrl: null == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      url: null == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
               as String,
       name: null == name
           ? _value.name
@@ -93,7 +87,7 @@ abstract class _$$WishlistItemModelImplCopyWith<$Res>
       __$$WishlistItemModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String imageUrl, String url, String name, int price});
+  $Res call({int id, String imageUrl, String name, int price});
 }
 
 /// @nodoc
@@ -109,7 +103,6 @@ class __$$WishlistItemModelImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? imageUrl = null,
-    Object? url = null,
     Object? name = null,
     Object? price = null,
   }) {
@@ -121,10 +114,6 @@ class __$$WishlistItemModelImplCopyWithImpl<$Res>
       imageUrl: null == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      url: null == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
               as String,
       name: null == name
           ? _value.name
@@ -144,7 +133,6 @@ class _$WishlistItemModelImpl implements _WishlistItemModel {
   _$WishlistItemModelImpl(
       {required this.id,
       required this.imageUrl,
-      required this.url,
       required this.name,
       required this.price});
 
@@ -156,15 +144,13 @@ class _$WishlistItemModelImpl implements _WishlistItemModel {
   @override
   final String imageUrl;
   @override
-  final String url;
-  @override
   final String name;
   @override
   final int price;
 
   @override
   String toString() {
-    return 'WishlistItemModel(id: $id, imageUrl: $imageUrl, url: $url, name: $name, price: $price)';
+    return 'WishlistItemModel(id: $id, imageUrl: $imageUrl, name: $name, price: $price)';
   }
 
   @override
@@ -175,14 +161,13 @@ class _$WishlistItemModelImpl implements _WishlistItemModel {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
-            (identical(other.url, url) || other.url == url) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.price, price) || other.price == price));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, imageUrl, url, name, price);
+  int get hashCode => Object.hash(runtimeType, id, imageUrl, name, price);
 
   @JsonKey(ignore: true)
   @override
@@ -203,7 +188,6 @@ abstract class _WishlistItemModel implements WishlistItemModel {
   factory _WishlistItemModel(
       {required final int id,
       required final String imageUrl,
-      required final String url,
       required final String name,
       required final int price}) = _$WishlistItemModelImpl;
 
@@ -214,8 +198,6 @@ abstract class _WishlistItemModel implements WishlistItemModel {
   int get id;
   @override
   String get imageUrl;
-  @override
-  String get url;
   @override
   String get name;
   @override
