@@ -1,14 +1,14 @@
 import 'package:moya/core/resources/result.dart';
-import 'package:moya/data/data_sources/my_wishlist_api.dart';
+import 'package:moya/data/data_sources/get_my_wishlist_api.dart';
 import 'package:moya/data/models/wishlist_item_model.dart';
 import 'package:moya/di/locator.dart';
 import 'package:moya/domain/entities/wishlist_item.dart';
-import 'package:moya/domain/repositories/my_wishlist_repository.dart';
+import 'package:moya/domain/repositories/get_my_wishlist_repository.dart';
 
-class MyWishlistRepositoryImpl implements MyWishlistRepository {
+class GetMyWishlistRepositoryImpl implements GetMyWishlistRepository {
   @override
   Future<Result<List<WishlistItem>>> fetch() async {
-    final MyWishlistApi api = serviceLocator<MyWishlistApi>();
+    final GetMyWishlistApi api = serviceLocator<GetMyWishlistApi>();
     final Result<Iterable> result = await api.fetch();
 
     return result.when(

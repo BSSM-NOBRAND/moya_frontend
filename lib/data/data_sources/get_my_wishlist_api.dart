@@ -2,7 +2,7 @@ import 'package:moya/core/resources/result.dart';
 import 'package:moya/core/utils/authorization.dart';
 import 'package:moya/core/utils/my_dio.dart';
 
-class MyWishlistApi {
+class GetMyWishlistApi {
   Future<Result<Iterable>> fetch() async {
     try {
       final response = await myDio.get(

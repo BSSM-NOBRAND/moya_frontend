@@ -1,11 +1,12 @@
 import 'package:moya/core/resources/result.dart';
 import 'package:moya/di/locator.dart';
 import 'package:moya/domain/entities/wishlist_item.dart';
-import 'package:moya/domain/repositories/my_wishlist_repository.dart';
+import 'package:moya/domain/repositories/get_my_wishlist_repository.dart';
 
 class GetWishlistUseCase {
   Future<Result<List<WishlistItem>>> call() async {
-    MyWishlistRepository repository = serviceLocator<MyWishlistRepository>();
+    GetMyWishlistRepository repository =
+        serviceLocator<GetMyWishlistRepository>();
 
     final result = await repository.fetch();
 
