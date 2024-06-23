@@ -81,7 +81,7 @@ class FriendWishlistFundDetailScreen extends StatelessWidget {
                             Consumer<MyInfoProvider>(
                               builder: (context, provider, child) {
                                 return Text(
-                                  provider.myMoya.toString(),
+                                  provider.user.moya.toString(),
                                   style: TypoTextStyle.h5(
                                     color: Palette.black,
                                   ),

@@ -52,7 +52,7 @@ class MoyaForm extends StatelessWidget {
                   Consumer<MyInfoProvider>(
                     builder: (context, provider, child) {
                       return Text(
-                        provider.myMoya.toString(),
+                        provider.user.moya.toString(),
                         style: TypoTextStyle.body2(
                           color: Palette.black,
                         ),

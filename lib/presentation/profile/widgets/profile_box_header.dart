@@ -56,7 +56,7 @@ class ProfileBoxHeader extends StatelessWidget {
             Consumer<MyInfoProvider>(
               builder: (context, provider, child) {
                 return Text(
-                  _numberFormatter.format(provider.myMileage),
+                  _numberFormatter.format(provider.user.mileage),
                   style: TypoTextStyle.h5(
                     color: Palette.black,
                   ),

@@ -5,8 +5,21 @@ import 'package:moya/config/typo_text_style.dart';
 import 'package:moya/presentation/provider/my_info_provider.dart';
 import 'package:provider/provider.dart';
 
-class Header extends StatelessWidget {
+class Header extends StatefulWidget {
   const Header({super.key});
+
+  @override
+  State<Header> createState() => _HeaderState();
+}
+
+class _HeaderState extends State<Header> {
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    MyInfoProvider provider =
+        Provider.of<MyInfoProvider>(context, listen: false);
+    provider.fetch();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +40,7 @@ class Header extends StatelessWidget {
                     Consumer<MyInfoProvider>(
                       builder: (context, provider, child) {
                         return Text(
-                          provider.myMoya.toString(),
+                          provider.user.moya.toString(),
                           style: TypoTextStyle.h5(color: Palette.black),
                         );
                       },

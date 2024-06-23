@@ -23,14 +23,6 @@ class _AddWishlistScreenState extends State<AddWishlistScreen> {
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    // WishlistItemPreviewProvider provider =
-    //     Provider.of<WishlistItemPreviewProvider>(context, listen: false);
-    // provider.initWishlistItemPreview();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Consumer<WishlistItemPreviewProvider>(
       builder: (context, provider, child) {
