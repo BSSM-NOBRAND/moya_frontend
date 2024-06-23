@@ -61,7 +61,7 @@ class _AddWishlistScreenState extends State<AddWishlistScreen> {
                   myWishlistProvider.addWishlistItem(
                     imageUrl: provider.wishlistItem!.imageUrl,
                     url: _link,
-                    title: provider.wishlistItem!.name,
+                    name: provider.wishlistItem!.name,
                     price: provider.wishlistItem!.price,
                   );
                   Navigator.of(context).pop();

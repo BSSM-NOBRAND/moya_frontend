@@ -4,6 +4,7 @@ import 'package:moya/data/models/api_loading_state.dart';
 import 'package:moya/di/locator.dart';
 import 'package:moya/domain/entities/wishlist_item.dart';
 import 'package:moya/domain/usecases/add_wishlist_item_use_case.dart';
+import 'package:moya/domain/usecases/delete_wishlist_item_use_case.dart';
 import 'package:moya/domain/usecases/get_wishlist_use_case.dart';
 
 class MyWishlistProvider with ChangeNotifier {
@@ -15,13 +16,28 @@ class MyWishlistProvider with ChangeNotifier {
 
   List<WishlistItem> get wishlist => _wishlist;
 
-  void toggleWishlistItem(WishlistItem wishlistItem) {
+  void toggleWishlistItem(WishlistItem wishlistItem) async {
     if (_wishlist.where((item) => item.id == wishlistItem.id).isEmpty) {
       _wishlist.add(wishlistItem);
+      addWishlistItem(
+        imageUrl: wishlistItem.imageUrl,
+        url: wishlistItem.url,
+        name: wishlistItem.name,
+        price: wishlistItem.price,
+      );
     } else {
       _wishlist.removeWhere((item) => item.id == wishlistItem.id);
+      DeleteWishlistItemUseCase useCase =
+          serviceLocator<DeleteWishlistItemUseCase>();
+      final result = await useCase.call(id: wishlistItem.id);
+      result.when(
+        success: (s) {},
+        error: (e) {
+          fetch();
+        },
+      );
+      notifyListeners();
     }
-    notifyListeners();
   }
 
   Future<void> fetch() async {
@@ -38,6 +54,7 @@ class MyWishlistProvider with ChangeNotifier {
             .map(
               (e) => WishlistItem(
                 id: e.id,
+                url: e.url,
                 imageUrl: e.imageUrl,
                 name: e.name,
                 price: e.price,
@@ -54,21 +71,22 @@ class MyWishlistProvider with ChangeNotifier {
   void addWishlistItem({
     required String imageUrl,
     required String url,
-    required String title,
+    required String name,
     required int price,
   }) async {
     _wishlist.add(
       WishlistItem(
         id: -1,
+        url: url,
         imageUrl: imageUrl,
-        name: title,
+        name: name,
         price: price,
       ),
     );
     notifyListeners();
     AddWishlistItemUseCase useCase = serviceLocator<AddWishlistItemUseCase>();
     final result = await useCase.call(
-      name: title,
+      name: name,
       url: url,
       price: price,
       imageUrl: imageUrl,
