@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:moya/presentation/common/my_wishlist/my_wishlist.dart';
 import 'package:moya/presentation/home/widgets/my_birth_fund.dart';
-import 'package:moya/presentation/provider/fund_state_provider.dart';
+import 'package:moya/presentation/provider/my_info_provider.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -11,15 +11,13 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-        top: 12,
-        left: 16,
-        right: 16,
-        bottom: 12,
+      padding: const EdgeInsets.symmetric(
+        horizontal: 16,
+        vertical: 12,
       ),
-      child: Consumer<FundStateProvider>(
+      child: Consumer<MyInfoProvider>(
         builder: (context, provider, child) {
-          return provider.isFundRaised
+          return provider.user.isOpen
               ? const MyBirthFund()
               : const MyWishlist();
         },

@@ -65,7 +65,9 @@ class MyWishlistProvider with ChangeNotifier {
       imageUrl: imageUrl,
     );
     result.when(
-      success: (s) {},
+      success: (s) {
+        fetch();
+      },
       error: (e) {
         fetch();
       },

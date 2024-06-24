@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart' hide Step;
 import 'package:flutter_svg/svg.dart';
 import 'package:moya/config/palette.dart';
-import 'package:moya/domain/entities/wishlist_item.dart';
+import 'package:moya/domain/entities/fund.dart';
 import 'package:moya/presentation/common/birth_fund_progress.dart';
 import 'package:moya/presentation/common/primary_button.dart';
 import 'package:moya/presentation/home/widgets/fund_progress_indicator.dart';
@@ -11,8 +11,21 @@ import 'package:moya/presentation/provider/fund_state_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
-class MyBirthFund extends StatelessWidget {
+class MyBirthFund extends StatefulWidget {
   const MyBirthFund({super.key});
+
+  @override
+  State<MyBirthFund> createState() => _MyBirthFundState();
+}
+
+class _MyBirthFundState extends State<MyBirthFund> {
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    FundStateProvider fundStateProvider =
+        Provider.of<FundStateProvider>(context, listen: false);
+    fundStateProvider.fetch();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,21 +36,21 @@ class MyBirthFund extends StatelessWidget {
             return Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                FundProgressIndicator(
+                const FundProgressIndicator(
                   text: '시작',
-                  isActive: provider.step == FundStep.start,
+                  isActive: false,
                 ),
                 FundProgressIndicator(
                   text: '진행중',
-                  isActive: provider.step == FundStep.inProcess,
+                  isActive: provider.fund.state == "OPEN",
                 ),
                 FundProgressIndicator(
                   text: '종료',
-                  isActive: provider.step == FundStep.ended,
+                  isActive: provider.fund.state == "FINISH",
                 ),
                 FundProgressIndicator(
                   text: '인증',
-                  isActive: provider.step == FundStep.verify,
+                  isActive: provider.fund.state == "AUTHENTICATED",
                 ),
               ],
             );
@@ -60,12 +73,15 @@ class MyBirthFund extends StatelessWidget {
               const SizedBox(height: 16),
               Consumer<FundStateProvider>(
                 builder: (context, provider, child) {
-                  WishlistItem wishlistItem = provider.wishlistItem!;
+                  Fund fund = provider.fund;
+
+                  final DateTime dDay = DateTime.parse(fund.finishedAt);
+                  final Duration difference = DateTime.now().difference(dDay);
 
                   return MyBirthFundImage(
-                    dDay: provider.dDay!,
-                    title: wishlistItem.name,
-                    imageUrl: wishlistItem.imageUrl,
+                    dDay: difference.inDays,
+                    title: fund.name,
+                    imageUrl: fund.imageUrl,
                   );
                 },
               ),
@@ -73,8 +89,8 @@ class MyBirthFund extends StatelessWidget {
               Consumer<FundStateProvider>(
                 builder: (context, provider, child) {
                   return BirthFundProgress(
-                    currentMoya: provider.moya!,
-                    maxMoya: provider.maxMoya!,
+                    currentMoya: provider.fund.moya,
+                    maxMoya: provider.fund.targetMoya,
                   );
                 },
               ),
@@ -84,24 +100,27 @@ class MyBirthFund extends StatelessWidget {
                   Expanded(
                     child: Consumer<FundStateProvider>(
                       builder: (context, provider, child) {
-                        FundStep step = provider.step;
+                        // FundStep step = provider.;
 
                         String text;
                         void Function() onPressed;
 
-                        switch (step) {
-                          case FundStep.inProcess:
+                        switch (provider.fund.state) {
+                          case "OPEN":
                             text = "펀드 공유하기";
                             onPressed = () {
                               Share.share("내 생일 선물을 후원해줘!😀");
                             };
                             break;
-                          case FundStep.ended:
+                          case "FINISH":
                             text = "펀드 정산하기";
                             onPressed = () {};
                             break;
-                          default:
+                          case "AUTHENTICATED":
                             text = "펀드 공유하기";
+                            onPressed = () {};
+                          default:
+                            text = "";
                             onPressed = () {};
                         }
 

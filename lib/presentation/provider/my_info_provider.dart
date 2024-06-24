@@ -12,6 +12,7 @@ class MyInfoProvider with ChangeNotifier {
     userId: '',
     moya: 0,
     mileage: 0,
+    isOpen: false,
   );
 
   ApiLoadingState get state => _state;

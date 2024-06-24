@@ -11,13 +11,8 @@ class GetUserRepositoryImpl implements GetUserRepository {
     GetUserApi api = serviceLocator<GetUserApi>();
     final result = await api.fetch();
     return result.when(
-      success: (item) => Result.success(
-        UserModel(
-          userId: item['userId'],
-          name: item['name'],
-          moya: item['moya'],
-          mileage: item['mileage'],
-        ),
+      success: (json) => Result.success(
+        UserModel.fromJson(json),
       ),
       error: (message) => Result.error(message),
     );

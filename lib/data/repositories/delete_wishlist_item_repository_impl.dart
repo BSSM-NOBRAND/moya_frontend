@@ -8,10 +8,6 @@ class DeleteWishlistItemRepositoryImpl implements DeleteWishlistItemRepository {
   Future<Result> fetch({required int id}) async {
     DeleteWishlistItemApi api = serviceLocator<DeleteWishlistItemApi>();
     final result = await api.fetch(id: id);
-
-    return result.when(
-      success: (s) => Result.success(s),
-      error: (e) => Result.error(e),
-    );
+    return result;
   }
 }

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:moya/config/palette.dart';
 import 'package:moya/config/typo_text_style.dart';
+import 'package:moya/core/utils/my_dio.dart';
+import 'package:moya/core/utils/pref_util.dart';
 import 'package:moya/presentation/add_wishlist/add_wishlist_screen.dart';
 import 'package:moya/presentation/common/my_wishlist/empty_wishlist.dart';
 import 'package:moya/presentation/common/my_wishlist/wishlist.dart';
@@ -18,31 +20,33 @@ class MyWishlist extends StatefulWidget {
 }
 
 class _MyWishlistState extends State<MyWishlist> {
-  // void signIn() async {
-  //   try {
-  //     var res = await myDio.post<Map>(
-  //       '/auth',
-  //       data: {
-  //         "name": "이명재",
-  //         "email": "2022045@gmail.com",
-  //         "profileImage":
-  //             "https://lh3.googleusercontent.com/a/ACg8ocKkH_ivB-TTaNWsbqJjNLLUJbs3mtXHB_5hlQ5NCgqEJGPaNw=s1337",
-  //         "birth": "2006-05-08"
-  //       },
-  //     );
-  //     Map data = res.data ?? {};
-  //     PrefUtil.setString('accessToken', data['accessToken']);
-  //     PrefUtil.setString('refreshToken', data['refreshToken']);
-  //   } catch (e) {
-  //     print(e);
-  //   }
-  // }
+  Future<void> signIn() async {
+    try {
+      var res = await myDio.post<Map>(
+        '/auth',
+        data: {
+          "name": "이명재",
+          "email": "arkk20000@gmail.com",
+          "profileImage":
+              "https://lh3.googleusercontent.com/a/ACg8ocKkH_ivB-TTaNWsbqJjNLLUJbs3mtXHB_5hlQ5NCgqEJGPaNw=s1337",
+          "birth": "2006-05-08"
+        },
+      );
+      Map data = res.data ?? {};
+
+      PrefUtil.setString('accessToken', data['accessToken']);
+      PrefUtil.setString('refreshToken', data['refreshToken']);
+    } catch (e) {
+      // print(e);
+    }
+  }
 
   @override
-  void didChangeDependencies() {
+  void didChangeDependencies() async {
     super.didChangeDependencies();
     MyWishlistProvider myWishlistProvider =
         Provider.of<MyWishlistProvider>(context, listen: false);
+    await signIn();
     myWishlistProvider.fetch();
   }
 

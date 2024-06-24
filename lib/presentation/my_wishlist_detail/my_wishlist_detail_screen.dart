@@ -6,7 +6,7 @@ import 'package:moya/config/typo_text_style.dart';
 import 'package:moya/domain/entities/wishlist_item.dart';
 import 'package:moya/presentation/common/primary_button.dart';
 import 'package:moya/presentation/common/raise_fund_modal/raise_fund_modal.dart';
-import 'package:moya/presentation/provider/fund_state_provider.dart';
+import 'package:moya/presentation/provider/my_info_provider.dart';
 import 'package:moya/presentation/provider/my_wishlist_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -157,12 +157,8 @@ class _MyWishlistDetailScreenState extends State<MyWishlistDetailScreen> {
                             Expanded(
                               child: Consumer<MyWishlistProvider>(
                                 builder: (context, myWishlistProvider, child) {
-                                  return Consumer<FundStateProvider>(
-                                    builder:
-                                        (context, fundStateProvider, child) {
-                                      bool isFundRaised =
-                                          fundStateProvider.isFundRaised;
-
+                                  return Consumer<MyInfoProvider>(
+                                    builder: (context, provider, child) {
                                       return PrimaryButton(
                                         '생일 펀드 올리기',
                                         size: ButtonSize.s56,
@@ -178,7 +174,8 @@ class _MyWishlistDetailScreenState extends State<MyWishlistDetailScreen> {
                                             },
                                           );
                                         },
-                                        disabled: isFundRaised || !isLiked,
+                                        disabled:
+                                            provider.user.isOpen || !isLiked,
                                       );
                                     },
                                   );

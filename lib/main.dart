@@ -11,9 +11,9 @@ import 'package:moya/presentation/provider/my_info_provider.dart';
 import 'package:moya/presentation/provider/my_wishlist_provider.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  PrefUtil.init();
+  await PrefUtil.init();
   initServiceLocator();
 
   AppLinks appLinks = AppLinks();

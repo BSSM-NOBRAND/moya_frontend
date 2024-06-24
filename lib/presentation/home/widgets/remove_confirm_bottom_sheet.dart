@@ -3,6 +3,7 @@ import 'package:moya/config/palette.dart';
 import 'package:moya/presentation/common/primary_button.dart';
 import 'package:moya/presentation/home/widgets/remove_confirm_bottom_sheet_header.dart';
 import 'package:moya/presentation/provider/fund_state_provider.dart';
+import 'package:moya/presentation/provider/my_info_provider.dart';
 import 'package:provider/provider.dart';
 
 class RemoveConfirmBottomSheet extends StatelessWidget {
@@ -29,17 +30,25 @@ class RemoveConfirmBottomSheet extends StatelessWidget {
               const RemoveConfirmBottomSheetHeader(),
               const SizedBox(height: 16),
               Padding(
-                padding: const EdgeInsets.only(
-                  left: 16,
-                  right: 16,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
                 ),
-                child: PrimaryButton(
-                  '펀드 삭제하기',
-                  onPressed: () {
-                    FundStateProvider fundStateProvider =
-                        Provider.of<FundStateProvider>(context, listen: false);
-                    fundStateProvider.withdrawFund();
-                    Navigator.of(context).pop();
+                child: Consumer<MyInfoProvider>(
+                  builder: (context, myInfoProvider, child) {
+                    return Consumer<FundStateProvider>(
+                      builder: (context, fundStateProvider, child) {
+                        return PrimaryButton(
+                          '펀드 삭제하기',
+                          onPressed: () async {
+                            await fundStateProvider.withdrawFund();
+                            myInfoProvider.fetch();
+                            print('fetching...');
+
+                            Navigator.of(context).pop();
+                          },
+                        );
+                      },
+                    );
                   },
                 ),
               ),

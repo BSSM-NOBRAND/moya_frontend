@@ -11,6 +11,7 @@ class UserModel extends User with _$UserModel {
     required String userId,
     required int moya,
     required int mileage,
+    required bool isOpen,
   }) = _UserModel;
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>

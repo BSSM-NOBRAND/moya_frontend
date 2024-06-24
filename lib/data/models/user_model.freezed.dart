@@ -24,6 +24,7 @@ mixin _$UserModel {
   String get userId => throw _privateConstructorUsedError;
   int get moya => throw _privateConstructorUsedError;
   int get mileage => throw _privateConstructorUsedError;
+  bool get isOpen => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +37,7 @@ abstract class $UserModelCopyWith<$Res> {
   factory $UserModelCopyWith(UserModel value, $Res Function(UserModel) then) =
       _$UserModelCopyWithImpl<$Res, UserModel>;
   @useResult
-  $Res call({String name, String userId, int moya, int mileage});
+  $Res call({String name, String userId, int moya, int mileage, bool isOpen});
 }
 
 /// @nodoc
@@ -56,6 +57,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? userId = null,
     Object? moya = null,
     Object? mileage = null,
+    Object? isOpen = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -74,6 +76,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.mileage
           : mileage // ignore: cast_nullable_to_non_nullable
               as int,
+      isOpen: null == isOpen
+          ? _value.isOpen
+          : isOpen // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -86,7 +92,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
       __$$UserModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String userId, int moya, int mileage});
+  $Res call({String name, String userId, int moya, int mileage, bool isOpen});
 }
 
 /// @nodoc
@@ -104,6 +110,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? userId = null,
     Object? moya = null,
     Object? mileage = null,
+    Object? isOpen = null,
   }) {
     return _then(_$UserModelImpl(
       name: null == name
@@ -122,6 +129,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.mileage
           : mileage // ignore: cast_nullable_to_non_nullable
               as int,
+      isOpen: null == isOpen
+          ? _value.isOpen
+          : isOpen // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -133,7 +144,8 @@ class _$UserModelImpl implements _UserModel {
       {required this.name,
       required this.userId,
       required this.moya,
-      required this.mileage});
+      required this.mileage,
+      required this.isOpen});
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserModelImplFromJson(json);
@@ -146,10 +158,12 @@ class _$UserModelImpl implements _UserModel {
   final int moya;
   @override
   final int mileage;
+  @override
+  final bool isOpen;
 
   @override
   String toString() {
-    return 'UserModel(name: $name, userId: $userId, moya: $moya, mileage: $mileage)';
+    return 'UserModel(name: $name, userId: $userId, moya: $moya, mileage: $mileage, isOpen: $isOpen)';
   }
 
   @override
@@ -160,12 +174,14 @@ class _$UserModelImpl implements _UserModel {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.moya, moya) || other.moya == moya) &&
-            (identical(other.mileage, mileage) || other.mileage == mileage));
+            (identical(other.mileage, mileage) || other.mileage == mileage) &&
+            (identical(other.isOpen, isOpen) || other.isOpen == isOpen));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, userId, moya, mileage);
+  int get hashCode =>
+      Object.hash(runtimeType, name, userId, moya, mileage, isOpen);
 
   @JsonKey(ignore: true)
   @override
@@ -186,7 +202,8 @@ abstract class _UserModel implements UserModel {
       {required final String name,
       required final String userId,
       required final int moya,
-      required final int mileage}) = _$UserModelImpl;
+      required final int mileage,
+      required final bool isOpen}) = _$UserModelImpl;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$UserModelImpl.fromJson;
@@ -199,6 +216,8 @@ abstract class _UserModel implements UserModel {
   int get moya;
   @override
   int get mileage;
+  @override
+  bool get isOpen;
   @override
   @JsonKey(ignore: true)
   _$$UserModelImplCopyWith<_$UserModelImpl> get copyWith =>

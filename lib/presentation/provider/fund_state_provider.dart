@@ -1,39 +1,61 @@
 import 'package:flutter/material.dart';
+import 'package:moya/di/locator.dart';
+import 'package:moya/domain/entities/fund.dart';
 import 'package:moya/domain/entities/wishlist_item.dart';
+import 'package:moya/domain/usecases/delete_fund_use_case.dart';
+import 'package:moya/domain/usecases/get_fund_use_case.dart';
+import 'package:moya/domain/usecases/raise_fund_use_case.dart';
 
 enum FundStep { start, inProcess, ended, verify }
 
 class FundStateProvider with ChangeNotifier {
-  bool _isFundRaised = false;
-  WishlistItem? _wishlistItem;
-  int? _maxMoya;
-  int? _moya;
-  int? dDay;
-  FundStep step = FundStep.ended;
+  Fund _fund = const Fund(
+    id: 0,
+    name: '',
+    imageUrl: '',
+    price: 0,
+    moya: 1,
+    targetMoya: 1,
+    finishedAt: '1592-05-23',
+    state: '',
+  );
 
-  bool get isFundRaised => _isFundRaised;
-  WishlistItem? get wishlistItem => _wishlistItem;
-  int? get maxMoya => _maxMoya;
-  int? get moya => _moya;
+  Fund get fund => _fund;
 
-  void raiseBirthFund(WishlistItem wishlistItem) {
-    _isFundRaised = true;
-    _wishlistItem = wishlistItem;
-    step = FundStep.inProcess;
-    _maxMoya = (wishlistItem.price / 5000).ceil();
-    _moya = 0;
-    // NOTE : 내 생일까지의 남은 일수
-    dDay = 10;
+  void fetch() async {
+    GetFundUseCase useCase = serviceLocator<GetFundUseCase>();
+    final result = await useCase.call();
+    result.when(
+      success: (fund) {
+        _fund = fund;
+      },
+      error: (message) {},
+    );
     notifyListeners();
   }
 
-  void withdrawFund() {
-    _isFundRaised = false;
-    _wishlistItem = null;
-    step = FundStep.inProcess;
-    _maxMoya = null;
-    _moya = null;
-    dDay = null;
+  Future<void> raiseBirthFund(WishlistItem wishlistItem) async {
+    RaiseFundUseCase useCase = serviceLocator<RaiseFundUseCase>();
+    print(wishlistItem.id);
+    final result = await useCase.call(id: wishlistItem.id);
+    result.when(
+      success: (s) {
+        print(s);
+        fetch();
+      },
+      error: (e) {},
+    );
     notifyListeners();
+  }
+
+  Future<void> withdrawFund() async {
+    DeleteFundUseCase useCase = serviceLocator<DeleteFundUseCase>();
+    final result = await useCase.call();
+    result.when(
+      success: (s) {
+        fetch();
+      },
+      error: (message) {},
+    );
   }
 }

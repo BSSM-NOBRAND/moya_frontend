@@ -30,6 +30,10 @@ class MyBirthFundImage extends StatelessWidget {
                   imageUrl,
                   width: double.infinity,
                   fit: BoxFit.fitWidth,
+                  errorBuilder: (context, error, stackTrace) => const SizedBox(
+                    width: double.infinity,
+                    height: 200,
+                  ),
                 ),
                 Container(
                   decoration: BoxDecoration(
