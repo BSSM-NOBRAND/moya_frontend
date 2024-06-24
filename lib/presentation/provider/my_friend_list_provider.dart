@@ -1,37 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:moya/di/locator.dart';
 import 'package:moya/domain/entities/friend.dart';
+import 'package:moya/domain/usecases/get_friend_list_use_case.dart';
 
 class MyFriendListProvider with ChangeNotifier {
-  final List<Friend> _friendList = <Friend>[
-    const Friend(
-      id: 1,
-      profileUrl: 'https://storage.surfit.io/user/avatar/1745610414.png',
-      username: '이명재',
-      isFunding: true,
-    ),
-    const Friend(
-      id: 2,
-      profileUrl: 'https://storage.surfit.io/user/avatar/1745610414.png',
-      username: '조우성',
-      isFunding: false,
-    ),
-    const Friend(
-      id: 3,
-      profileUrl: 'https://storage.surfit.io/user/avatar/1745610414.png',
-      username: '신준서',
-      isFunding: false,
-    ),
-    const Friend(
-      id: 3,
-      profileUrl: 'https://storage.surfit.io/user/avatar/1745610414.png',
-      username: '한예준',
-      isFunding: false,
-    ),
-  ];
+  List<Friend> _friendList = <Friend>[];
 
-  get friendList => _friendList;
+  Future<void> fetch() async {
+    GetFriendListUseCase useCase = serviceLocator<GetFriendListUseCase>();
+    final result = await useCase.call();
+    result.when(
+      success: (friendList) {
+        _friendList = friendList
+            .map(
+              (e) => Friend(
+                profileImage: e.profileImage,
+                name: e.name,
+                isOpen: e.isOpen,
+              ),
+            )
+            .toList();
+      },
+      error: (message) {},
+    );
+    notifyListeners();
+  }
 
-  int _nextId = 4;
+  List<Friend> get friendList => _friendList;
 
   void addFriend({
     required String profileUrl,
@@ -40,10 +35,9 @@ class MyFriendListProvider with ChangeNotifier {
   }) {
     _friendList.add(
       Friend(
-        id: _nextId++,
-        profileUrl: profileUrl,
-        username: username,
-        isFunding: isFunding,
+        profileImage: profileUrl,
+        name: username,
+        isOpen: isFunding,
       ),
     );
     notifyListeners();

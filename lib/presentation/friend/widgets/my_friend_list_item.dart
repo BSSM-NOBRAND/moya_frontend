@@ -23,19 +23,19 @@ class MyFriendListItem extends StatelessWidget {
               child: Skeleton.replace(
                 width: 48,
                 height: 48,
-                child: Image.network(friend.profileUrl),
+                child: Image.network(friend.profileImage),
               ),
             ),
             const SizedBox(width: 12),
             Text(
-              friend.username,
+              friend.name,
               style: TypoTextStyle.body2(
                 color: Palette.black,
               ),
             ),
           ],
         ),
-        if (friend.isFunding)
+        if (friend.isOpen)
           Container(
             height: 28,
             padding: const EdgeInsets.symmetric(horizontal: 12),

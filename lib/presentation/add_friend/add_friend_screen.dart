@@ -23,10 +23,9 @@ class _AddFriendScreenState extends State<AddFriendScreen> {
         return;
       }
       friend = const Friend(
-        id: 1,
-        profileUrl: 'https://storage.surfit.io/user/avatar/1745610414.png',
-        username: 'ddoory1103',
-        isFunding: false,
+        profileImage: 'https://storage.surfit.io/user/avatar/1745610414.png',
+        name: 'ddoory1103',
+        isOpen: false,
       );
     });
   }
@@ -58,9 +57,9 @@ class _AddFriendScreenState extends State<AddFriendScreen> {
               MyFriendListProvider myFriendListProvider =
                   Provider.of<MyFriendListProvider>(context, listen: false);
               myFriendListProvider.addFriend(
-                profileUrl: friend!.profileUrl,
-                username: friend!.username,
-                isFunding: friend!.isFunding,
+                profileUrl: friend!.profileImage,
+                username: friend!.name,
+                isFunding: friend!.isOpen,
               );
               Navigator.of(context).pop();
             }

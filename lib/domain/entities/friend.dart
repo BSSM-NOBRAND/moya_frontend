@@ -1,13 +1,11 @@
 class Friend {
-  final int id;
-  final String profileUrl;
-  final String username;
-  final bool isFunding;
+  final String profileImage;
+  final String name;
+  final bool isOpen;
 
   const Friend({
-    required this.id,
-    required this.profileUrl,
-    required this.username,
-    required this.isFunding,
+    required this.profileImage,
+    required this.name,
+    required this.isOpen,
   });
 }

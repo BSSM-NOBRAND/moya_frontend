@@ -23,7 +23,7 @@ class FriendPreview extends StatelessWidget {
               width: 48,
               height: 48,
               child: Image.network(
-                friend.profileUrl,
+                friend.profileImage,
                 errorBuilder: (context, error, stackTrace) => const SizedBox(
                   width: 48,
                   height: 48,
@@ -34,7 +34,7 @@ class FriendPreview extends StatelessWidget {
           const SizedBox(width: 12),
           Expanded(
             child: Text(
-              friend.username,
+              friend.name,
               style: TypoTextStyle.body2(
                 color: Palette.black,
               ),

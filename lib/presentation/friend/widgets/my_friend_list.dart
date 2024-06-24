@@ -8,8 +8,21 @@ import 'package:moya/presentation/friend/widgets/my_friend_list_item.dart';
 import 'package:moya/presentation/provider/my_friend_list_provider.dart';
 import 'package:provider/provider.dart';
 
-class MyFriendList extends StatelessWidget {
+class MyFriendList extends StatefulWidget {
   const MyFriendList({super.key});
+
+  @override
+  State<MyFriendList> createState() => _MyFriendListState();
+}
+
+class _MyFriendListState extends State<MyFriendList> {
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    MyFriendListProvider provider =
+        Provider.of<MyFriendListProvider>(context, listen: false);
+    provider.fetch();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,36 +36,36 @@ class MyFriendList extends StatelessWidget {
           color: Palette.gray200,
         ),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                '내 친구',
-                style: TypoTextStyle.h4(
-                  color: Palette.black,
-                ),
-              ),
-              InkWell(
-                child: SvgPicture.asset('assets/images/add.svg'),
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const AddFriendScreen(),
-                    ),
-                  );
-                },
-              )
-            ],
-          ),
-          const SizedBox(height: 16),
-          Consumer<MyFriendListProvider>(
-            builder: (context, provider, child) {
-              List<Friend> friendList = provider.friendList;
+      child: Consumer<MyFriendListProvider>(
+        builder: (context, provider, child) {
+          List<Friend> friendList = provider.friendList;
 
-              return ListView.separated(
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    '내 친구',
+                    style: TypoTextStyle.h4(
+                      color: Palette.black,
+                    ),
+                  ),
+                  InkWell(
+                    child: SvgPicture.asset('assets/images/add.svg'),
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const AddFriendScreen(),
+                        ),
+                      );
+                    },
+                  )
+                ],
+              ),
+              if (provider.friendList.isNotEmpty) const SizedBox(height: 16),
+              ListView.separated(
                 shrinkWrap: true,
                 primary: false,
                 itemCount: friendList.length,
@@ -61,10 +74,10 @@ class MyFriendList extends StatelessWidget {
                 },
                 separatorBuilder: (context, index) =>
                     const SizedBox(height: 12),
-              );
-            },
-          )
-        ],
+              )
+            ],
+          );
+        },
       ),
     );
   }
