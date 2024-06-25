@@ -5,6 +5,7 @@ import 'package:moya/config/palette.dart';
 import 'package:moya/core/utils/my_dio.dart';
 import 'package:moya/core/utils/pref_util.dart';
 import 'package:moya/di/locator.dart';
+import 'package:moya/presentation/add_friend/provider/friend_preview_provider.dart';
 import 'package:moya/presentation/add_wishlist/provider/wishlist_item_preview_provider.dart';
 import 'package:moya/presentation/base_navigation.dart';
 import 'package:moya/presentation/friend/provider/friend_fund_list_provider.dart';
@@ -47,6 +48,9 @@ void main() async {
         ),
         ChangeNotifierProvider<FriendFundListProvider>(
           create: (_) => FriendFundListProvider(),
+        ),
+        ChangeNotifierProvider<FriendPreviewProvider>(
+          create: (_) => FriendPreviewProvider(),
         ),
       ],
       child: const MyApp(),

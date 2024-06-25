@@ -77,7 +77,7 @@ class MyBirthFundImage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
-                  'D-$dDay',
+                  'D$dDay',
                   style: TypoTextStyle.body2(
                     color: Palette.white,
                   ),

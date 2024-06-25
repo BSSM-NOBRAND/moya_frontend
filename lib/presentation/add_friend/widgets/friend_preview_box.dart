@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:moya/config/palette.dart';
 import 'package:moya/config/typo_text_style.dart';
-import 'package:moya/domain/entities/friend.dart';
+import 'package:moya/domain/entities/friend_preview_entity.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-class FriendPreview extends StatelessWidget {
-  final Friend friend;
+class FriendPreviewBox extends StatelessWidget {
+  final FriendPreview friendPreview;
   final void Function()? onCancelTap;
 
-  const FriendPreview(
-      {super.key, required this.friend, required this.onCancelTap});
+  const FriendPreviewBox({
+    super.key,
+    required this.friendPreview,
+    required this.onCancelTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +26,7 @@ class FriendPreview extends StatelessWidget {
               width: 48,
               height: 48,
               child: Image.network(
-                friend.profileImage,
+                friendPreview.profileImage,
                 errorBuilder: (context, error, stackTrace) => const SizedBox(
                   width: 48,
                   height: 48,
@@ -34,7 +37,7 @@ class FriendPreview extends StatelessWidget {
           const SizedBox(width: 12),
           Expanded(
             child: Text(
-              friend.name,
+              friendPreview.name,
               style: TypoTextStyle.body2(
                 color: Palette.black,
               ),

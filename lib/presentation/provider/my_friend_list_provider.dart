@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:moya/di/locator.dart';
 import 'package:moya/domain/entities/friend.dart';
+import 'package:moya/domain/entities/friend_preview_entity.dart';
+import 'package:moya/domain/usecases/add_friend_use_case.dart';
 import 'package:moya/domain/usecases/get_friend_list_use_case.dart';
 
 class MyFriendListProvider with ChangeNotifier {
@@ -28,18 +30,25 @@ class MyFriendListProvider with ChangeNotifier {
 
   List<Friend> get friendList => _friendList;
 
-  void addFriend({
-    required String profileUrl,
-    required String username,
-    required bool isFunding,
-  }) {
+  Future<void> addFriend({
+    required FriendPreview friendPreview,
+  }) async {
     _friendList.add(
       Friend(
-        profileImage: profileUrl,
-        name: username,
-        isOpen: isFunding,
+        profileImage: friendPreview.profileImage,
+        name: friendPreview.name,
+        isOpen: false,
       ),
     );
     notifyListeners();
+
+    AddFriendUseCase useCase = serviceLocator<AddFriendUseCase>();
+    final result = await useCase.call(friendId: friendPreview.id);
+    result.when(
+      success: (data) {
+        fetch();
+      },
+      error: (message) {},
+    );
   }
 }

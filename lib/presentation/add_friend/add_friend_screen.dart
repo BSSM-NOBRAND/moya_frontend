@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moya/domain/entities/friend.dart';
+import 'package:moya/domain/entities/friend_preview_entity.dart';
+import 'package:moya/presentation/add_friend/provider/friend_preview_provider.dart';
 import 'package:moya/presentation/add_friend/widgets/add_friend_form.dart';
 import 'package:moya/presentation/common/detail_header.dart';
 import 'package:moya/presentation/common/primary_button.dart';
@@ -16,31 +18,14 @@ class AddFriendScreen extends StatefulWidget {
 class _AddFriendScreenState extends State<AddFriendScreen> {
   Friend? friend;
 
-  void findFriend(String id) {
-    setState(() {
-      if (id.isEmpty) {
-        friend = null;
-        return;
-      }
-      friend = const Friend(
-        profileImage: 'https://storage.surfit.io/user/avatar/1745610414.png',
-        name: 'ddoory1103',
-        isOpen: false,
-      );
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
+      body: const SafeArea(
         child: Column(
           children: [
-            const DetailHeader(title: '친구 추가'),
-            AddFriendForm(
-              findFriend: findFriend,
-              friend: friend,
-            ),
+            DetailHeader(title: '친구 추가'),
+            AddFriendForm(),
           ],
         ),
       ),
@@ -50,21 +35,25 @@ class _AddFriendScreenState extends State<AddFriendScreen> {
           left: 16,
           right: 16,
         ),
-        child: PrimaryButton(
-          '친구 추가하기',
-          onPressed: () {
-            if (friend != null) {
-              MyFriendListProvider myFriendListProvider =
-                  Provider.of<MyFriendListProvider>(context, listen: false);
-              myFriendListProvider.addFriend(
-                profileUrl: friend!.profileImage,
-                username: friend!.name,
-                isFunding: friend!.isOpen,
-              );
-              Navigator.of(context).pop();
-            }
+        child: Consumer<FriendPreviewProvider>(
+          builder: (context, friendPreviewProvider, child) {
+            FriendPreview? friendPreview = friendPreviewProvider.friendPreview;
+            return PrimaryButton(
+              '친구 추가하기',
+              onPressed: () {
+                if (friendPreview != null) {
+                  MyFriendListProvider myFriendListProvider =
+                      Provider.of<MyFriendListProvider>(context, listen: false);
+                  myFriendListProvider.addFriend(
+                    friendPreview: friendPreview,
+                  );
+                  friendPreviewProvider.removeFriendPreview();
+                  Navigator.of(context).pop();
+                }
+              },
+              disabled: friendPreviewProvider.friendPreview == null,
+            );
           },
-          disabled: friend == null,
         ),
       ),
     );

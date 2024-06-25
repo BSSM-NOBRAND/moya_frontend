@@ -136,7 +136,7 @@ class FriendWishlistFundDetailScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Text(
-                                  friendFundItem.username,
+                                  friendFundItem.name,
                                   style: TypoTextStyle.body1(
                                     color: Palette.gray600,
                                   ),
@@ -160,8 +160,8 @@ class FriendWishlistFundDetailScreen extends StatelessWidget {
                             ),
                             const SizedBox(height: 24),
                             BirthFundProgress(
-                              currentMoya: friendFundItem.currentMoya,
-                              maxMoya: friendFundItem.maxMoya,
+                              currentMoya: friendFundItem.moya,
+                              maxMoya: friendFundItem.targetMoya,
                             ),
                           ],
                         ),

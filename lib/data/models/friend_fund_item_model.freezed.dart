@@ -21,10 +21,10 @@ FriendFundItemModel _$FriendFundItemModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$FriendFundItemModel {
   int get id => throw _privateConstructorUsedError;
-  String get username => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   String get productName => throw _privateConstructorUsedError;
-  int get currentMoya => throw _privateConstructorUsedError;
-  int get maxMoya => throw _privateConstructorUsedError;
+  int get moya => throw _privateConstructorUsedError;
+  int get targetMoya => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,10 +41,10 @@ abstract class $FriendFundItemModelCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      String username,
+      String name,
       String productName,
-      int currentMoya,
-      int maxMoya,
+      int moya,
+      int targetMoya,
       String imageUrl});
 }
 
@@ -62,10 +62,10 @@ class _$FriendFundItemModelCopyWithImpl<$Res, $Val extends FriendFundItemModel>
   @override
   $Res call({
     Object? id = null,
-    Object? username = null,
+    Object? name = null,
     Object? productName = null,
-    Object? currentMoya = null,
-    Object? maxMoya = null,
+    Object? moya = null,
+    Object? targetMoya = null,
     Object? imageUrl = null,
   }) {
     return _then(_value.copyWith(
@@ -73,21 +73,21 @@ class _$FriendFundItemModelCopyWithImpl<$Res, $Val extends FriendFundItemModel>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      username: null == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       productName: null == productName
           ? _value.productName
           : productName // ignore: cast_nullable_to_non_nullable
               as String,
-      currentMoya: null == currentMoya
-          ? _value.currentMoya
-          : currentMoya // ignore: cast_nullable_to_non_nullable
+      moya: null == moya
+          ? _value.moya
+          : moya // ignore: cast_nullable_to_non_nullable
               as int,
-      maxMoya: null == maxMoya
-          ? _value.maxMoya
-          : maxMoya // ignore: cast_nullable_to_non_nullable
+      targetMoya: null == targetMoya
+          ? _value.targetMoya
+          : targetMoya // ignore: cast_nullable_to_non_nullable
               as int,
       imageUrl: null == imageUrl
           ? _value.imageUrl
@@ -107,10 +107,10 @@ abstract class _$$FriendFundItemModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {int id,
-      String username,
+      String name,
       String productName,
-      int currentMoya,
-      int maxMoya,
+      int moya,
+      int targetMoya,
       String imageUrl});
 }
 
@@ -126,10 +126,10 @@ class __$$FriendFundItemModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? username = null,
+    Object? name = null,
     Object? productName = null,
-    Object? currentMoya = null,
-    Object? maxMoya = null,
+    Object? moya = null,
+    Object? targetMoya = null,
     Object? imageUrl = null,
   }) {
     return _then(_$FriendFundItemModelImpl(
@@ -137,21 +137,21 @@ class __$$FriendFundItemModelImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      username: null == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       productName: null == productName
           ? _value.productName
           : productName // ignore: cast_nullable_to_non_nullable
               as String,
-      currentMoya: null == currentMoya
-          ? _value.currentMoya
-          : currentMoya // ignore: cast_nullable_to_non_nullable
+      moya: null == moya
+          ? _value.moya
+          : moya // ignore: cast_nullable_to_non_nullable
               as int,
-      maxMoya: null == maxMoya
-          ? _value.maxMoya
-          : maxMoya // ignore: cast_nullable_to_non_nullable
+      targetMoya: null == targetMoya
+          ? _value.targetMoya
+          : targetMoya // ignore: cast_nullable_to_non_nullable
               as int,
       imageUrl: null == imageUrl
           ? _value.imageUrl
@@ -166,10 +166,10 @@ class __$$FriendFundItemModelImplCopyWithImpl<$Res>
 class _$FriendFundItemModelImpl implements _FriendFundItemModel {
   _$FriendFundItemModelImpl(
       {required this.id,
-      required this.username,
+      required this.name,
       required this.productName,
-      required this.currentMoya,
-      required this.maxMoya,
+      required this.moya,
+      required this.targetMoya,
       required this.imageUrl});
 
   factory _$FriendFundItemModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -178,19 +178,19 @@ class _$FriendFundItemModelImpl implements _FriendFundItemModel {
   @override
   final int id;
   @override
-  final String username;
+  final String name;
   @override
   final String productName;
   @override
-  final int currentMoya;
+  final int moya;
   @override
-  final int maxMoya;
+  final int targetMoya;
   @override
   final String imageUrl;
 
   @override
   String toString() {
-    return 'FriendFundItemModel(id: $id, username: $username, productName: $productName, currentMoya: $currentMoya, maxMoya: $maxMoya, imageUrl: $imageUrl)';
+    return 'FriendFundItemModel(id: $id, name: $name, productName: $productName, moya: $moya, targetMoya: $targetMoya, imageUrl: $imageUrl)';
   }
 
   @override
@@ -199,13 +199,12 @@ class _$FriendFundItemModelImpl implements _FriendFundItemModel {
         (other.runtimeType == runtimeType &&
             other is _$FriendFundItemModelImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.username, username) ||
-                other.username == username) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.productName, productName) ||
                 other.productName == productName) &&
-            (identical(other.currentMoya, currentMoya) ||
-                other.currentMoya == currentMoya) &&
-            (identical(other.maxMoya, maxMoya) || other.maxMoya == maxMoya) &&
+            (identical(other.moya, moya) || other.moya == moya) &&
+            (identical(other.targetMoya, targetMoya) ||
+                other.targetMoya == targetMoya) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl));
   }
@@ -213,7 +212,7 @@ class _$FriendFundItemModelImpl implements _FriendFundItemModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, username, productName, currentMoya, maxMoya, imageUrl);
+      runtimeType, id, name, productName, moya, targetMoya, imageUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -233,10 +232,10 @@ class _$FriendFundItemModelImpl implements _FriendFundItemModel {
 abstract class _FriendFundItemModel implements FriendFundItemModel {
   factory _FriendFundItemModel(
       {required final int id,
-      required final String username,
+      required final String name,
       required final String productName,
-      required final int currentMoya,
-      required final int maxMoya,
+      required final int moya,
+      required final int targetMoya,
       required final String imageUrl}) = _$FriendFundItemModelImpl;
 
   factory _FriendFundItemModel.fromJson(Map<String, dynamic> json) =
@@ -245,13 +244,13 @@ abstract class _FriendFundItemModel implements FriendFundItemModel {
   @override
   int get id;
   @override
-  String get username;
+  String get name;
   @override
   String get productName;
   @override
-  int get currentMoya;
+  int get moya;
   @override
-  int get maxMoya;
+  int get targetMoya;
   @override
   String get imageUrl;
   @override

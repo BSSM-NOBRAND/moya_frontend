@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:moya/core/resources/result.dart';
 import 'package:moya/core/utils/authorization.dart';
 import 'package:moya/core/utils/my_dio.dart';
@@ -10,8 +11,8 @@ class GetFundApi {
         options: authorization(),
       );
       return Result.success(response.data);
-    } catch (e) {
-      return const Result.error("네트워크 에러");
+    } on DioException catch (e) {
+      return Result.error(e.message ?? '');
     }
   }
 }

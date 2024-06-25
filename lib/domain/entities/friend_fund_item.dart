@@ -1,17 +1,17 @@
 class FriendFundItem {
   final int id;
-  final String username;
+  final String name;
   final String productName;
-  final int currentMoya;
-  final int maxMoya;
+  final int moya;
+  final int targetMoya;
   final String imageUrl;
 
   const FriendFundItem({
     required this.id,
-    required this.username,
+    required this.name,
     required this.productName,
-    required this.currentMoya,
-    required this.maxMoya,
+    required this.moya,
+    required this.targetMoya,
     required this.imageUrl,
   });
 }

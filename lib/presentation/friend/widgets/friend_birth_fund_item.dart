@@ -54,16 +54,16 @@ class FriendBirthFundItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      friendFundItem.username,
+                      friendFundItem.name,
                     ),
                     Row(
                       children: [
                         Text(
-                          '${(friendFundItem.currentMoya / friendFundItem.maxMoya * 100).floor()}%',
+                          '${(friendFundItem.moya / friendFundItem.targetMoya * 100).floor()}%',
                         ),
                         const SizedBox(width: 12),
                         Text(
-                            '${friendFundItem.currentMoya}/${friendFundItem.maxMoya}'),
+                            '${friendFundItem.moya}/${friendFundItem.targetMoya}'),
                         const SizedBox(width: 8),
                         SvgPicture.asset('assets/images/moya.svg'),
                       ],
@@ -80,7 +80,7 @@ class FriendBirthFundItem extends StatelessWidget {
                   child: Row(
                     children: [
                       Expanded(
-                        flex: friendFundItem.currentMoya,
+                        flex: friendFundItem.moya,
                         child: Container(
                           height: 6,
                           decoration: BoxDecoration(
@@ -90,8 +90,7 @@ class FriendBirthFundItem extends StatelessWidget {
                         ),
                       ),
                       Expanded(
-                        flex:
-                            friendFundItem.maxMoya - friendFundItem.currentMoya,
+                        flex: friendFundItem.targetMoya - friendFundItem.moya,
                         child: const SizedBox(),
                       ),
                     ],

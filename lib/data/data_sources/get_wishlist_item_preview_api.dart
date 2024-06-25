@@ -14,8 +14,8 @@ class GetWishlistItemPreviewApi {
 
       Map wishlistItem = response.data;
       return Result.success(wishlistItem);
-    } catch (e) {
-      return const Result.error('네트워크 에러');
+    } on DioException catch (e) {
+      return Result.error(e.message ?? '');
     }
   }
 }

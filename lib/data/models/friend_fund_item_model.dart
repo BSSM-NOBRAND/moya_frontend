@@ -8,10 +8,10 @@ part 'friend_fund_item_model.g.dart';
 class FriendFundItemModel extends FriendFundItem with _$FriendFundItemModel {
   factory FriendFundItemModel({
     required int id,
-    required String username,
+    required String name,
     required String productName,
-    required int currentMoya,
-    required int maxMoya,
+    required int moya,
+    required int targetMoya,
     required String imageUrl,
   }) = _FriendFundItemModel;
 

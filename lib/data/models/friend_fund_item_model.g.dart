@@ -10,10 +10,10 @@ _$FriendFundItemModelImpl _$$FriendFundItemModelImplFromJson(
         Map<String, dynamic> json) =>
     _$FriendFundItemModelImpl(
       id: (json['id'] as num).toInt(),
-      username: json['username'] as String,
+      name: json['name'] as String,
       productName: json['productName'] as String,
-      currentMoya: (json['currentMoya'] as num).toInt(),
-      maxMoya: (json['maxMoya'] as num).toInt(),
+      moya: (json['moya'] as num).toInt(),
+      targetMoya: (json['targetMoya'] as num).toInt(),
       imageUrl: json['imageUrl'] as String,
     );
 
@@ -21,9 +21,9 @@ Map<String, dynamic> _$$FriendFundItemModelImplToJson(
         _$FriendFundItemModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'username': instance.username,
+      'name': instance.name,
       'productName': instance.productName,
-      'currentMoya': instance.currentMoya,
-      'maxMoya': instance.maxMoya,
+      'moya': instance.moya,
+      'targetMoya': instance.targetMoya,
       'imageUrl': instance.imageUrl,
     };
