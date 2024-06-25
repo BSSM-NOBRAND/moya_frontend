@@ -4,14 +4,12 @@ import 'package:moya/config/palette.dart';
 import 'package:moya/config/typo_text_style.dart';
 import 'package:moya/domain/entities/friend_fund_item.dart';
 import 'package:moya/presentation/friend_wishlist_fund_detail/friend_wishlist_fund_detail_screen.dart';
-import 'package:moya/presentation/provider/friend_fund_list_provider.dart';
-import 'package:provider/provider.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-class FriendBirthFundItem extends StatelessWidget {
+class MyFundHistoryItem extends StatelessWidget {
   final FriendFundItem friendFundItem;
 
-  const FriendBirthFundItem({super.key, required this.friendFundItem});
+  const MyFundHistoryItem({super.key, required this.friendFundItem});
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +17,8 @@ class FriendBirthFundItem extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => Consumer<FriendFundListProvider>(
-              builder: (context, provider, child) {
-                return FriendWishlistFundDetailScreen(
-                  friendFundItem: provider.friendFundList
-                      .where((e) => e.id == friendFundItem.id)
-                      .elementAt(0),
-                );
-              },
+            builder: (context) => FriendWishlistFundDetailScreen(
+              friendFundItem: friendFundItem,
             ),
           ),
         );
