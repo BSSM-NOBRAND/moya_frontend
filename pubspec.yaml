@@ -91,19 +91,9 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: WantedSans-Regular
+    - family: WantedSans
       fonts:
-        - asset: assets/fonts/WantedSans-Regular.ttf
-    - family: WantedSans-Medium
-      fonts:
-        - asset: assets/fonts/WantedSans-Medium.ttf
-    - family: WantedSans-SemiBold
-      fonts:
-        - asset: assets/fonts/WantedSans-SemiBold.ttf
-    - family: WantedSans-Bold
-      fonts:
-        - asset: assets/fonts/WantedSans-Bold.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
+        - asset: assets/fonts/WantedSansVariable.ttf
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:

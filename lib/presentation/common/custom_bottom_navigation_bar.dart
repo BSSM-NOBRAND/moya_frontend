@@ -30,6 +30,12 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
     return Container(
       decoration: const BoxDecoration(
         color: Palette.white,
+        border: Border(
+          top: BorderSide(
+            color: Palette.gray200,
+            width: 1,
+          ),
+        ),
       ),
       child: SafeArea(
         child: SizedBox(
