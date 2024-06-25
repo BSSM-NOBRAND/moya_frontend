@@ -4,6 +4,7 @@ import 'package:moya/data/data_sources/add_wishlist_item_api.dart';
 import 'package:moya/data/data_sources/charge_moya_api.dart';
 import 'package:moya/data/data_sources/delete_fund_api.dart';
 import 'package:moya/data/data_sources/delete_wishlist_item_api.dart';
+import 'package:moya/data/data_sources/exchange_moya_api.dart';
 import 'package:moya/data/data_sources/get_friend_fund_list_api.dart';
 import 'package:moya/data/data_sources/get_friend_list_api.dart';
 import 'package:moya/data/data_sources/get_friend_preview_api.dart';
@@ -17,6 +18,7 @@ import 'package:moya/data/repositories/add_wishlist_item_repository_impl.dart';
 import 'package:moya/data/repositories/charge_moya_repository_impl.dart';
 import 'package:moya/data/repositories/delete_fund_repository_impl.dart';
 import 'package:moya/data/repositories/delete_wishlist_item_repository_impl.dart';
+import 'package:moya/data/repositories/exchange_moya_repository_impl.dart';
 import 'package:moya/data/repositories/get_friend_fund_list_repository_impl.dart';
 import 'package:moya/data/repositories/get_friend_list_repository_impl.dart';
 import 'package:moya/data/repositories/get_friend_preview_repository_impl.dart';
@@ -30,6 +32,7 @@ import 'package:moya/domain/repositories/add_wishlist_item_repository.dart';
 import 'package:moya/domain/repositories/charge_moya_repository.dart';
 import 'package:moya/domain/repositories/delete_fund_repository.dart';
 import 'package:moya/domain/repositories/delete_wishlist_item_repository.dart';
+import 'package:moya/domain/repositories/exchange_moya_repository.dart';
 import 'package:moya/domain/repositories/get_friend_fund_list_repository.dart';
 import 'package:moya/domain/repositories/get_friend_list_repository.dart';
 import 'package:moya/domain/repositories/get_friend_preview_repository.dart';
@@ -43,6 +46,7 @@ import 'package:moya/domain/usecases/add_wishlist_item_use_case.dart';
 import 'package:moya/domain/usecases/charge_moya_use_case.dart';
 import 'package:moya/domain/usecases/delete_fund_use_case.dart';
 import 'package:moya/domain/usecases/delete_wishlist_item_use_case.dart';
+import 'package:moya/domain/usecases/exchange_moya_use_case.dart';
 import 'package:moya/domain/usecases/get_friend_fund_list_use_case.dart';
 import 'package:moya/domain/usecases/get_friend_list_use_case.dart';
 import 'package:moya/domain/usecases/get_friend_preview_use_case.dart';
@@ -94,6 +98,9 @@ void initServiceLocator() {
   serviceLocator.registerLazySingleton<ChargeMoyaApi>(
     () => ChargeMoyaApi(),
   );
+  serviceLocator.registerLazySingleton<ExchangeMoyaApi>(
+    () => ExchangeMoyaApi(),
+  );
 
   // Repository
   serviceLocator.registerLazySingleton<GetMyWishlistRepository>(
@@ -135,6 +142,9 @@ void initServiceLocator() {
   serviceLocator.registerLazySingleton<ChargeMoyaRepository>(
     () => ChargeMoyaRepositoryImpl(),
   );
+  serviceLocator.registerLazySingleton<ExchangeMoyaRepository>(
+    () => ExchangeMoyaRepositoryImpl(),
+  );
 
   // UseCase
   serviceLocator.registerLazySingleton<GetWishlistUseCase>(
@@ -175,5 +185,8 @@ void initServiceLocator() {
   );
   serviceLocator.registerLazySingleton<ChargeMoyaUseCase>(
     () => ChargeMoyaUseCase(),
+  );
+  serviceLocator.registerLazySingleton<ExchangeMoyaUseCase>(
+    () => ExchangeMoyaUseCase(),
   );
 }
