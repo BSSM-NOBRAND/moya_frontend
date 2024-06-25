@@ -175,8 +175,9 @@ class FriendWishlistFundDetailScreen extends StatelessWidget {
                                 onPressed: () {
                                   Navigator.of(context).push(
                                     MaterialPageRoute(
-                                      builder: (context) =>
-                                          const SponsorDetailScreen(),
+                                      builder: (context) => SponsorDetailScreen(
+                                        fundId: friendFundItem.id,
+                                      ),
                                     ),
                                   );
                                 },

@@ -3,12 +3,15 @@ import 'package:moya/config/palette.dart';
 import 'package:moya/config/typo_text_style.dart';
 import 'package:moya/presentation/common/detail_header.dart';
 import 'package:moya/presentation/common/primary_button.dart';
+import 'package:moya/presentation/provider/friend_fund_list_provider.dart';
 import 'package:moya/presentation/sponsor_detail/widgets/letter_form.dart';
 import 'package:moya/presentation/sponsor_detail/widgets/moya_form.dart';
 import 'package:moya/presentation/sponsor_detail/widgets/visibility_form.dart';
+import 'package:provider/provider.dart';
 
 class SponsorDetailScreen extends StatefulWidget {
-  const SponsorDetailScreen({super.key});
+  final int fundId;
+  const SponsorDetailScreen({super.key, required this.fundId});
 
   @override
   State<SponsorDetailScreen> createState() => _SponsorDetailScreenState();
@@ -26,6 +29,17 @@ class _SponsorDetailScreenState extends State<SponsorDetailScreen> {
   String letter = '';
   bool? isSponsorVisible;
 
+  void sponsorMoya() async {
+    FriendFundListProvider provider =
+        Provider.of<FriendFundListProvider>(context, listen: false);
+    await provider.sponsorMoya(
+      fundId: widget.fundId,
+      moyaAmount: int.parse(moya),
+      content: letter,
+      isVisible: isSponsorVisible!,
+    );
+  }
+
   void handleButtonPressed() {
     setState(() {
       if (step == FormStep.moya) {
@@ -33,10 +47,7 @@ class _SponsorDetailScreenState extends State<SponsorDetailScreen> {
       } else if (step == FormStep.letter) {
         step = FormStep.visibility;
       } else if (step == FormStep.visibility) {
-        print('후원하기');
-        print('moya: $moya');
-        print('letter: $letter');
-        print('isSponsorVisible: $isSponsorVisible');
+        sponsorMoya();
         Navigator.of(context).pop();
       }
     });

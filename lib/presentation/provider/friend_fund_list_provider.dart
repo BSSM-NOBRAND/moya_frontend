@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:moya/di/locator.dart';
 import 'package:moya/domain/entities/friend_fund_item.dart';
 import 'package:moya/domain/usecases/get_friend_fund_list_use_case.dart';
+import 'package:moya/domain/usecases/sponsor_use_case.dart';
 
 class FriendFundListProvider with ChangeNotifier {
   List<FriendFundItem> _friendFundList = [];
@@ -34,5 +35,21 @@ class FriendFundListProvider with ChangeNotifier {
     );
 
     notifyListeners();
+  }
+
+  Future<void> sponsorMoya({
+    required int fundId,
+    required int moyaAmount,
+    required String content,
+    required bool isVisible,
+  }) async {
+    SponsorUseCase useCase = serviceLocator<SponsorUseCase>();
+    await useCase.call(
+      fundId: fundId,
+      moyaAmount: moyaAmount,
+      content: content,
+      isVisible: isVisible,
+    );
+    fetch();
   }
 }

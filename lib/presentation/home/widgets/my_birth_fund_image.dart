@@ -50,6 +50,7 @@ class MyBirthFundImage extends StatelessWidget {
                   ),
                 ),
                 Container(
+                  alignment: Alignment.bottomLeft,
                   margin: const EdgeInsets.only(
                     left: 16,
                     right: 16,
