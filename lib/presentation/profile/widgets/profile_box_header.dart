@@ -23,8 +23,8 @@ class ProfileBoxHeader extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: Skeleton.replace(
-                width: 48,
-                height: 48,
+                width: 64,
+                height: 64,
                 child: Image.network(
                   'https://storage.surfit.io/user/avatar/1745610414.png',
                 ),

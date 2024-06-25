@@ -17,7 +17,7 @@ class TypoTextStyle {
     return TextStyle(
       fontSize: 28,
       fontStyle: FontStyle.normal,
-      fontWeight: FontWeight.w600,
+      fontWeight: FontWeight.w700,
       height: 1.4,
       color: color,
     );
@@ -27,7 +27,7 @@ class TypoTextStyle {
     return TextStyle(
       fontSize: 24,
       fontStyle: FontStyle.normal,
-      fontWeight: FontWeight.w600,
+      fontWeight: FontWeight.w700,
       height: 1.4,
       color: color,
     );
@@ -37,7 +37,7 @@ class TypoTextStyle {
     return TextStyle(
       fontSize: 20,
       fontStyle: FontStyle.normal,
-      fontWeight: FontWeight.w600,
+      fontWeight: FontWeight.w700,
       height: 1.4,
       color: color,
       fontFeatures: const [FontFeature('ss05')],
@@ -48,7 +48,7 @@ class TypoTextStyle {
     return TextStyle(
       fontSize: 18,
       fontStyle: FontStyle.normal,
-      fontWeight: FontWeight.w600,
+      fontWeight: FontWeight.w700,
       height: 1.4,
       color: color,
     );
@@ -58,7 +58,7 @@ class TypoTextStyle {
     return TextStyle(
       fontSize: 18,
       fontStyle: FontStyle.normal,
-      fontWeight: FontWeight.w500,
+      fontWeight: FontWeight.w700,
       height: 1.4,
       color: color,
     );
@@ -68,7 +68,7 @@ class TypoTextStyle {
     return TextStyle(
       fontSize: 16,
       fontStyle: FontStyle.normal,
-      fontWeight: FontWeight.w500,
+      fontWeight: FontWeight.w700,
       height: 1.4,
       color: color,
       fontFeatures: const [FontFeature('ss05')],
@@ -79,7 +79,7 @@ class TypoTextStyle {
     return TextStyle(
       fontSize: 14,
       fontStyle: FontStyle.normal,
-      fontWeight: FontWeight.w500,
+      fontWeight: FontWeight.w700,
       height: 1.4,
       color: color,
     );

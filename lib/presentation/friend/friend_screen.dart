@@ -7,8 +7,8 @@ class FriendsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(
+    return const Padding(
+      padding: EdgeInsets.only(
         top: 12,
         left: 16,
         right: 16,
@@ -17,8 +17,8 @@ class FriendsScreen extends StatelessWidget {
       child: Column(
         children: [
           FriendBirthFundList(),
-          const SizedBox(height: 12),
-          const MyFriendList(),
+          SizedBox(height: 12),
+          MyFriendList(),
         ],
       ),
     );
