@@ -13,8 +13,8 @@ class RemoveConfirmBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return IntrinsicHeight(
       child: Container(
-        padding: const EdgeInsets.only(
-          bottom: 24,
+        padding: EdgeInsets.only(
+          bottom: MediaQuery.of(context).padding.bottom,
         ),
         decoration: const BoxDecoration(
           color: Palette.white,
