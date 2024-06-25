@@ -13,6 +13,7 @@ class FriendFundItemModel extends FriendFundItem with _$FriendFundItemModel {
     required int moya,
     required int targetMoya,
     required String imageUrl,
+    required String finishedAt,
   }) = _FriendFundItemModel;
 
   factory FriendFundItemModel.fromJson(Map<String, dynamic> json) =>

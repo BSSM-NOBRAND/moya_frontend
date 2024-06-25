@@ -22,7 +22,8 @@ class FriendWishlistFundDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // WishlistItem wishlistItem = friendFundItem.wishlistItem;
+    final DateTime dDay = DateTime.parse(friendFundItem.finishedAt);
+    final Duration difference = DateTime.now().difference(dDay);
 
     return Scaffold(
       body: SafeArea(
@@ -151,7 +152,7 @@ class FriendWishlistFundDetailScreen extends StatelessWidget {
                                 ),
                                 const SizedBox(width: 8),
                                 Text(
-                                  'D${-1}',
+                                  'D${difference.inDays}',
                                   style: TypoTextStyle.body1(
                                     color: Palette.gray600,
                                   ),

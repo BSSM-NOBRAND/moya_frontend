@@ -15,6 +15,7 @@ _$FriendFundItemModelImpl _$$FriendFundItemModelImplFromJson(
       moya: (json['moya'] as num).toInt(),
       targetMoya: (json['targetMoya'] as num).toInt(),
       imageUrl: json['imageUrl'] as String,
+      finishedAt: json['finishedAt'] as String,
     );
 
 Map<String, dynamic> _$$FriendFundItemModelImplToJson(
@@ -26,4 +27,5 @@ Map<String, dynamic> _$$FriendFundItemModelImplToJson(
       'moya': instance.moya,
       'targetMoya': instance.targetMoya,
       'imageUrl': instance.imageUrl,
+      'finishedAt': instance.finishedAt,
     };

@@ -26,6 +26,7 @@ mixin _$FriendFundItemModel {
   int get moya => throw _privateConstructorUsedError;
   int get targetMoya => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
+  String get finishedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,7 +46,8 @@ abstract class $FriendFundItemModelCopyWith<$Res> {
       String productName,
       int moya,
       int targetMoya,
-      String imageUrl});
+      String imageUrl,
+      String finishedAt});
 }
 
 /// @nodoc
@@ -67,6 +69,7 @@ class _$FriendFundItemModelCopyWithImpl<$Res, $Val extends FriendFundItemModel>
     Object? moya = null,
     Object? targetMoya = null,
     Object? imageUrl = null,
+    Object? finishedAt = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -93,6 +96,10 @@ class _$FriendFundItemModelCopyWithImpl<$Res, $Val extends FriendFundItemModel>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      finishedAt: null == finishedAt
+          ? _value.finishedAt
+          : finishedAt // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -111,7 +118,8 @@ abstract class _$$FriendFundItemModelImplCopyWith<$Res>
       String productName,
       int moya,
       int targetMoya,
-      String imageUrl});
+      String imageUrl,
+      String finishedAt});
 }
 
 /// @nodoc
@@ -131,6 +139,7 @@ class __$$FriendFundItemModelImplCopyWithImpl<$Res>
     Object? moya = null,
     Object? targetMoya = null,
     Object? imageUrl = null,
+    Object? finishedAt = null,
   }) {
     return _then(_$FriendFundItemModelImpl(
       id: null == id
@@ -157,6 +166,10 @@ class __$$FriendFundItemModelImplCopyWithImpl<$Res>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      finishedAt: null == finishedAt
+          ? _value.finishedAt
+          : finishedAt // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -170,7 +183,8 @@ class _$FriendFundItemModelImpl implements _FriendFundItemModel {
       required this.productName,
       required this.moya,
       required this.targetMoya,
-      required this.imageUrl});
+      required this.imageUrl,
+      required this.finishedAt});
 
   factory _$FriendFundItemModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$FriendFundItemModelImplFromJson(json);
@@ -187,10 +201,12 @@ class _$FriendFundItemModelImpl implements _FriendFundItemModel {
   final int targetMoya;
   @override
   final String imageUrl;
+  @override
+  final String finishedAt;
 
   @override
   String toString() {
-    return 'FriendFundItemModel(id: $id, name: $name, productName: $productName, moya: $moya, targetMoya: $targetMoya, imageUrl: $imageUrl)';
+    return 'FriendFundItemModel(id: $id, name: $name, productName: $productName, moya: $moya, targetMoya: $targetMoya, imageUrl: $imageUrl, finishedAt: $finishedAt)';
   }
 
   @override
@@ -206,13 +222,15 @@ class _$FriendFundItemModelImpl implements _FriendFundItemModel {
             (identical(other.targetMoya, targetMoya) ||
                 other.targetMoya == targetMoya) &&
             (identical(other.imageUrl, imageUrl) ||
-                other.imageUrl == imageUrl));
+                other.imageUrl == imageUrl) &&
+            (identical(other.finishedAt, finishedAt) ||
+                other.finishedAt == finishedAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, name, productName, moya, targetMoya, imageUrl);
+  int get hashCode => Object.hash(runtimeType, id, name, productName, moya,
+      targetMoya, imageUrl, finishedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -236,7 +254,8 @@ abstract class _FriendFundItemModel implements FriendFundItemModel {
       required final String productName,
       required final int moya,
       required final int targetMoya,
-      required final String imageUrl}) = _$FriendFundItemModelImpl;
+      required final String imageUrl,
+      required final String finishedAt}) = _$FriendFundItemModelImpl;
 
   factory _FriendFundItemModel.fromJson(Map<String, dynamic> json) =
       _$FriendFundItemModelImpl.fromJson;
@@ -253,6 +272,8 @@ abstract class _FriendFundItemModel implements FriendFundItemModel {
   int get targetMoya;
   @override
   String get imageUrl;
+  @override
+  String get finishedAt;
   @override
   @JsonKey(ignore: true)
   _$$FriendFundItemModelImplCopyWith<_$FriendFundItemModelImpl> get copyWith =>

@@ -25,6 +25,7 @@ class FriendFundListProvider with ChangeNotifier {
                 moya: e.moya,
                 targetMoya: e.targetMoya,
                 imageUrl: e.imageUrl,
+                finishedAt: e.finishedAt,
               ),
             )
             .toList();

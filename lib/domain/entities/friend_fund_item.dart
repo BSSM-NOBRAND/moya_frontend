@@ -5,6 +5,7 @@ class FriendFundItem {
   final int moya;
   final int targetMoya;
   final String imageUrl;
+  final String finishedAt;
 
   const FriendFundItem({
     required this.id,
@@ -13,5 +14,6 @@ class FriendFundItem {
     required this.moya,
     required this.targetMoya,
     required this.imageUrl,
+    required this.finishedAt,
   });
 }
