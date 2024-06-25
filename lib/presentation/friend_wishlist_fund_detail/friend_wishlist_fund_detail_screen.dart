@@ -4,7 +4,6 @@ import 'package:intl/intl.dart';
 import 'package:moya/config/palette.dart';
 import 'package:moya/config/typo_text_style.dart';
 import 'package:moya/domain/entities/friend_fund_item.dart';
-import 'package:moya/domain/entities/wishlist_item.dart';
 import 'package:moya/presentation/common/birth_fund_progress.dart';
 import 'package:moya/presentation/common/primary_button.dart';
 import 'package:moya/presentation/provider/my_info_provider.dart';
@@ -23,7 +22,7 @@ class FriendWishlistFundDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WishlistItem wishlistItem = friendFundItem.wishlistItem;
+    // WishlistItem wishlistItem = friendFundItem.wishlistItem;
 
     return Scaffold(
       body: SafeArea(
@@ -40,7 +39,7 @@ class FriendWishlistFundDetailScreen extends StatelessWidget {
                   children: [
                     Positioned.fill(
                       child: Image.network(
-                        wishlistItem.imageUrl,
+                        friendFundItem.imageUrl,
                         fit: BoxFit.fitHeight,
                       ),
                     ),
@@ -127,7 +126,7 @@ class FriendWishlistFundDetailScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              wishlistItem.name,
+                              friendFundItem.productName,
                               style: TypoTextStyle.h4(
                                 color: Palette.black,
                               ),
@@ -152,7 +151,7 @@ class FriendWishlistFundDetailScreen extends StatelessWidget {
                                 ),
                                 const SizedBox(width: 8),
                                 Text(
-                                  'D-${friendFundItem.dDay}',
+                                  'D${-1}',
                                   style: TypoTextStyle.body1(
                                     color: Palette.gray600,
                                   ),

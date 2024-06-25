@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:moya/config/palette.dart';
 import 'package:moya/config/typo_text_style.dart';
 import 'package:moya/domain/entities/friend_fund_item.dart';
-import 'package:moya/domain/entities/wishlist_item.dart';
 import 'package:moya/presentation/friend_wishlist_fund_detail/friend_wishlist_fund_detail_screen.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
@@ -14,7 +13,7 @@ class FriendBirthFundItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WishlistItem wishlistItem = friendFundItem.wishlistItem;
+    // WishlistItem wishlistItem = friendFundItem.wishlistItem;
 
     return InkWell(
       onTap: () {
@@ -34,7 +33,7 @@ class FriendBirthFundItem extends StatelessWidget {
             child: Skeleton.replace(
               width: 64,
               height: 64,
-              child: Image.network(wishlistItem.imageUrl),
+              child: Image.network(friendFundItem.imageUrl),
             ),
           ),
           const SizedBox(width: 8),
@@ -43,7 +42,7 @@ class FriendBirthFundItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  wishlistItem.name,
+                  friendFundItem.productName,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
                   style: TypoTextStyle.body2(
