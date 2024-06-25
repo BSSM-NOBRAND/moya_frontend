@@ -191,7 +191,7 @@ class FriendWishlistFundDetailScreen extends StatelessWidget {
                               child: Container(
                                 width: 56,
                                 height: 56,
-                                padding: const EdgeInsets.all(8),
+                                padding: const EdgeInsets.all(12),
                                 decoration: BoxDecoration(
                                   color: Palette.gray100,
                                   borderRadius: BorderRadius.circular(16),
