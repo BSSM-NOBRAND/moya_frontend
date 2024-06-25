@@ -37,7 +37,7 @@ class TypoTextStyle {
     return TextStyle(
       fontSize: 20,
       fontStyle: FontStyle.normal,
-      fontWeight: FontWeight.w700,
+      fontWeight: FontWeight.w600,
       height: 1.4,
       color: color,
       fontFeatures: const [FontFeature('ss05')],

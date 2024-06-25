@@ -38,9 +38,9 @@ class PrimaryButton extends StatelessWidget {
           backgroundColor: WidgetStatePropertyAll(
             disabled ? Palette.gray500 : Palette.brandPrimary,
           ),
-          shape: const WidgetStatePropertyAll(
+          shape: WidgetStatePropertyAll(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(16)),
+              borderRadius: BorderRadius.circular(16),
             ),
           ),
           overlayColor: WidgetStatePropertyAll(

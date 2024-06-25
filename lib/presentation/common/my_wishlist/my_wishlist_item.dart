@@ -31,7 +31,7 @@ class MyWishlistItem extends StatelessWidget {
         child: Row(
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(12),
               child: Skeleton.replace(
                 width: 72,
                 height: 72,

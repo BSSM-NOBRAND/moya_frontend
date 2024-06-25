@@ -74,22 +74,23 @@ class _AddWishlistFormState extends State<AddWishlistForm> {
                       onPressed: () {
                         pasteClipboardText();
                       },
-                      style: const ButtonStyle(
-                        padding: WidgetStatePropertyAll(
+                      style: ButtonStyle(
+                        padding: const WidgetStatePropertyAll(
                           EdgeInsets.only(
                             left: 12,
                             right: 12,
                           ),
                         ),
                         backgroundColor:
-                            WidgetStatePropertyAll(Palette.gray100),
+                            const WidgetStatePropertyAll(Palette.gray100),
                         shape: WidgetStatePropertyAll(
                           RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(8)),
+                            borderRadius: BorderRadius.circular(12),
                           ),
                         ),
-                        overlayColor: WidgetStatePropertyAll(Palette.gray200),
-                        elevation: WidgetStatePropertyAll(0),
+                        overlayColor:
+                            const WidgetStatePropertyAll(Palette.gray200),
+                        elevation: const WidgetStatePropertyAll(0),
                       ),
                       child: Text(
                         '링크 붙여넣기',

@@ -19,6 +19,7 @@ class MySponsorHistory extends StatelessWidget {
         borderRadius: BorderRadius.circular(24),
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             "내 후원 기록",

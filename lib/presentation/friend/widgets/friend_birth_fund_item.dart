@@ -29,7 +29,7 @@ class FriendBirthFundItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(12),
             child: Skeleton.replace(
               width: 64,
               height: 64,
