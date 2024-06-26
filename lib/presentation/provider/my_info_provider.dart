@@ -51,7 +51,7 @@ class MyInfoProvider with ChangeNotifier {
     user = User(
       name: user.name,
       userId: user.userId,
-      moya: user.moya + 5,
+      moya: user.moya + 20,
       mileage: user.mileage,
       isOpen: user.isOpen,
     );
