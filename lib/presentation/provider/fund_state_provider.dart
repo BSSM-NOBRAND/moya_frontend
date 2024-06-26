@@ -5,6 +5,7 @@ import 'package:moya/domain/entities/wishlist_item.dart';
 import 'package:moya/domain/usecases/delete_fund_use_case.dart';
 import 'package:moya/domain/usecases/get_fund_use_case.dart';
 import 'package:moya/domain/usecases/raise_fund_use_case.dart';
+import 'package:moya/domain/usecases/settle_fund_use_case.dart';
 
 enum FundStep { start, inProcess, ended, verify }
 
@@ -48,7 +49,7 @@ class FundStateProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> withdrawFund() async {
+  Future<void> deleteFund() async {
     DeleteFundUseCase useCase = serviceLocator<DeleteFundUseCase>();
     final result = await useCase.call();
     result.when(
@@ -57,5 +58,16 @@ class FundStateProvider with ChangeNotifier {
       },
       error: (message) {},
     );
+  }
+
+  Future<void> settleFund() async {
+    SettleFundUseCase useCase = serviceLocator<SettleFundUseCase>();
+    (await useCase.call(fundId: _fund.id)).when(
+      success: (s) {},
+      error: (message) {
+        print(message);
+      },
+    );
+    fetch();
   }
 }

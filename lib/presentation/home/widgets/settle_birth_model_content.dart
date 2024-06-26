@@ -5,9 +5,10 @@ import 'package:moya/config/palette.dart';
 import 'package:moya/config/typo_text_style.dart';
 import 'package:moya/domain/entities/fund.dart';
 import 'package:moya/presentation/common/birth_fund_progress.dart';
+import 'package:moya/presentation/common/my_birth_fund_image.dart';
 import 'package:moya/presentation/common/primary_button.dart';
-import 'package:moya/presentation/home/widgets/my_birth_fund_image.dart';
 import 'package:moya/presentation/provider/fund_state_provider.dart';
+import 'package:moya/presentation/provider/my_info_provider.dart';
 import 'package:provider/provider.dart';
 
 class SettleBirthModalContent extends StatelessWidget {
@@ -184,7 +185,17 @@ class SettleBirthModalContent extends StatelessWidget {
                   ),
                 ),
               const SizedBox(height: 34),
-              const PrimaryButton("펀드 정산하기")
+              Consumer<MyInfoProvider>(
+                builder: (context, myInfoProvider, child) {
+                  return PrimaryButton(
+                    "펀드 정산하기",
+                    onPressed: () async {
+                      await provider.settleFund();
+                      myInfoProvider.fetch();
+                    },
+                  );
+                },
+              )
             ],
           );
         },

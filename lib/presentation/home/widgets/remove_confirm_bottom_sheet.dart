@@ -40,7 +40,7 @@ class RemoveConfirmBottomSheet extends StatelessWidget {
                         return PrimaryButton(
                           '펀드 삭제하기',
                           onPressed: () async {
-                            await fundStateProvider.withdrawFund();
+                            await fundStateProvider.deleteFund();
                             myInfoProvider.fetch();
                             print('fetching...');
 
