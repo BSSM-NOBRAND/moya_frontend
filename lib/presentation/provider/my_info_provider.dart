@@ -19,12 +19,6 @@ class MyInfoProvider with ChangeNotifier {
 
   ApiLoadingState get state => _state;
 
-  final int _myMoya = 12;
-  final int _myMileage = 12000;
-
-  int get myMoya => _myMoya;
-  int get myMileage => _myMileage;
-
   void fetch() async {
     _state = state.copyWith(isLoading: true);
     GetUserUseCase useCase = serviceLocator<GetUserUseCase>();

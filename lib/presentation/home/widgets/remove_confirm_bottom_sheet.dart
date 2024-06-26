@@ -39,12 +39,12 @@ class RemoveConfirmBottomSheet extends StatelessWidget {
                       builder: (context, fundStateProvider, child) {
                         return PrimaryButton(
                           '펀드 삭제하기',
-                          onPressed: () async {
-                            await fundStateProvider.deleteFund();
-                            myInfoProvider.fetch();
-                            print('fetching...');
+                          onPressed: () {
+                            fundStateProvider.deleteFund().then((v) {
+                              myInfoProvider.fetch();
 
-                            Navigator.of(context).pop();
+                              Navigator.of(context).pop();
+                            });
                           },
                         );
                       },

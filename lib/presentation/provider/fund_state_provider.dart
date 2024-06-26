@@ -62,12 +62,7 @@ class FundStateProvider with ChangeNotifier {
 
   Future<void> settleFund() async {
     SettleFundUseCase useCase = serviceLocator<SettleFundUseCase>();
-    (await useCase.call(fundId: _fund.id)).when(
-      success: (s) {},
-      error: (message) {
-        print(message);
-      },
-    );
+    await useCase.call(fundId: _fund.id);
     fetch();
   }
 }
