@@ -7,6 +7,7 @@ import 'package:moya/presentation/common/primary_button.dart';
 import 'package:moya/presentation/home/widgets/fund_progress_indicator.dart';
 import 'package:moya/presentation/home/widgets/my_birth_fund_header.dart';
 import 'package:moya/presentation/home/widgets/my_birth_fund_image.dart';
+import 'package:moya/presentation/home/widgets/settle_birth_modal.dart';
 import 'package:moya/presentation/provider/fund_state_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
@@ -46,7 +47,7 @@ class _MyBirthFundState extends State<MyBirthFund> {
                 ),
                 FundProgressIndicator(
                   text: '종료',
-                  isActive: provider.fund.state == "FINISH",
+                  isActive: provider.fund.state == "CLOSE",
                 ),
                 FundProgressIndicator(
                   text: '인증',
@@ -100,8 +101,6 @@ class _MyBirthFundState extends State<MyBirthFund> {
                   Expanded(
                     child: Consumer<FundStateProvider>(
                       builder: (context, provider, child) {
-                        // FundStep step = provider.;
-
                         String text;
                         void Function() onPressed;
 
@@ -112,9 +111,18 @@ class _MyBirthFundState extends State<MyBirthFund> {
                               Share.share("내 생일 선물을 후원해줘!😀");
                             };
                             break;
-                          case "FINISH":
+                          case "CLOSE":
                             text = "펀드 정산하기";
-                            onPressed = () {};
+                            onPressed = () {
+                              showModalBottomSheet(
+                                context: context,
+                                backgroundColor: Colors.transparent,
+                                isScrollControlled: true,
+                                builder: (context) {
+                                  return const SettleBirthModal();
+                                },
+                              );
+                            };
                             break;
                           case "AUTHENTICATED":
                             text = "펀드 공유하기";

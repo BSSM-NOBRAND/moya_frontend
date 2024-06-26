@@ -74,15 +74,24 @@ class _MyAppState extends State<MyApp> {
         data: {
           "name": account.displayName,
           "email": account.email,
-          "profileImage":
-              // "https://lh3.googleusercontent.com/a/ACg8ocKkH_ivB-TTaNWsbqJjNLLUJbs3mtXHB_5hlQ5NCgqEJGPaNw=s1337",
-              account.photoUrl,
+          "profileImage": account.photoUrl,
           "birth": "2006-05-08"
         },
       );
+
       Map data = res.data ?? {};
       PrefUtil.setString('accessToken', data['accessToken']);
       PrefUtil.setString('refreshToken', data['refreshToken']);
+
+      MyInfoProvider myInfoProvider =
+          Provider.of<MyInfoProvider>(context, listen: false);
+      FundStateProvider fundStateProvider =
+          Provider.of<FundStateProvider>(context, listen: false);
+      MyWishlistProvider myWishlistProvider =
+          Provider.of<MyWishlistProvider>(context, listen: false);
+      myInfoProvider.fetch();
+      fundStateProvider.fetch();
+      myWishlistProvider.fetch();
     } catch (e) {
       print(e);
     }
