@@ -33,7 +33,6 @@ class _AddWishlistScreenState extends State<AddWishlistScreen> {
                 const DetailHeader(title: '위시리스트 추가'),
                 AddWishlistForm(
                   findItem: findItem,
-                  wishlistItem: provider.wishlistItem,
                 ),
               ],
             ),
