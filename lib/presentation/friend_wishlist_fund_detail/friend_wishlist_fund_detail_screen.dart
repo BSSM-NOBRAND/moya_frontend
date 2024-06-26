@@ -152,7 +152,7 @@ class FriendWishlistFundDetailScreen extends StatelessWidget {
                                 ),
                                 const SizedBox(width: 8),
                                 Text(
-                                  'D${difference.inDays}',
+                                  'D-${difference.inDays.abs()}',
                                   style: TypoTextStyle.body1(
                                     color: Palette.gray600,
                                   ),
