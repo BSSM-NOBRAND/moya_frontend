@@ -14,64 +14,64 @@ class ProfileBoxHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
+    return Consumer<MyInfoProvider>(
+      builder: (context, provider, child) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Skeleton.replace(
-                width: 64,
-                height: 64,
-                child: Image.network(
-                  'https://storage.surfit.io/user/avatar/1745610414.png',
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Skeleton.replace(
+                    width: 64,
+                    height: 64,
+                    child: Image.network(
+                      'https://storage.surfit.io/user/avatar/1745610414.png',
+                    ),
+                  ),
                 ),
-              ),
+                const SizedBox(width: 12),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      provider.user.name,
+                      style: TypoTextStyle.h5(
+                        color: Palette.black,
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      '@${provider.user.userId}',
+                      style: TypoTextStyle.body3(
+                        color: Palette.gray500,
+                      ),
+                    ),
+                  ],
+                )
+              ],
             ),
-            const SizedBox(width: 12),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            Row(
               children: [
                 Text(
-                  '신준서',
-                  style: TypoTextStyle.h5(
-                    color: Palette.black,
-                  ),
-                ),
-                const SizedBox(height: 2),
-                Text(
-                  '@ddoory1103',
-                  style: TypoTextStyle.body3(
-                    color: Palette.gray500,
-                  ),
-                ),
-              ],
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Consumer<MyInfoProvider>(
-              builder: (context, provider, child) {
-                return Text(
                   _numberFormatter.format(provider.user.mileage),
                   style: TypoTextStyle.h5(
                     color: Palette.black,
                   ),
-                );
-              },
-            ),
-            const SizedBox(width: 6),
-            SvgPicture.asset(
-              'assets/images/mileage.svg',
-              width: 20,
-              height: 20,
-            ),
+                ),
+                const SizedBox(width: 6),
+                SvgPicture.asset(
+                  'assets/images/mileage.svg',
+                  width: 20,
+                  height: 20,
+                ),
+              ],
+            )
           ],
-        )
-      ],
+        );
+      },
     );
   }
 }
