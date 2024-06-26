@@ -43,12 +43,7 @@ class MyFriendListProvider with ChangeNotifier {
     notifyListeners();
 
     AddFriendUseCase useCase = serviceLocator<AddFriendUseCase>();
-    final result = await useCase.call(friendId: friendPreview.id);
-    result.when(
-      success: (data) {
-        fetch();
-      },
-      error: (message) {},
-    );
+    await useCase.call(friendId: friendPreview.id);
+    fetch();
   }
 }

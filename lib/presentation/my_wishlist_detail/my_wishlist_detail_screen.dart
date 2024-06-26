@@ -52,25 +52,29 @@ class _MyWishlistDetailScreenState extends State<MyWishlistDetailScreen> {
                       left: 16,
                       child: Consumer<MyWishlistProvider>(
                         builder: (context, provider, child) {
-                          return InkWell(
-                            borderRadius: BorderRadius.circular(14),
-                            splashColor: Palette.gray300.withOpacity(0.3),
-                            highlightColor: Colors.transparent,
-                            onTap: () async {
-                              if (!isLiked) {
+                          return PopScope(
+                            onPopInvoked: (didPop) async {
+                              if (didPop && !isLiked) {
                                 await provider
                                     .deleteWishlistItem(widget.wishlistItem.id);
                               }
-                              Navigator.of(context).pop();
                             },
-                            child: Container(
-                              padding: const EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                color: Palette.white,
-                                borderRadius: BorderRadius.circular(100),
+                            child: InkWell(
+                              borderRadius: BorderRadius.circular(14),
+                              splashColor: Palette.gray300.withOpacity(0.3),
+                              highlightColor: Colors.transparent,
+                              onTap: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.all(8),
+                                decoration: BoxDecoration(
+                                  color: Palette.white,
+                                  borderRadius: BorderRadius.circular(100),
+                                ),
+                                child: SvgPicture.asset(
+                                    'assets/images/arrow-back.svg'),
                               ),
-                              child: SvgPicture.asset(
-                                  'assets/images/arrow-back.svg'),
                             ),
                           );
                         },

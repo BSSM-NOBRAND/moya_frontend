@@ -20,42 +20,51 @@ class _AddFriendScreenState extends State<AddFriendScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: const SafeArea(
-        child: Column(
-          children: [
-            DetailHeader(title: '친구 추가'),
-            AddFriendForm(),
-          ],
-        ),
-      ),
-      bottomSheet: Container(
-        margin: EdgeInsets.only(
-          bottom: MediaQuery.of(context).padding.bottom + 8,
-          left: 16,
-          right: 16,
-        ),
-        child: Consumer<FriendPreviewProvider>(
-          builder: (context, friendPreviewProvider, child) {
-            FriendPreview? friendPreview = friendPreviewProvider.friendPreview;
-            return PrimaryButton(
-              '친구 추가하기',
-              onPressed: () {
-                if (friendPreview != null) {
-                  MyFriendListProvider myFriendListProvider =
-                      Provider.of<MyFriendListProvider>(context, listen: false);
-                  myFriendListProvider.addFriend(
-                    friendPreview: friendPreview,
-                  );
-                  friendPreviewProvider.removeFriendPreview();
-                  Navigator.of(context).pop();
-                }
-              },
-              disabled: friendPreviewProvider.friendPreview == null,
-            );
+    return Consumer<FriendPreviewProvider>(
+      builder: (context, friendPreviewProvider, child) {
+        FriendPreview? friendPreview = friendPreviewProvider.friendPreview;
+
+        return PopScope(
+          onPopInvoked: (didPop) {
+            if (didPop) {
+              friendPreviewProvider.removeFriendPreview();
+            }
           },
-        ),
-      ),
+          child: Scaffold(
+            body: const SafeArea(
+              child: Column(
+                children: [
+                  DetailHeader(title: '친구 추가'),
+                  AddFriendForm(),
+                ],
+              ),
+            ),
+            bottomSheet: Container(
+              margin: EdgeInsets.only(
+                bottom: MediaQuery.of(context).padding.bottom + 8,
+                left: 16,
+                right: 16,
+              ),
+              child: PrimaryButton(
+                '친구 추가하기',
+                onPressed: () {
+                  if (friendPreview != null) {
+                    MyFriendListProvider myFriendListProvider =
+                        Provider.of<MyFriendListProvider>(context,
+                            listen: false);
+                    myFriendListProvider.addFriend(
+                      friendPreview: friendPreview,
+                    );
+                    friendPreviewProvider.removeFriendPreview();
+                    Navigator.of(context).pop();
+                  }
+                },
+                disabled: friendPreviewProvider.friendPreview == null,
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }
