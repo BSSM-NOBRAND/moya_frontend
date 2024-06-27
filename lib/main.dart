@@ -68,7 +68,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   Future<void> signIn(GoogleSignInAccount account) async {
     try {
-      print(account);
+      print('test');
       var res = await myDio.post<Map>(
         '/auth',
         data: {
@@ -110,6 +110,20 @@ class _MyAppState extends State<MyApp> {
     if (account != null) {
       await signIn(account);
     }
+    MyInfoProvider myInfoProvider =
+        Provider.of<MyInfoProvider>(context, listen: false);
+    final result = await myInfoProvider.fetch();
+    result.when(
+      success: (data) {},
+      error: (message) async {
+        PrefUtil.clear();
+        account = await googleSignIn.signIn();
+
+        if (account != null) {
+          await signIn(account!);
+        }
+      },
+    );
   }
 
   @override
