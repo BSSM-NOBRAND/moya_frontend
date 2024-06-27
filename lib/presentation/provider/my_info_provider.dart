@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moya/core/resources/result.dart';
 import 'package:moya/data/models/api_loading_state.dart';
 import 'package:moya/di/locator.dart';
 import 'package:moya/domain/entities/user.dart';
@@ -19,17 +20,20 @@ class MyInfoProvider with ChangeNotifier {
 
   ApiLoadingState get state => _state;
 
-  void fetch() async {
+  Future<Result> fetch() async {
     _state = state.copyWith(isLoading: true);
     GetUserUseCase useCase = serviceLocator<GetUserUseCase>();
     final result = await useCase.call();
-    result.when(
+    return result.when(
       success: (item) {
         user = item;
+        notifyListeners();
+        return Result.success(item);
       },
-      error: (e) {},
+      error: (message) {
+        return Result.error(message);
+      },
     );
-    notifyListeners();
   }
 
   Future<void> exchangeMoya() async {
