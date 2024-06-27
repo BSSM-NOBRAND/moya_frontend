@@ -30,7 +30,7 @@ class SettleBirthModalContent extends StatelessWidget {
 
           final DateTime dDay = DateTime.parse(fund.finishedAt);
           final Duration difference = DateTime.now().difference(dDay);
-          final bool targetMoyaAchieved = fund.moya == fund.targetMoya;
+          final bool targetMoyaAchieved = fund.moya >= fund.targetMoya;
 
           return Column(
             children: [
@@ -86,7 +86,7 @@ class SettleBirthModalContent extends StatelessWidget {
                             borderRadius: BorderRadius.circular(16),
                           ),
                           child: Text(
-                            '₩${numberFormatter.format(5000 - fund.price % 5000)}',
+                            '₩${numberFormatter.format(5000 + (fund.moya - fund.targetMoya) * 5000 - fund.price % 5000)}',
                             style: TypoTextStyle.body1(
                               color: Palette.black,
                             ),
@@ -124,7 +124,11 @@ class SettleBirthModalContent extends StatelessWidget {
                           child: Row(
                             children: [
                               Text(
-                                (5000 - fund.price % 5000).ceil().toString(),
+                                (5000 +
+                                        (fund.moya - fund.targetMoya) * 5000 -
+                                        fund.price % 5000)
+                                    .ceil()
+                                    .toString(),
                                 style: TypoTextStyle.body1(
                                   color: Palette.black,
                                 ),
