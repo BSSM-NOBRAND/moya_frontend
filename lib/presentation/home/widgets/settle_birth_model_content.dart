@@ -195,6 +195,7 @@ class SettleBirthModalContent extends StatelessWidget {
                     "펀드 정산하기",
                     onPressed: () async {
                       await provider.settleFund();
+                      Navigator.of(context).pop();
                       myInfoProvider.fetch();
                     },
                   );
