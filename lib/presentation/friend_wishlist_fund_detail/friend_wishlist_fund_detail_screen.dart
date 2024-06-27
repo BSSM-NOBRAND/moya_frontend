@@ -181,6 +181,8 @@ class FriendWishlistFundDetailScreen extends StatelessWidget {
                                     ),
                                   );
                                 },
+                                disabled: friendFundItem.targetMoya <=
+                                    friendFundItem.moya,
                               ),
                             ),
                             const SizedBox(width: 12),

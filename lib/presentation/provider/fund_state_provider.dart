@@ -31,7 +31,9 @@ class FundStateProvider with ChangeNotifier {
       success: (fund) {
         _fund = fund;
       },
-      error: (message) {},
+      error: (message) {
+        print(message);
+      },
     );
     notifyListeners();
   }
@@ -45,7 +47,9 @@ class FundStateProvider with ChangeNotifier {
         print(s);
         fetch();
       },
-      error: (e) {},
+      error: (message) {
+        print(message);
+      },
     );
     notifyListeners();
   }
@@ -57,7 +61,9 @@ class FundStateProvider with ChangeNotifier {
       success: (s) {
         fetch();
       },
-      error: (message) {},
+      error: (message) {
+        print(message);
+      },
     );
   }
 

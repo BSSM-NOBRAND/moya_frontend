@@ -33,17 +33,19 @@ class LetterForm extends StatelessWidget {
               hintStyle: TypoTextStyle.body2(
                 color: Palette.gray400,
               ),
-              enabledBorder: const OutlineInputBorder(
-                borderSide: BorderSide(
+              enabledBorder: OutlineInputBorder(
+                borderSide: const BorderSide(
                   color: Palette.gray200,
                   width: 1,
                 ),
+                borderRadius: BorderRadius.circular(16),
               ),
-              focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide(
+              focusedBorder: OutlineInputBorder(
+                borderSide: const BorderSide(
                   color: Palette.gray200,
                   width: 1,
                 ),
+                borderRadius: BorderRadius.circular(16),
               ),
             ),
             onChanged: onLetterChanged,
