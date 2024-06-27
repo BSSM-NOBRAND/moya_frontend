@@ -9,6 +9,7 @@ import 'package:moya/presentation/home/widgets/fund_progress_indicator.dart';
 import 'package:moya/presentation/home/widgets/my_birth_fund_header.dart';
 import 'package:moya/presentation/home/widgets/settle_fund_modal.dart';
 import 'package:moya/presentation/provider/fund_state_provider.dart';
+import 'package:moya/presentation/verified_card/verified_card_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -125,8 +126,14 @@ class _MyBirthFundState extends State<MyBirthFund> {
                             };
                             break;
                           case "AUTHENTICATED":
-                            text = "펀드 인증하기";
-                            onPressed = () {};
+                            text = "인증카드 받기";
+                            onPressed = () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => VerifiedCardScreen(),
+                                ),
+                              );
+                            };
                           default:
                             text = "";
                             onPressed = () {};
@@ -164,7 +171,7 @@ class _MyBirthFundState extends State<MyBirthFund> {
                         ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               )
             ],
