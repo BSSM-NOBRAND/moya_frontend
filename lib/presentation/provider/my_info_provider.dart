@@ -11,12 +11,12 @@ class MyInfoProvider with ChangeNotifier {
   ApiLoadingState _state = ApiLoadingState(false);
 
   User user = const User(
-    name: '',
-    userId: '',
-    moya: 0,
-    mileage: 0,
-    isOpen: false,
-  );
+      name: '',
+      userId: '',
+      moya: 0,
+      mileage: 0,
+      isOpen: false,
+      profileImage: '');
 
   ApiLoadingState get state => _state;
 
@@ -43,6 +43,7 @@ class MyInfoProvider with ChangeNotifier {
       moya: user.moya + (user.mileage / 5000).floor(),
       mileage: user.mileage % 5000,
       isOpen: user.isOpen,
+      profileImage: user.profileImage,
     );
     notifyListeners();
 
@@ -58,6 +59,7 @@ class MyInfoProvider with ChangeNotifier {
       moya: user.moya + 20,
       mileage: user.mileage,
       isOpen: user.isOpen,
+      profileImage: user.profileImage,
     );
     notifyListeners();
 

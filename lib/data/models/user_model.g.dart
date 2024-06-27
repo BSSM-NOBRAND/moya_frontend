@@ -13,6 +13,7 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
       moya: (json['moya'] as num).toInt(),
       mileage: (json['mileage'] as num).toInt(),
       isOpen: json['isOpen'] as bool,
+      profileImage: json['profileImage'] as String,
     );
 
 Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
@@ -22,4 +23,5 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'moya': instance.moya,
       'mileage': instance.mileage,
       'isOpen': instance.isOpen,
+      'profileImage': instance.profileImage,
     };

@@ -25,6 +25,7 @@ mixin _$UserModel {
   int get moya => throw _privateConstructorUsedError;
   int get mileage => throw _privateConstructorUsedError;
   bool get isOpen => throw _privateConstructorUsedError;
+  String get profileImage => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,7 +38,13 @@ abstract class $UserModelCopyWith<$Res> {
   factory $UserModelCopyWith(UserModel value, $Res Function(UserModel) then) =
       _$UserModelCopyWithImpl<$Res, UserModel>;
   @useResult
-  $Res call({String name, String userId, int moya, int mileage, bool isOpen});
+  $Res call(
+      {String name,
+      String userId,
+      int moya,
+      int mileage,
+      bool isOpen,
+      String profileImage});
 }
 
 /// @nodoc
@@ -58,6 +65,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? moya = null,
     Object? mileage = null,
     Object? isOpen = null,
+    Object? profileImage = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -80,6 +88,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.isOpen
           : isOpen // ignore: cast_nullable_to_non_nullable
               as bool,
+      profileImage: null == profileImage
+          ? _value.profileImage
+          : profileImage // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -92,7 +104,13 @@ abstract class _$$UserModelImplCopyWith<$Res>
       __$$UserModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String userId, int moya, int mileage, bool isOpen});
+  $Res call(
+      {String name,
+      String userId,
+      int moya,
+      int mileage,
+      bool isOpen,
+      String profileImage});
 }
 
 /// @nodoc
@@ -111,6 +129,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? moya = null,
     Object? mileage = null,
     Object? isOpen = null,
+    Object? profileImage = null,
   }) {
     return _then(_$UserModelImpl(
       name: null == name
@@ -133,6 +152,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.isOpen
           : isOpen // ignore: cast_nullable_to_non_nullable
               as bool,
+      profileImage: null == profileImage
+          ? _value.profileImage
+          : profileImage // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -145,7 +168,8 @@ class _$UserModelImpl implements _UserModel {
       required this.userId,
       required this.moya,
       required this.mileage,
-      required this.isOpen});
+      required this.isOpen,
+      required this.profileImage});
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserModelImplFromJson(json);
@@ -160,10 +184,12 @@ class _$UserModelImpl implements _UserModel {
   final int mileage;
   @override
   final bool isOpen;
+  @override
+  final String profileImage;
 
   @override
   String toString() {
-    return 'UserModel(name: $name, userId: $userId, moya: $moya, mileage: $mileage, isOpen: $isOpen)';
+    return 'UserModel(name: $name, userId: $userId, moya: $moya, mileage: $mileage, isOpen: $isOpen, profileImage: $profileImage)';
   }
 
   @override
@@ -175,13 +201,15 @@ class _$UserModelImpl implements _UserModel {
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.moya, moya) || other.moya == moya) &&
             (identical(other.mileage, mileage) || other.mileage == mileage) &&
-            (identical(other.isOpen, isOpen) || other.isOpen == isOpen));
+            (identical(other.isOpen, isOpen) || other.isOpen == isOpen) &&
+            (identical(other.profileImage, profileImage) ||
+                other.profileImage == profileImage));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, name, userId, moya, mileage, isOpen);
+  int get hashCode => Object.hash(
+      runtimeType, name, userId, moya, mileage, isOpen, profileImage);
 
   @JsonKey(ignore: true)
   @override
@@ -203,7 +231,8 @@ abstract class _UserModel implements UserModel {
       required final String userId,
       required final int moya,
       required final int mileage,
-      required final bool isOpen}) = _$UserModelImpl;
+      required final bool isOpen,
+      required final String profileImage}) = _$UserModelImpl;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$UserModelImpl.fromJson;
@@ -218,6 +247,8 @@ abstract class _UserModel implements UserModel {
   int get mileage;
   @override
   bool get isOpen;
+  @override
+  String get profileImage;
   @override
   @JsonKey(ignore: true)
   _$$UserModelImplCopyWith<_$UserModelImpl> get copyWith =>

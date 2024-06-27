@@ -4,6 +4,7 @@ class User {
   final int moya;
   final int mileage;
   final bool isOpen;
+  final String profileImage;
 
   const User({
     required this.name,
@@ -11,5 +12,6 @@ class User {
     required this.moya,
     required this.mileage,
     required this.isOpen,
+    required this.profileImage,
   });
 }

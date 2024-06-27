@@ -28,7 +28,7 @@ class ProfileBoxHeader extends StatelessWidget {
                     width: 64,
                     height: 64,
                     child: Image.network(
-                      'https://storage.surfit.io/user/avatar/1745610414.png',
+                      provider.user.profileImage,
                     ),
                   ),
                 ),
