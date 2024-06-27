@@ -6,6 +6,7 @@ import 'package:moya/domain/usecases/delete_fund_use_case.dart';
 import 'package:moya/domain/usecases/get_fund_use_case.dart';
 import 'package:moya/domain/usecases/raise_fund_use_case.dart';
 import 'package:moya/domain/usecases/settle_fund_use_case.dart';
+import 'package:moya/domain/usecases/verify_fund_use_case.dart';
 
 enum FundStep { start, inProcess, ended, verify }
 
@@ -62,6 +63,12 @@ class FundStateProvider with ChangeNotifier {
 
   Future<void> settleFund() async {
     SettleFundUseCase useCase = serviceLocator<SettleFundUseCase>();
+    await useCase.call(fundId: _fund.id);
+    fetch();
+  }
+
+  Future<void> verifyFund() async {
+    VerifyFundUseCase useCase = serviceLocator<VerifyFundUseCase>();
     await useCase.call(fundId: _fund.id);
     fetch();
   }
