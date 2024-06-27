@@ -11,10 +11,10 @@ import 'package:moya/presentation/provider/fund_state_provider.dart';
 import 'package:moya/presentation/provider/my_info_provider.dart';
 import 'package:provider/provider.dart';
 
-class SettleBirthModalContent extends StatelessWidget {
+class SettleFundModalContent extends StatelessWidget {
   final NumberFormat numberFormatter = NumberFormat('#,###');
 
-  SettleBirthModalContent({
+  SettleFundModalContent({
     super.key,
   });
 
@@ -68,7 +68,7 @@ class SettleBirthModalContent extends StatelessWidget {
                         Positioned(
                           bottom: 49,
                           child: Text(
-                            '남은 돈',
+                            '모야',
                             style: TypoTextStyle.body3(
                               color: Palette.gray700,
                             ),
@@ -85,17 +85,25 @@ class SettleBirthModalContent extends StatelessWidget {
                             color: Palette.gray100,
                             borderRadius: BorderRadius.circular(16),
                           ),
-                          child: Text(
-                            '₩${numberFormatter.format(5000 + (fund.moya - fund.targetMoya) * 5000 - fund.price % 5000)}',
-                            style: TypoTextStyle.body1(
-                              color: Palette.black,
-                            ),
+                          child: Row(
+                            children: [
+                              Text(
+                                '${fund.moya - fund.targetMoya}',
+                                style: TypoTextStyle.body1(
+                                  color: Palette.black,
+                                ),
+                              ),
+                              const SizedBox(width: 6),
+                              SvgPicture.asset(
+                                'assets/images/moya.svg',
+                                width: 18,
+                                height: 18,
+                              ),
+                            ],
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(width: 20),
-                    SvgPicture.asset('assets/images/arrow-right.svg'),
                     const SizedBox(width: 20),
                     Stack(
                       clipBehavior: Clip.none,
@@ -124,11 +132,11 @@ class SettleBirthModalContent extends StatelessWidget {
                           child: Row(
                             children: [
                               Text(
-                                (5000 +
-                                        (fund.moya - fund.targetMoya) * 5000 -
-                                        fund.price % 5000)
-                                    .ceil()
-                                    .toString(),
+                                numberFormatter.format(
+                                  5000 +
+                                      (fund.moya - fund.targetMoya) * 5000 -
+                                      fund.price % 5000,
+                                ),
                                 style: TypoTextStyle.body1(
                                   color: Palette.black,
                                 ),

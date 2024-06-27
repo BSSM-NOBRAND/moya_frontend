@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:moya/config/palette.dart';
-import 'package:moya/presentation/home/widgets/settle_birth_modal_header.dart';
-import 'package:moya/presentation/home/widgets/settle_birth_model_content.dart';
+import 'package:moya/presentation/home/widgets/settle_fund_modal_header.dart';
+import 'package:moya/presentation/home/widgets/settle_fund_model_content.dart';
 
-class SettleBirthModal extends StatelessWidget {
-  const SettleBirthModal({super.key});
+class SettleFundModal extends StatelessWidget {
+  const SettleFundModal({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +23,9 @@ class SettleBirthModal extends StatelessWidget {
         ),
         child: Column(
           children: [
-            const SettleBirthModalHeader(),
+            const SettleFundModalHeader(),
             const SizedBox(height: 15),
-            SettleBirthModalContent(),
+            SettleFundModalContent(),
           ],
         ),
       ),

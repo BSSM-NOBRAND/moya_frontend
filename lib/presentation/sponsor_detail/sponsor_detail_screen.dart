@@ -4,6 +4,7 @@ import 'package:moya/config/typo_text_style.dart';
 import 'package:moya/presentation/common/detail_header.dart';
 import 'package:moya/presentation/common/primary_button.dart';
 import 'package:moya/presentation/provider/friend_fund_list_provider.dart';
+import 'package:moya/presentation/provider/my_info_provider.dart';
 import 'package:moya/presentation/sponsor_detail/widgets/letter_form.dart';
 import 'package:moya/presentation/sponsor_detail/widgets/moya_form.dart';
 import 'package:moya/presentation/sponsor_detail/widgets/visibility_form.dart';
@@ -48,6 +49,9 @@ class _SponsorDetailScreenState extends State<SponsorDetailScreen> {
         step = FormStep.visibility;
       } else if (step == FormStep.visibility) {
         sponsorMoya();
+        MyInfoProvider provider =
+            Provider.of<MyInfoProvider>(context, listen: false);
+        provider.fetch();
         Navigator.of(context).pop();
       }
     });

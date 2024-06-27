@@ -3,8 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:moya/config/palette.dart';
 import 'package:moya/config/typo_text_style.dart';
 
-class SettleBirthModalHeader extends StatelessWidget {
-  const SettleBirthModalHeader({super.key});
+class SettleFundModalHeader extends StatelessWidget {
+  const SettleFundModalHeader({super.key});
 
   @override
   Widget build(BuildContext context) {

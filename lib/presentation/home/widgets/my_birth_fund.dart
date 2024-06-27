@@ -7,7 +7,7 @@ import 'package:moya/presentation/common/my_birth_fund_image.dart';
 import 'package:moya/presentation/common/primary_button.dart';
 import 'package:moya/presentation/home/widgets/fund_progress_indicator.dart';
 import 'package:moya/presentation/home/widgets/my_birth_fund_header.dart';
-import 'package:moya/presentation/home/widgets/settle_birth_modal.dart';
+import 'package:moya/presentation/home/widgets/settle_fund_modal.dart';
 import 'package:moya/presentation/provider/fund_state_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
@@ -119,7 +119,7 @@ class _MyBirthFundState extends State<MyBirthFund> {
                                 backgroundColor: Colors.transparent,
                                 isScrollControlled: true,
                                 builder: (context) {
-                                  return const SettleBirthModal();
+                                  return const SettleFundModal();
                                 },
                               );
                             };
