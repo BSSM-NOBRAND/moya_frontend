@@ -9,6 +9,7 @@ import 'package:moya/data/data_sources/get_friend_fund_list_api.dart';
 import 'package:moya/data/data_sources/get_friend_list_api.dart';
 import 'package:moya/data/data_sources/get_friend_preview_api.dart';
 import 'package:moya/data/data_sources/get_fund_api.dart';
+import 'package:moya/data/data_sources/get_my_fund_list_api.dart';
 import 'package:moya/data/data_sources/get_my_wishlist_api.dart';
 import 'package:moya/data/data_sources/get_sponsor_list_api.dart';
 import 'package:moya/data/data_sources/get_user_api.dart';
@@ -27,6 +28,7 @@ import 'package:moya/data/repositories/get_friend_fund_list_repository_impl.dart
 import 'package:moya/data/repositories/get_friend_list_repository_impl.dart';
 import 'package:moya/data/repositories/get_friend_preview_repository_impl.dart';
 import 'package:moya/data/repositories/get_fund_repository_impl.dart';
+import 'package:moya/data/repositories/get_my_fund_list_repository_impl.dart';
 import 'package:moya/data/repositories/get_my_wishlist_repository_impl.dart';
 import 'package:moya/data/repositories/get_sponsor_list_repository_impl.dart';
 import 'package:moya/data/repositories/get_user_repository_impl.dart';
@@ -45,6 +47,7 @@ import 'package:moya/domain/repositories/get_friend_fund_list_repository.dart';
 import 'package:moya/domain/repositories/get_friend_list_repository.dart';
 import 'package:moya/domain/repositories/get_friend_preview_repository.dart';
 import 'package:moya/domain/repositories/get_fund_repository.dart';
+import 'package:moya/domain/repositories/get_my_fund_list_repository.dart';
 import 'package:moya/domain/repositories/get_my_wishlist_repository.dart';
 import 'package:moya/domain/repositories/get_sponsor_list_repository.dart';
 import 'package:moya/domain/repositories/get_user_repository.dart';
@@ -63,6 +66,7 @@ import 'package:moya/domain/usecases/get_friend_fund_list_use_case.dart';
 import 'package:moya/domain/usecases/get_friend_list_use_case.dart';
 import 'package:moya/domain/usecases/get_friend_preview_use_case.dart';
 import 'package:moya/domain/usecases/get_fund_use_case.dart';
+import 'package:moya/domain/usecases/get_my_fund_list_use_case.dart';
 import 'package:moya/domain/usecases/get_sponsor_list_use_case.dart';
 import 'package:moya/domain/usecases/get_user_use_case.dart';
 import 'package:moya/domain/usecases/get_wishlist_item_preview_use_case.dart';
@@ -129,6 +133,9 @@ void initServiceLocator() {
   serviceLocator.registerLazySingleton<GetSponsorListApi>(
     () => GetSponsorListApi(),
   );
+  serviceLocator.registerLazySingleton<GetMyFundListApi>(
+    () => GetMyFundListApi(),
+  );
 
   // Repository
   serviceLocator.registerLazySingleton<GetMyWishlistRepository>(
@@ -185,6 +192,9 @@ void initServiceLocator() {
   serviceLocator.registerLazySingleton<GetSponsorListRepository>(
     () => GetSponsorListRepositoryImpl(),
   );
+  serviceLocator.registerLazySingleton<GetMyFundListRepository>(
+    () => GetMyFundListRepositoryImpl(),
+  );
 
   // UseCase
   serviceLocator.registerLazySingleton<GetWishlistUseCase>(
@@ -240,5 +250,8 @@ void initServiceLocator() {
   );
   serviceLocator.registerLazySingleton<GetSponsorListUseCase>(
     () => GetSponsorListUseCase(),
+  );
+  serviceLocator.registerLazySingleton<GetMyFundListUseCase>(
+    () => GetMyFundListUseCase(),
   );
 }

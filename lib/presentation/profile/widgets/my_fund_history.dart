@@ -1,13 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:moya/config/palette.dart';
 import 'package:moya/config/typo_text_style.dart';
-import 'package:moya/domain/entities/friend_fund_item.dart';
+import 'package:moya/di/locator.dart';
+import 'package:moya/domain/entities/fund.dart';
+import 'package:moya/domain/usecases/get_my_fund_list_use_case.dart';
 import 'package:moya/presentation/profile/widgets/my_fund_history_item.dart';
 import 'package:moya/presentation/provider/friend_fund_list_provider.dart';
 import 'package:provider/provider.dart';
 
-class MyFundHistory extends StatelessWidget {
+class MyFundHistory extends StatefulWidget {
   const MyFundHistory({super.key});
+
+  @override
+  State<MyFundHistory> createState() => _MyFundHistoryState();
+}
+
+class _MyFundHistoryState extends State<MyFundHistory> {
+  List<Fund> _myFundList = [];
+
+  @override
+  void didChangeDependencies() async {
+    super.didChangeDependencies();
+    GetMyFundListUseCase useCase = serviceLocator<GetMyFundListUseCase>();
+    final result = await useCase.call();
+
+    result.when(
+      success: (myFundList) {
+        setState(() {
+          _myFundList = myFundList;
+        });
+      },
+      error: (message) {},
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,25 +53,23 @@ class MyFundHistory extends StatelessWidget {
       ),
       child: Consumer<FriendFundListProvider>(
         builder: (context, provider, child) {
-          List<FriendFundItem> friendFundList = provider.friendFundList;
-
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '친구들의 생일 펀드',
+                '내 펀드 기록',
                 style: TypoTextStyle.h4(
                   color: Palette.black,
                 ),
               ),
-              if (friendFundList.isNotEmpty) const SizedBox(height: 16),
+              if (_myFundList.isNotEmpty) const SizedBox(height: 16),
               ListView.separated(
                 shrinkWrap: true,
                 primary: false,
-                itemCount: friendFundList.length,
+                itemCount: _myFundList.length,
                 itemBuilder: (context, index) {
                   return MyFundHistoryItem(
-                    friendFundItem: friendFundList[index],
+                    myFund: _myFundList[index],
                   );
                 },
                 separatorBuilder: (context, index) =>
