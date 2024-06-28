@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:moya/config/palette.dart';
 import 'package:moya/config/typo_text_style.dart';
+import 'package:moya/domain/entities/my_sponsor.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class MySponsorHistoryItem extends StatelessWidget {
-  const MySponsorHistoryItem({super.key});
+  MySponsor mySponsor;
+  MySponsorHistoryItem({super.key, required this.mySponsor});
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +19,7 @@ class MySponsorHistoryItem extends StatelessWidget {
             child: Skeleton.replace(
               width: 72,
               height: 72,
-              child: Image.network(
-                'https://thumbnail6.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/a193/10b096aa253e617aeeb4d249001cef90bc1ed4da9d11f3a152b4acfbdd03.jpg',
-              ),
+              child: Image.network(mySponsor.imageUrl),
             ),
           ),
           const SizedBox(width: 8),
@@ -28,7 +28,7 @@ class MySponsorHistoryItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  '국산 운지버섯(구름버섯) 600g 건조 건 말린 한방 차 국내산',
+                  mySponsor.productName,
                   style: TypoTextStyle.body2(
                     color: Palette.black,
                   ),
@@ -37,7 +37,7 @@ class MySponsorHistoryItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "조우성",
+                      mySponsor.name,
                       style: TypoTextStyle.body2(
                         color: Palette.gray600,
                       ),
@@ -45,7 +45,7 @@ class MySponsorHistoryItem extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          '4',
+                          mySponsor.moyaAmount.toString(),
                           style: TypoTextStyle.body2(
                             color: Palette.black,
                           ),

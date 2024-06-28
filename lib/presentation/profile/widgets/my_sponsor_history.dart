@@ -1,10 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:moya/config/palette.dart';
 import 'package:moya/config/typo_text_style.dart';
+import 'package:moya/di/locator.dart';
+import 'package:moya/domain/entities/my_sponsor.dart';
+import 'package:moya/domain/usecases/get_my_sponsor_list_use_case.dart';
 import 'package:moya/presentation/profile/widgets/my_sponsor_history_item.dart';
 
-class MySponsorHistory extends StatelessWidget {
+class MySponsorHistory extends StatefulWidget {
   const MySponsorHistory({super.key});
+
+  @override
+  State<MySponsorHistory> createState() => _MySponsorHistoryState();
+}
+
+class _MySponsorHistoryState extends State<MySponsorHistory> {
+  List<MySponsor> _mySponsorList = [];
+
+  @override
+  void didChangeDependencies() async {
+    super.didChangeDependencies();
+    GetMySponsorListUseCase useCase = serviceLocator<GetMySponsorListUseCase>();
+    final result = await useCase.call();
+    result.when(
+      success: (mySponsorList) {
+        setState(() {
+          _mySponsorList = mySponsorList;
+        });
+      },
+      error: (message) {},
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +57,14 @@ class MySponsorHistory extends StatelessWidget {
             shrinkWrap: true,
             primary: false,
             itemBuilder: (context, index) {
-              return const MySponsorHistoryItem();
+              return MySponsorHistoryItem(
+                mySponsor: _mySponsorList[index],
+              );
             },
             separatorBuilder: (context, index) {
               return const SizedBox(height: 16);
             },
-            itemCount: 10,
+            itemCount: _mySponsorList.length,
           ),
         ],
       ),
