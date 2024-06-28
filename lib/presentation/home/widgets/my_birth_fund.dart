@@ -9,6 +9,7 @@ import 'package:moya/presentation/home/widgets/fund_progress_indicator.dart';
 import 'package:moya/presentation/home/widgets/my_birth_fund_header.dart';
 import 'package:moya/presentation/home/widgets/settle_fund_modal.dart';
 import 'package:moya/presentation/provider/fund_state_provider.dart';
+import 'package:moya/presentation/sponsor_list/sponsor_list_screen.dart';
 import 'package:moya/presentation/verified_card/verified_card_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
@@ -158,6 +159,11 @@ class _MyBirthFundState extends State<MyBirthFund> {
                         highlightColor: Colors.transparent,
                         onTap: () {
                           print("clicked");
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const SponsorListScreen(),
+                            ),
+                          );
                         },
                         child: SizedBox(
                           width: 56,
