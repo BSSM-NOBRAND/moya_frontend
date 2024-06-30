@@ -27,6 +27,7 @@ class MyInfoProvider with ChangeNotifier {
     return result.when(
       success: (item) {
         user = item;
+        print(item);
         notifyListeners();
         return Result.success(item);
       },

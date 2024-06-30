@@ -14,6 +14,7 @@ _$FundModelImpl _$$FundModelImplFromJson(Map<String, dynamic> json) =>
       price: (json['price'] as num).toInt(),
       moya: (json['moya'] as num).toInt(),
       targetMoya: (json['targetMoya'] as num).toInt(),
+      createdAt: json['createdAt'] as String,
       finishedAt: json['finishedAt'] as String,
       state: json['state'] as String,
     );
@@ -26,6 +27,7 @@ Map<String, dynamic> _$$FundModelImplToJson(_$FundModelImpl instance) =>
       'price': instance.price,
       'moya': instance.moya,
       'targetMoya': instance.targetMoya,
+      'createdAt': instance.createdAt,
       'finishedAt': instance.finishedAt,
       'state': instance.state,
     };

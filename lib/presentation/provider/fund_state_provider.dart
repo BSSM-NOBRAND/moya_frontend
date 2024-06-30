@@ -18,7 +18,8 @@ class FundStateProvider with ChangeNotifier {
     price: 0,
     moya: 1,
     targetMoya: 1,
-    finishedAt: '1592-05-23',
+    createdAt: "1970-01-01",
+    finishedAt: '1970-01-02',
     state: '',
   );
 

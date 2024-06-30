@@ -13,6 +13,7 @@ class FundModel extends Fund with _$FundModel {
     required int price,
     required int moya,
     required int targetMoya,
+    required String createdAt,
     required String finishedAt,
     required String state,
   }) = _FundModel;

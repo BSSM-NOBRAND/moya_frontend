@@ -5,6 +5,7 @@ class Fund {
   final int price;
   final int moya;
   final int targetMoya;
+  final String createdAt;
   final String finishedAt;
   final String state;
 
@@ -15,6 +16,7 @@ class Fund {
     required this.price,
     required this.moya,
     required this.targetMoya,
+    required this.createdAt,
     required this.finishedAt,
     required this.state,
   });

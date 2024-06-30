@@ -26,6 +26,7 @@ mixin _$FundModel {
   int get price => throw _privateConstructorUsedError;
   int get moya => throw _privateConstructorUsedError;
   int get targetMoya => throw _privateConstructorUsedError;
+  String get createdAt => throw _privateConstructorUsedError;
   String get finishedAt => throw _privateConstructorUsedError;
   String get state => throw _privateConstructorUsedError;
 
@@ -47,6 +48,7 @@ abstract class $FundModelCopyWith<$Res> {
       int price,
       int moya,
       int targetMoya,
+      String createdAt,
       String finishedAt,
       String state});
 }
@@ -70,6 +72,7 @@ class _$FundModelCopyWithImpl<$Res, $Val extends FundModel>
     Object? price = null,
     Object? moya = null,
     Object? targetMoya = null,
+    Object? createdAt = null,
     Object? finishedAt = null,
     Object? state = null,
   }) {
@@ -98,6 +101,10 @@ class _$FundModelCopyWithImpl<$Res, $Val extends FundModel>
           ? _value.targetMoya
           : targetMoya // ignore: cast_nullable_to_non_nullable
               as int,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String,
       finishedAt: null == finishedAt
           ? _value.finishedAt
           : finishedAt // ignore: cast_nullable_to_non_nullable
@@ -125,6 +132,7 @@ abstract class _$$FundModelImplCopyWith<$Res>
       int price,
       int moya,
       int targetMoya,
+      String createdAt,
       String finishedAt,
       String state});
 }
@@ -146,6 +154,7 @@ class __$$FundModelImplCopyWithImpl<$Res>
     Object? price = null,
     Object? moya = null,
     Object? targetMoya = null,
+    Object? createdAt = null,
     Object? finishedAt = null,
     Object? state = null,
   }) {
@@ -174,6 +183,10 @@ class __$$FundModelImplCopyWithImpl<$Res>
           ? _value.targetMoya
           : targetMoya // ignore: cast_nullable_to_non_nullable
               as int,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String,
       finishedAt: null == finishedAt
           ? _value.finishedAt
           : finishedAt // ignore: cast_nullable_to_non_nullable
@@ -196,6 +209,7 @@ class _$FundModelImpl implements _FundModel {
       required this.price,
       required this.moya,
       required this.targetMoya,
+      required this.createdAt,
       required this.finishedAt,
       required this.state});
 
@@ -215,13 +229,15 @@ class _$FundModelImpl implements _FundModel {
   @override
   final int targetMoya;
   @override
+  final String createdAt;
+  @override
   final String finishedAt;
   @override
   final String state;
 
   @override
   String toString() {
-    return 'FundModel(id: $id, name: $name, imageUrl: $imageUrl, price: $price, moya: $moya, targetMoya: $targetMoya, finishedAt: $finishedAt, state: $state)';
+    return 'FundModel(id: $id, name: $name, imageUrl: $imageUrl, price: $price, moya: $moya, targetMoya: $targetMoya, createdAt: $createdAt, finishedAt: $finishedAt, state: $state)';
   }
 
   @override
@@ -237,6 +253,8 @@ class _$FundModelImpl implements _FundModel {
             (identical(other.moya, moya) || other.moya == moya) &&
             (identical(other.targetMoya, targetMoya) ||
                 other.targetMoya == targetMoya) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
             (identical(other.finishedAt, finishedAt) ||
                 other.finishedAt == finishedAt) &&
             (identical(other.state, state) || other.state == state));
@@ -245,7 +263,7 @@ class _$FundModelImpl implements _FundModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, imageUrl, price, moya,
-      targetMoya, finishedAt, state);
+      targetMoya, createdAt, finishedAt, state);
 
   @JsonKey(ignore: true)
   @override
@@ -269,6 +287,7 @@ abstract class _FundModel implements FundModel {
       required final int price,
       required final int moya,
       required final int targetMoya,
+      required final String createdAt,
       required final String finishedAt,
       required final String state}) = _$FundModelImpl;
 
@@ -287,6 +306,8 @@ abstract class _FundModel implements FundModel {
   int get moya;
   @override
   int get targetMoya;
+  @override
+  String get createdAt;
   @override
   String get finishedAt;
   @override

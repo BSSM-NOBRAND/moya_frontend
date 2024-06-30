@@ -76,7 +76,7 @@ class VerifiedCard extends StatelessWidget {
                       const SizedBox(width: 8),
                       Text(
                         // TODO: 시작 날짜 넣기
-                        "2024.06.10 ~ ${fund.finishedAt.replaceAll(RegExp(r"-"), ".")}",
+                        "${fund.createdAt.replaceAll(RegExp(r"-"), ".")} ~ ${fund.finishedAt.replaceAll(RegExp(r"-"), ".")}",
                         style: TypoTextStyle.body2(
                           color: Palette.gray700,
                         ),
