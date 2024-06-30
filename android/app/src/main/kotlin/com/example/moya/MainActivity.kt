@@ -71,7 +71,9 @@ class MainActivity: FlutterActivity() {
                 var outputStream: OutputStream? = null
                 try {
                     outputStream = resolver.openOutputStream(uri)
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+                    outputStream?.let {
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, it)
+                    }
                 } finally {
                     outputStream?.close()
                 }

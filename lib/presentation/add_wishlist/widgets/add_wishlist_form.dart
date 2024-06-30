@@ -64,6 +64,7 @@ class _AddWishlistFormState extends State<AddWishlistForm> {
                         onChanged: (value) {
                           setState(() {
                             link = value;
+                            provider.initWishlistItemPreview();
                             widget.findItem(link);
                           });
                         },

@@ -47,6 +47,8 @@ class MyWishlistItem extends StatelessWidget {
                   Text(
                     wishlistItem.name,
                     style: TypoTextStyle.body2(color: Palette.black),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                   ),
                   Align(
                     alignment: Alignment.centerRight,

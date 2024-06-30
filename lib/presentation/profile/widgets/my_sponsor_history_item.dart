@@ -6,8 +6,8 @@ import 'package:moya/domain/entities/my_sponsor.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class MySponsorHistoryItem extends StatelessWidget {
-  MySponsor mySponsor;
-  MySponsorHistoryItem({super.key, required this.mySponsor});
+  final MySponsor mySponsor;
+  const MySponsorHistoryItem({super.key, required this.mySponsor});
 
   @override
   Widget build(BuildContext context) {

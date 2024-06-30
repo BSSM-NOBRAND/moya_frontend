@@ -50,6 +50,8 @@ class WishlistItemPreview extends StatelessWidget {
                       child: Text(
                         wishListItem.name,
                         style: TypoTextStyle.body2(color: Palette.black),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
                     const SizedBox(width: 12),

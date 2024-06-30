@@ -43,24 +43,27 @@ class _AddWishlistScreenState extends State<AddWishlistScreen> {
               left: 16,
               right: 16,
             ),
-            child: PrimaryButton(
-              '추가하기',
-              onPressed: () {
-                if (provider.wishlistItem != null) {
-                  MyWishlistProvider myWishlistProvider =
-                      Provider.of<MyWishlistProvider>(context, listen: false);
-                  myWishlistProvider.addWishlistItem(
-                    imageUrl: provider.wishlistItem!.imageUrl,
-                    url: _link,
-                    name: provider.wishlistItem!.name,
-                    price: provider.wishlistItem!.price,
-                  );
-                  Navigator.of(context).pop();
-                  WishlistItemPreviewProvider wishlistItemPreviewProvider =
-                      Provider.of<WishlistItemPreviewProvider>(context,
-                          listen: false);
-                  wishlistItemPreviewProvider.initWishlistItemPreview();
-                }
+            child: Consumer<WishlistItemPreviewProvider>(
+              builder: (context, wishlistItemPreviewProvider, child) {
+                return PrimaryButton(
+                  '추가하기',
+                  onPressed: () {
+                    if (provider.wishlistItem != null) {
+                      MyWishlistProvider myWishlistProvider =
+                          Provider.of<MyWishlistProvider>(context,
+                              listen: false);
+                      myWishlistProvider.addWishlistItem(
+                        imageUrl: provider.wishlistItem!.imageUrl,
+                        url: _link,
+                        name: provider.wishlistItem!.name,
+                        price: provider.wishlistItem!.price,
+                      );
+                      Navigator.of(context).pop();
+                      wishlistItemPreviewProvider.initWishlistItemPreview();
+                    }
+                  },
+                  disabled: wishlistItemPreviewProvider.wishlistItem == null,
+                );
               },
             ),
           ),

@@ -21,6 +21,7 @@ class LetterForm extends StatelessWidget {
           const SizedBox(height: 20),
           TextField(
             maxLines: 6,
+            maxLength: 100,
             cursorColor: Palette.brandPrimary,
             style: TypoTextStyle.body2(
               color: Palette.black,
