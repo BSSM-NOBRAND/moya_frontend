@@ -133,9 +133,7 @@ class SettleFundModalContent extends StatelessWidget {
                             children: [
                               Text(
                                 numberFormatter.format(
-                                  5000 +
-                                      (fund.moya - fund.targetMoya) * 5000 -
-                                      fund.price % 5000,
+                                  5000 - fund.price % 5000,
                                 ),
                                 style: TypoTextStyle.body1(
                                   color: Palette.black,
