@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moya/presentation/common/my_wishlist/my_wishlist.dart';
+import 'package:moya/presentation/wishlist/widgets/recommended_wishlist.dart';
 
 class WishlistScreen extends StatelessWidget {
   const WishlistScreen({super.key});
@@ -13,7 +14,12 @@ class WishlistScreen extends StatelessWidget {
         right: 16,
         bottom: 12,
       ),
-      child: MyWishlist(),
+      child: Column(
+        children: [
+          MyWishlist(),
+          RecommendedWishlist(),
+        ],
+      ),
     );
   }
 }
