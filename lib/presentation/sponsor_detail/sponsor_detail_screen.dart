@@ -30,7 +30,7 @@ class _SponsorDetailScreenState extends State<SponsorDetailScreen> {
   String letter = '';
   bool? isSponsorVisible;
 
-  void sponsorMoya() async {
+  Future<void> sponsorMoya() async {
     FriendFundListProvider provider =
         Provider.of<FriendFundListProvider>(context, listen: false);
     await provider.sponsorMoya(
@@ -39,6 +39,11 @@ class _SponsorDetailScreenState extends State<SponsorDetailScreen> {
       content: letter,
       isVisible: isSponsorVisible!,
     );
+
+    MyInfoProvider myInfoProvider =
+        Provider.of<MyInfoProvider>(context, listen: false);
+    myInfoProvider.fetch();
+    Navigator.of(context).pop();
   }
 
   void handleButtonPressed() {
@@ -49,10 +54,6 @@ class _SponsorDetailScreenState extends State<SponsorDetailScreen> {
         step = FormStep.visibility;
       } else if (step == FormStep.visibility) {
         sponsorMoya();
-        MyInfoProvider provider =
-            Provider.of<MyInfoProvider>(context, listen: false);
-        provider.fetch();
-        Navigator.of(context).pop();
       }
     });
   }
