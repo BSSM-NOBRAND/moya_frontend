@@ -52,7 +52,7 @@ class _MySponsorHistoryState extends State<MySponsorHistory> {
               color: Palette.black,
             ),
           ),
-          const SizedBox(height: 16),
+          if (_mySponsorList.isNotEmpty) const SizedBox(height: 16),
           ListView.separated(
             shrinkWrap: true,
             primary: false,
