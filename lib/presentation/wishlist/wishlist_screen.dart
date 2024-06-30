@@ -17,6 +17,7 @@ class WishlistScreen extends StatelessWidget {
       child: Column(
         children: [
           MyWishlist(),
+          SizedBox(height: 12),
           RecommendedWishlist(),
         ],
       ),
