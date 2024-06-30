@@ -38,6 +38,8 @@ class MySponsorHistoryItem extends StatelessWidget {
                   children: [
                     Text(
                       mySponsor.name,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                       style: TypoTextStyle.body2(
                         color: Palette.gray600,
                       ),
