@@ -26,45 +26,46 @@ class _AddWishlistScreenState extends State<AddWishlistScreen> {
   Widget build(BuildContext context) {
     return Consumer<WishlistItemPreviewProvider>(
       builder: (context, provider, child) {
-        return Scaffold(
-          body: SafeArea(
-            child: Column(
-              children: [
-                const DetailHeader(title: '위시리스트 추가'),
-                AddWishlistForm(
-                  findItem: findItem,
-                ),
-              ],
+        return PopScope(
+          onPopInvoked: (didPop) {
+            if (didPop) {
+              provider.initWishlistItemPreview();
+            }
+          },
+          child: Scaffold(
+            body: SafeArea(
+              child: Column(
+                children: [
+                  const DetailHeader(title: '위시리스트 추가'),
+                  AddWishlistForm(
+                    findItem: findItem,
+                  ),
+                ],
+              ),
             ),
-          ),
-          bottomSheet: Container(
-            margin: EdgeInsets.only(
-              bottom: MediaQuery.of(context).padding.bottom + 8,
-              left: 16,
-              right: 16,
-            ),
-            child: Consumer<WishlistItemPreviewProvider>(
-              builder: (context, wishlistItemPreviewProvider, child) {
-                return PrimaryButton(
-                  '추가하기',
-                  onPressed: () {
-                    if (provider.wishlistItem != null) {
-                      MyWishlistProvider myWishlistProvider =
-                          Provider.of<MyWishlistProvider>(context,
-                              listen: false);
-                      myWishlistProvider.addWishlistItem(
-                        imageUrl: provider.wishlistItem!.imageUrl,
-                        url: _link,
-                        name: provider.wishlistItem!.name,
-                        price: provider.wishlistItem!.price,
-                      );
-                      Navigator.of(context).pop();
-                      wishlistItemPreviewProvider.initWishlistItemPreview();
-                    }
-                  },
-                  disabled: wishlistItemPreviewProvider.wishlistItem == null,
-                );
-              },
+            bottomSheet: Container(
+              margin: EdgeInsets.only(
+                bottom: MediaQuery.of(context).padding.bottom + 8,
+                left: 16,
+                right: 16,
+              ),
+              child: PrimaryButton(
+                '추가하기',
+                onPressed: () {
+                  if (provider.wishlistItem != null) {
+                    MyWishlistProvider myWishlistProvider =
+                        Provider.of<MyWishlistProvider>(context, listen: false);
+                    myWishlistProvider.addWishlistItem(
+                      imageUrl: provider.wishlistItem!.imageUrl,
+                      url: _link,
+                      name: provider.wishlistItem!.name,
+                      price: provider.wishlistItem!.price,
+                    );
+                    Navigator.of(context).pop();
+                  }
+                },
+                disabled: provider.wishlistItem == null,
+              ),
             ),
           ),
         );
