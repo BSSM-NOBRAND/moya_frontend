@@ -6,6 +6,7 @@ import 'package:moya/presentation/common/birth_fund_progress.dart';
 import 'package:moya/presentation/common/my_birth_fund_image.dart';
 import 'package:moya/presentation/common/primary_button.dart';
 import 'package:moya/presentation/home/widgets/fund_progress_indicator.dart';
+import 'package:moya/presentation/home/widgets/my_birth_fund_dialog.dart';
 import 'package:moya/presentation/home/widgets/my_birth_fund_header.dart';
 import 'package:moya/presentation/home/widgets/settle_fund_modal.dart';
 import 'package:moya/presentation/provider/fund_state_provider.dart';
@@ -39,21 +40,82 @@ class _MyBirthFundState extends State<MyBirthFund> {
             return Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const FundProgressIndicator(
+                FundProgressIndicator(
                   text: '시작',
                   isActive: false,
+                  onClick: () {
+                    showDialog(
+                      context: context,
+                      barrierColor: Colors.black.withOpacity(0.7),
+                      builder: (context) {
+                        return MyBirthFundDialog(
+                          imageUrl: 'assets/images/dialog1.png',
+                          onTap: () {
+                            Navigator.of(context).pop();
+                          },
+                        );
+                      },
+                    );
+                  },
                 ),
                 FundProgressIndicator(
                   text: '진행중',
                   isActive: provider.fund.state == "OPEN",
+                  onClick: () {
+                    showDialog(
+                      context: context,
+                      barrierColor: Colors.black.withOpacity(0.7),
+                      builder: (context) {
+                        return MyBirthFundDialog(
+                          imageUrl: 'assets/images/dialog2.png',
+                          height: 205,
+                          onTap: () {
+                            Navigator.of(context).pop();
+                          },
+                          left: 19,
+                        );
+                      },
+                    );
+                  },
                 ),
                 FundProgressIndicator(
                   text: '종료',
                   isActive: provider.fund.state == "CLOSE",
+                  onClick: () {
+                    showDialog(
+                      context: context,
+                      barrierColor: Colors.black.withOpacity(0.7),
+                      builder: (context) {
+                        return MyBirthFundDialog(
+                          imageUrl: 'assets/images/dialog3.png',
+                          onTap: () {
+                            Navigator.of(context).pop();
+                          },
+                          right: 18,
+                        );
+                      },
+                    );
+                  },
                 ),
                 FundProgressIndicator(
                   text: '인증',
                   isActive: provider.fund.state == "AUTHENTICATED",
+                  onClick: () {
+                    showDialog(
+                      context: context,
+                      barrierColor: Colors.black.withOpacity(0.7),
+                      builder: (context) {
+                        return MyBirthFundDialog(
+                          imageUrl: 'assets/images/dialog4.png',
+                          onTap: () {
+                            Navigator.of(context).pop();
+                          },
+                          height: 185,
+                          right: 0,
+                        );
+                      },
+                    );
+                  },
                 ),
               ],
             );

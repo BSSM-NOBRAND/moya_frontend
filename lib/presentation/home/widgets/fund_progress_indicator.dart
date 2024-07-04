@@ -6,45 +6,50 @@ import 'package:moya/config/typo_text_style.dart';
 class FundProgressIndicator extends StatelessWidget {
   final String text;
   final bool isActive;
+  final void Function() onClick;
 
   const FundProgressIndicator({
     super.key,
     required this.text,
     this.isActive = false,
+    required this.onClick,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      clipBehavior: Clip.none,
-      alignment: Alignment.bottomCenter,
-      children: [
-        Container(
-          padding: const EdgeInsets.symmetric(
-            vertical: 8,
-            horizontal: 16,
-          ),
-          decoration: BoxDecoration(
-            border: Border.all(
-              width: 1,
-              color: isActive ? Palette.brandPrimary : Palette.gray200,
+    return InkWell(
+      onTap: onClick,
+      child: Stack(
+        clipBehavior: Clip.none,
+        alignment: Alignment.bottomCenter,
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(
+              vertical: 8,
+              horizontal: 16,
             ),
-            borderRadius: BorderRadius.circular(12),
-            color: isActive ? Palette.brandPrimaryBg : Palette.white,
-          ),
-          child: Text(
-            text,
-            style: TypoTextStyle.body1(
-              color: isActive ? Palette.brandPrimary : Palette.black,
+            decoration: BoxDecoration(
+              border: Border.all(
+                width: 1,
+                color: isActive ? Palette.brandPrimary : Palette.gray200,
+              ),
+              borderRadius: BorderRadius.circular(12),
+              color: isActive ? Palette.brandPrimaryBg : Palette.white,
+            ),
+            child: Text(
+              text,
+              style: TypoTextStyle.body1(
+                color: isActive ? Palette.brandPrimary : Palette.black,
+              ),
             ),
           ),
-        ),
-        if (isActive)
-          Positioned(
-            bottom: -12,
-            child: SvgPicture.asset('assets/images/indicator-tail.svg'),
-          )
-      ],
+          if (isActive)
+            Positioned(
+              bottom: -12,
+              child: SvgPicture.asset('assets/images/indicator-tail.svg'),
+            )
+        ],
+      ),
     );
   }
 }
